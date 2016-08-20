@@ -1,0 +1,25 @@
+<!-- ERROR START -->
+<br>
+<div class="alert alert-danger" role="alert" ng-show="recent.stat == 'fail'">
+  <b>An error occurred</b>
+  <br> Code: {{recent.code}} / Message: {{recent.message}}
+</div>
+<!-- ERROR END -->
+<!-- THUMBNAILS START -->
+<md-grid-list md-gutter="0.33em" md-cols="6" md-row-height="1:1" class="test">
+  <md-grid-tile ng-repeat="img in thumbnailsShow" class="recent-tile">
+    <img ng-src="https://farm{{img.farm-id}}.staticflickr.com/{{img.server-id}}/{{img.id}}_{{img.secret}}_q.jpg" ng-click="thumbnailClick($event, img, $index)">
+  </md-grid-tile>
+</md-grid-list>
+<!-- THUMBNAILS END -->
+<!-- NAV START -->
+<nav>
+  <ul class="pager" ng-hide="recent.photos.photo.length === 0">
+    <li>
+      <a ng-click="thumbnailsAdd()">
+        <span class="glyphicon glyphicon-plus"></span>
+      </a>
+    </li>
+  </ul>
+</nav>
+<!-- NAV END -->
