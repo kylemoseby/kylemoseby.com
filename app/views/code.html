@@ -1,0 +1,38 @@
+<div layout="row" layout-wrap layout-padding="16px" ng-controller="CrimeMapCtrl">
+  <div flex-gt-md="20" flex="10">
+    <!-- CRIME MAP START -->
+    <h2>Seattle Crime Reports</h2>
+    <p>Requests data from <a href="https://data.seattle.gov/" target="_blank">data.seattle.gov</a> then plots to a Google Map using latitude and longitude, and uses <a href="http://d3js.org" target="_blank">d3</a> to plots reports by time and report type. Reports can be filtered by types.</p>
+    <p><a href="https://github.com/kylemoseby/angular-seattle-crimemap" target="_blank">GitHub Repo <span class="icon-github"></span></a></p>
+    <div filter-report-types="$index" crime-map-filter="$crimeMap" crime-timeline-filter="$vizTimeline"></div>
+  </div>
+  <div flex="100" flex-gt-sm="30">
+    <div map-canvas="$crimeMap" map-promise="crimeData" map-timeline="$vizTimeline"></div>
+  </div>
+  <div flex="100" flex-gt-sm="50">
+    <!-- <div id="crime-reports-block" crime-reports-block="$vizBlocks" crime-reports-data="crimeData"></div> -->
+    <div crime-reports-summary="$typeDetail" summary-index="$index"></div>
+  </div>
+  <div flex="100">
+    <div id="sea-crime-viz" viz-time-line="$vizTimeline" viz-time-data="crimeData" crime-viz-map="$crimeMap"></div>
+  </div>
+  <!-- CRIME MAP END -->
+  <div incident-detail="crimeData" timeline-id="$vizTimeline" map-id="$crimeMap" ng-hide="incidentDetail === null">
+  </div>
+</div>
+<div layout="row" layout-padding="16px">
+  <div flex>
+    <!-- FLICKR INTEGRATIONS START -->
+    <h2>Flickr Integrations for Angular</h2>
+    <p><a href="https://github.com/kylemoseby/angular-flickr-portfolio" target="_blank">GitHub Repo <span class="icon-github"></span></a></p>
+  </div>
+  <div flex>
+    <h3>Recent Photos</h3>
+    <recent-photos flickr-id="flickrID" count="12"></recent-photos>
+  </div>
+  <div flex>
+    <h3>Flickr Album</h3>
+    <flickr-album album-id="albumID"></flickr-album>
+    <!-- FLICKR INTEGRATIONS END -->
+  </div>
+</div>
