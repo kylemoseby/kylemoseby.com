@@ -11,6 +11,7 @@ angular.module('kylemosebyDotcomApp')
   .controller('PhotoCtrl', ['$scope', function($scope) {
 
     $scope.photoalbums = [
+      '72157671573143060',
       '72157642607219393',
       '72157642608822784',
       '72157641683609583'
