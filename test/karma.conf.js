@@ -36,6 +36,7 @@ module.exports = function(config) {
       'bower_components/angular-flickr-integrations/source/angular-flickr-integrations.js',
       'bower_components/angular-loader/angular-loader.js',
       'bower_components/angular-mocks/angular-mocks.js',
+      'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/angular-seattle-crimemap/app/crime-view/crime-view.js',
       // endbower
       "app/scripts/**/*.js",
