@@ -6728,7 +6728,7 @@ button.close {
 }
 #map-canvas,
 #sea-crime-viz {
-  height: 67vh;
+  height: 75vh;
   width: 100%;
 }
 #crime-reports-block {
