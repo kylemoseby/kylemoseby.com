@@ -11,7 +11,7 @@
 angular
   .module('kylemosebyDotcomApp', [
     'mkm.flickr',
-    'crimeView',
+    'mkm.seaCrimeData',
     'ngAnimate',
     'ngCookies',
     'ngResource',

@@ -10,7 +10,7 @@
     "angular-route": "^1.3.0",
     "angular-sanitize": "^1.3.0",
     "angular-flickr-integrations": "git@github.com:kylemoseby/angular-flickr-integrations.git",
-    "angular-seattle-crimemap": "git@github.com:kylemoseby/angular-seattle-crimemap.git",
+    "angular-seattle-crime-data": "git@github.com:kylemoseby/angular-seattle-crime-data.git",
     "angular-material": "^1.0.9"
   },
   "devDependencies": {
