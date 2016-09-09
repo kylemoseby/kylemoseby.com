@@ -10,6 +10,7 @@
  */
 angular
   .module('kylemosebyDotcomApp', [
+    'mkm.codepen',
     'mkm.flickr',
     'mkm.seaCrimeData',
     'ngAnimate',

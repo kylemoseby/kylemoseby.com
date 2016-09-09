@@ -11,6 +11,7 @@
     "angular-sanitize": "^1.5.8",
     "angular-flickr-integrations": "git@github.com:kylemoseby/angular-flickr-integrations.git",
     "angular-seattle-crime-data": "git@github.com:kylemoseby/angular-seattle-crime-data.git",
+    "angular-codepen": "git@github.com:kylemoseby/angular-codepen.git",
     "angular-material": "^1.0.9"
   },
   "devDependencies": {
@@ -28,6 +29,8 @@
     }
   },
   "resolutions": {
-    "angular": "1.5.8"
+    "angular": "1.5.8",
+    "angular-route": "^1.5.8",
+    "angular-mocks": "^1.5.8"
   }
 }

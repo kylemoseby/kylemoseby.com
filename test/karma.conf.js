@@ -37,6 +37,8 @@ module.exports = function(config) {
       'bower_components/angular-loader/angular-loader.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/angular-seattle-crime-data/source/seattle-crime-reports-scripts.js',
+      'bower_components/angular-code-mirror/dist/angular-code-mirror.js',
+      'bower_components/angular-codepen/source/angular-codepen.js',
       // endbower
       "app/scripts/**/*.js",
       "test/mock/**/*.js",
