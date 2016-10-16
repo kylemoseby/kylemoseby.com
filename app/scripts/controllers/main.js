@@ -9,5 +9,5 @@
  */
 angular.module('kylemosebyDotcomApp')
   .controller('MainCtrl', [function() {
-  	this.awesomeThings = [];
+
   }]);

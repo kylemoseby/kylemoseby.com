@@ -1,5 +1,5 @@
 /*
-	FONTS
+  FONTS
 
 */
 
@@ -56,8 +56,12 @@
 // Utility classes
 @import "bower_components/bootstrap/less/utilities.less";
 @import "bower_components/bootstrap/less/responsive-utilities.less";
+// CODE SAMPLE IMPORTS
+@import "bower_components/angular-flickr-integrations/less/flickr-albums.less";
+@import "bower_components/angular-flickr-integrations/less/flickr-recents.less";
 @import "crime-map.less";
 @import "flickr-portfolio.less";
+@import "code.less";
 #main-page {
   li {
     font-size: @font-size-h2;
@@ -139,3 +143,25 @@
     font-size: 7em;
   }
 }
+
+.nav > li {
+  position: relative;
+  display: inline-block;
+}
+
+@media (min-width: @screen-sm-min) {}
+
+
+/* Medium devices (desktops, 992px and up) */
+
+@media (min-width: @screen-md-min) {
+  #crime-reports-block {
+    height: 33vh;
+    width: 100%;
+  }
+}
+
+
+/* Large devices (large desktops, 1200px and up) */
+
+@media (min-width: @screen-lg-min) {}

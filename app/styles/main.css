@@ -1,5 +1,5 @@
 /*
-	FONTS
+  FONTS
 
 */
 @import 'https://fonts.googleapis.com/css?family=Oswald:400,700';
@@ -6726,48 +6726,123 @@ button.close {
     display: none !important;
   }
 }
-#map-canvas,
+flickr-album {
+  position: relative;
+  top: -5px;
+  padding: 0 0;
+  padding-bottom: 10px;
+}
+flickr-album .flickr-detail-photo {
+  padding: 50px 12px;
+  background: #f5f5f5;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+}
+flickr-album .flickr-detail-photo nav,
+flickr-album .flickr-detail-photo .recent-detail-descrip {
+  margin-top: 2vh;
+}
+flickr-album .flickr-detail-photo img {
+  max-width: 100%;
+  max-height: 80vh;
+}
+flickr-album .gallery-thumbs {
+  overflow: hidden;
+}
+flickr-album .gallery-thumbs img {
+  width: 100%;
+  height: 100%;
+}
+.flickr-detail-photo {
+  padding: 50px 12px;
+  background: #f5f5f5;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+}
+.flickr-detail-photo nav,
+.flickr-detail-photo .recent-detail-descrip {
+  margin-top: 2vh;
+}
+.flickr-detail-photo img {
+  max-width: 100%;
+  max-height: 80vh;
+}
+.recent-photos {
+  overflow: hidden;
+}
+.recent-photos img {
+  max-height: 100%;
+  width: 100%;
+}
+map-canvas {
+  height: 67vh;
+  width: 100%;
+  display: block;
+}
 #sea-crime-viz {
   height: 75vh;
   width: 100%;
 }
-#crime-reports-block {
-  height: 75vh;
+map-canvas {
+  overflow: hidden;
+}
+map-canvas .map-canvas {
+  height: 67vh;
   width: 100%;
 }
-#type-filter {
-  display: inline-block;
-  overflow: scroll;
+.map-report-detail {
+  background: #fff;
+  height: 100vh;
+  width: 100%;
 }
-#crime-reports-block svg {
-  background-coor: #777777;
+.map-report-detail #report-map {
+  height: 67vh;
+  width: 100%;
+}
+.map-report-detail #street-view-detail {
+  height: 67vh;
+  width: 100%;
+}
+md-menu-content {
+  max-height: 60vh;
+}
+#crime-reports-block {
+  height: 50vh;
+  width: 100%;
 }
 #crime-reports-block svg rect {
   cursor: pointer;
 }
-.sum-svg-wrapper {
-  height: 50vh;
-  width: 100%;
+.report-type-detail {
+  background: #f5f5f5;
+  height: 100vh;
+  width: 100vw;
 }
-#street-view-detail {
-  height: 50vh;
-  width: 100%;
+.report-type-detail .sub-types {
+  display: inline-block;
+  width: 50%;
 }
-.reportTotals {
+report-type-day .report-days {
   display: inline-block;
   height: 18px;
-  padding: 0;
-  color: #ffffff;
-  overflow: hidden;
+  width: 18px;
 }
-.axis path,
-.axis line {
-  fill: none;
-  visibility: hidden;
-  display: none;
+report-type-child .report-types {
+  display: inline-block;
 }
-.axis .domain {
-  opacity: 0;
+report-zone-beat .report-zones,
+report-zone-beat .zone-reports {
+  display: inline-block;
+}
+report-zone-beat .report-zones {
+  margin-right: 3px;
+}
+report-zone-beat .report-zones .zone-reports {
+  color: #fff;
+  padding: 2px;
+  margin-right: 2px;
 }
 .block-label {
   font-size: 12px;
@@ -6775,26 +6850,92 @@ button.close {
   fill: #777777;
   stroke: #777777;
 }
-#cicle-tool-tip {
+.cicle-tool-tip::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+.cicle-tool-tip.left-side::before {
+  right: 100%;
+  top: -2px;
+  left: -28px;
+  border-right: 30px solid #000;
+}
+.cicle-tool-tip.rght-side::before {
+  left: 100%;
+  top: -2px;
+  right: -28px;
+  border-left: 30px solid #000;
+}
+.cicle-tool-tip {
   position: absolute;
   text-align: center;
-  width: 15vw;
-  padding: 6px 12px;
+  padding: 3px 12px;
   font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
   line-height: 20px;
   color: #fff;
-  border: 0px;
+  height: 30px;
+  min-width: 300px;
+  border: 2px solid #000;
   border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
   pointer-events: none;
   opacity: 0;
   z-index: 20;
 }
-svg {
+.crime-report-detail {
+  background: #f5f5f5;
+  height: 100vh;
+  width: 100vw;
+}
+.crime-report-detail #street-view-detail {
+  height: 67vh;
+  width: 100%;
+}
+svg.seattle-crime-timeline {
   z-index: 0;
 }
 .timeline-circle {
   cursor: pointer;
 }
+path {
+  stroke: steelblue;
+  stroke-width: 2;
+  fill: none;
+}
+.axis.y path {
+  display: none;
+}
+.axis.y line {
+  fill: none;
+  stroke: grey;
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+  stroke-dasharray: 2, 2;
+  width: 100%;
+}
+.axis.x path,
+.axis.x line {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 0;
+}
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+/* Small devices (tablets, 768px and up) */
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  #crime-reports-block {
+    height: 33vh;
+    width: 100%;
+  }
+}
+/* Large devices (large desktops, 1200px and up) */
 /*   RECENT PHOTOS  */
 .flickr-detail-photo {
   padding: 50px 12px;
@@ -6900,3 +7041,15 @@ svg {
   font-weight: 700;
   font-size: 7em;
 }
+.nav > li {
+  position: relative;
+  display: inline-block;
+}
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  #crime-reports-block {
+    height: 33vh;
+    width: 100%;
+  }
+}
+/* Large devices (large desktops, 1200px and up) */

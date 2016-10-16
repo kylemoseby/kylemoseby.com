@@ -1,60 +1,96 @@
-#map-canvas,
+// CRIME MAP
+map-canvas {
+  height: 67vh;
+  width: 100%;
+  display: block;
+}
+
+// TIMELINE
 #sea-crime-viz {
   height: 75vh;
   width: 100%;
 }
 
-#crime-reports-block {
-  height: 75vh;
+// MAP
+map-canvas {
+  overflow: hidden;
+  .map-canvas {
+    height: 67vh;
+    width: 100%
+  }
+}
+
+.map-report-detail {
+  background: #fff;
+  height: 100vh;
   width: 100%;
+  #report-map {
+    height: 67vh;
+    width: 100%;
+  }
+  #street-view-detail {
+    height: 67vh;
+    width: 100%;
+  }
 }
 
-#crime-map-filter {}
-
-#type-filter {
-  display: inline-block;
-  overflow: scroll;
+md-menu-content {
+  max-height: 60vh;
 }
 
+// MAP END
+// BLOCK
 #crime-reports-block {
+  height: 50vh;
+  width: 100%;
   svg {
-    background-coor: #777777;
     rect {
       cursor: pointer;
     }
   }
 }
 
-.sum-svg-wrapper {
-  height: 50vh;
-  width: 100%;
+.report-type-detail {
+  background: @well-bg;
+  height: 100vh;
+  width: 100vw;
+  .sub-types {
+    display: inline-block;
+    width: 50%
+  }
 }
 
-#street-view-detail {
-  height: 50vh;
-  width: 100%;
+report-type-day {
+  .report-days {
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+  }
 }
 
-.reportTotals {
-  display: inline-block;
-  height: 18px;
-  padding: 0;
-  color: #ffffff;
-  overflow: hidden;
+report-type-child {
+  .report-types {
+    display: inline-block;
+  }
 }
 
-.axis path,
-.axis line {
-  fill: none;
-  // stroke: #ccc0c0;
-  visibility: hidden;
-  display: none;
+report-zone-beat {
+  .report-zones,
+  .zone-reports {
+    display: inline-block;
+  }
+  .report-zones {
+    margin-right: 3px;
+    .zone-reports {
+      color: #fff;
+      padding: 2px;
+      margin-right: 2px;
+    }
+  }
 }
 
-.axis .domain {
-  opacity: 0;
-}
-
+// BLOCK END
+// TIMELINE
 .block-label {
   font-size: @font-size-small;
   text-transform: lowercase;
@@ -62,25 +98,116 @@
   stroke: @gray-light;
 }
 
-#cicle-tool-tip {
+.cicle-tool-tip::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+
+.cicle-tool-tip.left-side::before {
+  right: 100%;
+  top: -2px;
+  left: -28px;
+  border-right: 30px solid #000;
+}
+
+.cicle-tool-tip.rght-side::before {
+  left: 100%;
+  top: -2px;
+  right: -28px;
+  border-left: 30px solid #000;
+}
+
+.cicle-tool-tip {
   position: absolute;
   text-align: center;
-  width: 15vw;
-  padding: @padding-base-vertical @padding-base-horizontal;
+  padding: 3px 12px;
   font: @font-size-base @font-family-base;
+  font-weight: @headings-font-weight;
   line-height: @line-height-computed;
   color: #fff;
-  border: 0px;
+  height: 30px;
+  min-width: 300px;
+  border: 2px solid #000;
   border-radius: @border-radius-base;
+  -webkit-border-radius: @border-radius-base;
+  -moz-border-radius: @border-radius-base;
   pointer-events: none;
   opacity: 0;
   z-index: 20;
 }
 
-svg {
+.crime-report-detail {
+  background: @well-bg;
+  height: 100vh;
+  width: 100vw;
+  #street-view-detail {
+    height: 67vh;
+    width: 100%;
+  }
+}
+
+svg.seattle-crime-timeline {
+  // background: azure;
   z-index: 0;
 }
 
 .timeline-circle {
   cursor: pointer;
 }
+
+path {
+  stroke: steelblue;
+  stroke-width: 2;
+  fill: none;
+}
+
+.axis.y path {
+  display: none;
+}
+
+.axis.y line {
+  fill: none;
+  stroke: grey;
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+  stroke-dasharray: 2, 2;
+  width: 100%;
+}
+
+.axis.x path,
+.axis.x line {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 0;
+}
+
+// TIMELINE END
+
+/* Extra small devices (phones, less than 768px) */
+
+
+/* No media query since this is the default in Bootstrap */
+
+
+/* Small devices (tablets, 768px and up) */
+
+@media (min-width: @screen-sm-min) {}
+
+
+/* Medium devices (desktops, 992px and up) */
+
+@media (min-width: @screen-md-min) {
+  #crime-reports-block {
+    height: 33vh;
+    width: 100%;
+  }
+}
+
+
+/* Large devices (large desktops, 1200px and up) */
+
+@media (min-width: @screen-lg-min) {}

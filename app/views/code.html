@@ -1,51 +1,54 @@
-<md-content layout="row" layout-padding layout-wrap>
-  <!-- FLICKR INTEGRATIONS START -->
-  <div flex="100">
+<md-content layout="row" layout-margin layout-padding layout-wrap>
+  <!--  SEATTLE CRIME REPORTS -->
+  <div flex="100" flex-gt-md="50">
     <h1>Code Samples</h1>
+    <!-- </div>
+  <div flex="100" flex-gt-md="50">
+   -->
+    <h2>Seattle Police Reports</h2>
+    <p>These samples use public data from <a href="https://data.seattle.gov/Public-Safety/Seattle-Police-Department-Police-Report-Incident/7ais-f98f" target="_blank">data.seattle.gov</a>. Data is provided by an HTTP request that <a href="https://data.seattle.gov/resource/7ais-f98f.json" target="_blank">gets a JSON object</a>. Data is indexed and formatted using <a href="https://d3js.org/" target="_blank">d3</a>. All these samples are developed in <a href="https://angularjs.org/" target="_blank">Angularjs</a>.</p>
+    <p><a href="https://github.com/kylemoseby/angular-seattle-crime-data" target="_blank">GitHub Repo <span class="icon-github"></span></a></p>
+  </div>
+  <div flex="100" flex-gt-md="50">
+    <!-- BAR CHART -->
+    <h3>Count by Report Type</h3>
+    <div id="crime-reports-block" crime-reports-block crime-reports-data="crimeData"></div>
+    <codepen info="seaCrimeBlock"></codepen>
+    <!-- //  BAR CHART -->
+  </div>
+  <div flex="100" flex-gt-md="50">
+    <!-- GOOGLE MAP -->
+    <h3>Reports plotted by latitude and longitude</h3>
+    <map-canvas map-promise="crimeData"></map-canvas>
+    <codepen info="seaCrimeMap"></codepen>
+    <!-- // GOOGLE MAP -->
+  </div>
+  <div flex="100" flex-gt-md="50">
+    <!-- TIMELINE -->
+    <h3>Reports by time</h3>
+    <div id="sea-crime-viz" viz-time-line="$vizTimeline" viz-time-data="crimeData" crime-viz-map="$crimeMap"></div>
+    <codepen info="seaCrimeTimeline"></codepen>
+    <!-- //  TIMELINE -->
+  </div>
+  <!--  // SEATTLE CRIME REPORTS -->
+  <!-- FLICKR INTEGRATIONS START -->
+  <div flex="100" flex-gt-md="50">
     <h2>Flickr Integrations for Angular</h2>
+    <p>These samples use <a href="https://www.flickr.com/services/api/" target="_blank">Flickr's REST API</a>.</p>
     <p><a href="https://github.com/kylemoseby/angular-flickr-portfolio" target="_blank">GitHub Repo <span class="icon-github"></span></a></p>
   </div>
   <!-- FLICKR RECENT PHOTOS -->
   <div flex="100" flex-gt-md="50">
     <h3>Recent Photos</h3>
     <recent-photos flickr-id="flickrID" count="7"></recent-photos>
-    <codepen info="codepen.flickrRecent"></codepen>
+    <codepen info="flickrRecent"></codepen>
   </div>
   <!--  // FLICKR RECENT PHOTOS -->
   <!--  FLICKR ALBUM -->
   <div flex="100" flex-gt-md="50">
     <h3>Flickr Album</h3>
     <flickr-album album-id="albumID"></flickr-album>
-    <codepen info="codepen.flickrAlbum"></codepen>
+    <codepen info="flickrAlbum"></codepen>
   </div>
   <!--  // FLICKR ALBUM -->
-  <!--  SEATTLE CRIME REPORTS -->
-  <!--  CRIME MAP -->
-  <div flex="100" flex-gt-md="50" ng-controller="CrimeMapCtrl">
-    <h2>Seattle Police Reports Data</h2>
-    <h3>Reports plotted to Google Maps</h3>
-    <p>Requests data from <a href="https://data.seattle.gov/" target="_blank">data.seattle.gov</a> then plots to a Google Map using latitude and longitude, and uses <a href="http://d3js.org" target="_blank">d3</a> to plots reports by time and report type. Reports can be filtered by types.</p>
-    <p><a href="https://github.com/kylemoseby/angular-seattle-crimemap" target="_blank">GitHub Repo <span class="icon-github"></span></a></p>
-    <!-- GOOGLE MAP -->
-    <div map-canvas="$crimeMap" map-promise="crimeData" map-timeline="$vizTimeline"></div>
-    <codepen info="codepen.seaCrimeMap"></codepen>
-  </div>
-  <!--  // CRIME MAP -->
 </md-content>
-<!-- CRIME MAP START -->
-<!-- <h2>Seattle Crime Reports</h2> -->
-<!-- <div layout="row" layout-wrap> -->
-<!-- <div flex> -->
-<!-- <div filter-report-types="$index" crime-timeline-filter="$vizTimeline"></div> -->
-<!-- <div id="sea-crime-viz" viz-time-line="$vizTimeline" viz-time-data="crimeData" crime-viz-map="$crimeMap"></div> -->
-<!-- </div> -->
-<!-- <div flex="100" flex-md="40" flex-gt-md="20"> -->
-<!-- </div> -->
-<!-- TIMELINE -->
-<!-- <div flex> -->
-<!-- INCIDENT DETAIL -->
-<!-- <div crime-reports-summary="$typeDetail" summary-index="$index"></div> -->
-<!-- </div> -->
-<!-- <div flex="100" flex-gt-md="40" hide-sm hide-xs> -->
-<!-- BAR CHART -->
-<!-- <div id="crime-reports-block" crime-reports-block crime-reports-data="crimeData"></div> -->

@@ -1,0 +1,47 @@
+<!-- <style type="text/css">
+.contact-form input.ng-invalid.ng-touched {
+  background-color: #FA787E;
+}
+
+.contact-form input.ng-valid.ng-touched {
+  background-color: #78FA89;
+}
+</style>
+ -->
+<!-- <md-content layout="column" layout-margin layout-padding> -->
+<md-content layout="row" layout-padding layourt-margin layout-wrap>
+  <!--  SEATTLE CRIME REPORTS -->
+  <div flex="50">
+    <h2>Contact Form</h2>
+    <!--  NOTE: Please add the following <META> element to your page <HEAD>.      -->
+    <!--  If necessary, please modify the charset parameter to specify the        -->
+    <!--  character set of your HTML page.                                        -->
+    <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+    <!--  NOTE: Please add the following <FORM> element to your page.             -->
+    <p><span class="glyphicon glyphicon-asterisk"></span> All fields are required.</p>
+    <form name="contactForm" class="contact-form" action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" novalidate>
+      <input type=hidden name="oid" value="00D50000000Ia2S">
+      <input type=hidden name="retURL" value="http://kylemoseby.com/#/contact_success">
+      <div class="form-group">
+        <label for="formFirstName">First Name</label>
+        <input name="first_name" class="form-control" id="formFirstName" placeholder="Name" ng-model="firstName" required/>
+        <span ng-show="contactForm.first_name.$error.required && !contactForm.first_name.$untouched">Name is required.</span>
+      </div>
+      <div class="form-group">
+        <label for="formSurname">Surname</label>
+        <input name="last_name" size="20" type="text" class="form-control" id="formSurname" placeholder="Surname" ng-model="surname" required />
+        <span ng-show="contactForm.last_name.$error.required && !contactForm.last_name.$untouched">Surname is required.</span>
+      </div>
+      <div class="form-group">
+        <label for="formEmail">Email address</label>
+        <input id="email" maxlength="80" name="email" size="20" class="form-control" id="formEmail" placeholder="Email" ng-model="email" required />
+        <span ng-show="contactForm.email.$error.required && !contactForm.email.$untouched">A valid email address is required.</span>
+      </div>
+      <div class="form-group">
+        <label for="formMessage">Message</label>
+        <textarea name="00N50000002CHu6" rows="3" type="text" wrap="soft" class="form-control" id="formMessage" placeholder="Message text" ng-model="message" required />
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
+</md-content>
