@@ -1,10 +1,14 @@
 <md-content layout="row" layout-margin layout-padding layout-wrap>
   <!--  SEATTLE CRIME REPORTS -->
+  <!-- TIMELINE -->
+  <div flex="100" flex-gt-md="50">
+    <h3>Reports by time</h3>
+    <div id="sea-crime-viz" viz-time-line viz-time-data="crimeData"></div>
+    <codepen info="seaCrimeTimeline"></codepen>
+  </div>
+  <!-- //  TIMELINE -->
   <div flex="100" flex-gt-md="50">
     <h1>Code Samples</h1>
-    <!-- </div>
-  <div flex="100" flex-gt-md="50">
-   -->
     <h2>Seattle Police Reports</h2>
     <p>These samples use public data from <a href="https://data.seattle.gov/Public-Safety/Seattle-Police-Department-Police-Report-Incident/7ais-f98f" target="_blank">data.seattle.gov</a>. Data is provided by an HTTP request that <a href="https://data.seattle.gov/resource/7ais-f98f.json" target="_blank">gets a JSON object</a>. Data is indexed and formatted using <a href="https://d3js.org/" target="_blank">d3</a>. All these samples are developed in <a href="https://angularjs.org/" target="_blank">Angularjs</a>.</p>
     <p><a href="https://github.com/kylemoseby/angular-seattle-crime-data" target="_blank">GitHub Repo <span class="icon-github"></span></a></p>
@@ -22,13 +26,6 @@
     <map-canvas map-promise="crimeData"></map-canvas>
     <codepen info="seaCrimeMap"></codepen>
     <!-- // GOOGLE MAP -->
-  </div>
-  <div flex="100" flex-gt-md="50">
-    <!-- TIMELINE -->
-    <h3>Reports by time</h3>
-    <div id="sea-crime-viz" viz-time-line="$vizTimeline" viz-time-data="crimeData" crime-viz-map="$crimeMap"></div>
-    <codepen info="seaCrimeTimeline"></codepen>
-    <!-- //  TIMELINE -->
   </div>
   <!--  // SEATTLE CRIME REPORTS -->
   <!-- FLICKR INTEGRATIONS START -->

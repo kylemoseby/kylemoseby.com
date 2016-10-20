@@ -6897,30 +6897,35 @@ report-zone-beat .report-zones .zone-reports {
   height: 67vh;
   width: 100%;
 }
+#sea-crime-viz,
+.crime-report-timeline {
+  height: 75vh;
+  width: 100%;
+}
 svg.seattle-crime-timeline {
   z-index: 0;
 }
-.timeline-circle {
+svg.seattle-crime-timeline .timeline-circle {
   cursor: pointer;
 }
-path {
+svg.seattle-crime-timeline path {
   stroke: steelblue;
   stroke-width: 2;
   fill: none;
 }
-.axis.y path {
+svg.seattle-crime-timeline .axis.y path {
   display: none;
 }
-.axis.y line {
+svg.seattle-crime-timeline .axis.y line {
   fill: none;
   stroke: grey;
   stroke-width: 1;
   shape-rendering: crispEdges;
-  stroke-dasharray: 2, 2;
+  stroke-dasharray: 2, 8;
   width: 100%;
 }
-.axis.x path,
-.axis.x line {
+svg.seattle-crime-timeline .axis.x path,
+svg.seattle-crime-timeline .axis.x line {
   fill: none;
   stroke: transparent;
   stroke-width: 0;
