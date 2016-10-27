@@ -6776,16 +6776,14 @@ flickr-album .gallery-thumbs img {
   max-height: 100%;
   width: 100%;
 }
-map-canvas {
-  height: 67vh;
-  width: 100%;
-  display: block;
-}
 #sea-crime-viz {
   height: 75vh;
   width: 100%;
 }
 map-canvas {
+  height: 67vh;
+  width: 100%;
+  display: block;
   overflow: hidden;
 }
 map-canvas .map-canvas {
@@ -6966,12 +6964,32 @@ svg.seattle-crime-timeline .axis.x line {
 }
 /*   RECENT PHOTOS  END  */
 /*   FLICKR GALLERY   */
-.gallery-thumbs {
+flickr-album {
+  position: relative;
+  display: block;
+  clear: both;
+  height: 100%;
+}
+flickr-album .gallery-thumbs {
   overflow: hidden;
 }
-.gallery-thumbs img {
+flickr-album .gallery-thumbs img {
   width: 100%;
   height: 100%;
+}
+.code-meta {
+  text-align: left;
+  padding-right: 16px;
+}
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .code-meta {
+    text-align: right;
+  }
+}
+/* Large devices (large desktops, 1200px and up) */
+body {
+  background-color: #fafafa;
 }
 #main-page li {
   font-size: 30px;

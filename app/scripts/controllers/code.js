@@ -10,7 +10,8 @@
 angular.module('kylemosebyDotcomApp')
   .controller('CodeCtrl', ['$scope', 'seattleDataGov', function($scope, seattleDataGov) {
 
-    $scope.albumID = '72157673542222606';
+    // $scope.albumID = '72157673542222606';
+    $scope.albumID = '72157671573143060';
 
     $scope.flickrID = '91631856@N00';
 
