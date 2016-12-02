@@ -10,26 +10,16 @@
  */
 angular
   .module('kylemosebyDotcomApp', [
-    'mkm.codepen',
-    'mkm.flickr',
-    'mkm.seaCrimeData',
     'ngAnimate',
-    'ngCookies',
-    'ngResource',
     'ngRoute',
     'ngSanitize'
   ])
   .config(function($routeProvider) {
     $routeProvider
-      .when('/home', {
+      .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
-      })
-      .when('/photo', {
-        templateUrl: 'views/photo.html',
-        controller: 'PhotoCtrl',
-        controllerAs: 'Photo'
       })
       .when('/contact', {
         templateUrl: 'views/contact.html',
@@ -41,53 +31,13 @@ angular
         controller: 'ContactSuccessCtrl',
         controllerAs: 'contactsuccessctrl'
       })
-      .when('/code', {
-        templateUrl: 'views/code.html',
-        controller: 'CodeCtrl',
-        controllerAs: 'code'
-      })
       .otherwise({
-        redirectTo: '/home'
+        redirectTo: '/404',
+        templateUrl: 'views/404.html',
+        controller: '404',
+        controllerAs: '404'
       });
   })
-  .factory('_kylemoseby_', [function() {
-    return {
-      code: {
-        'title': 'Code'
-      },
-      photo: {
-        'title': 'Photography'
-      },
-      contact: {
-        'title': 'Contact'
-      },
-    };
-  }])
-  .controller('mainNav', ['$scope', '_kylemoseby_', '$location', function($scope, km, $location) {
-
-    $scope.pages = km;
-
-    $scope.hideNav = false;
-
-    $scope.menuClick = function(newPath) {
-
-      $location.path('/' + newPath);
-
-    };
-
-    $scope.$on('$locationChangeStart', function(event, newUrl) {
-
-      var $$path = newUrl.slice(newUrl.indexOf('#/') + 2, newUrl.length);
-
-      if (km[$$path]) {
-
-        $scope.hideNav = km[$$path].hideNav;
-
-      } else if ($$path === 'home') {
-
-        $scope.hideNav = true;
-      }
-    });
-
+  .controller('404', [function() {
 
   }]);

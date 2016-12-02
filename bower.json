@@ -3,31 +3,18 @@
   "version": "0.0.1",
   "dependencies": {
     "angular": "^1.5.8",
-    "bootstrap": "^3.2.0",
     "angular-animate": "^1.5.8",
-    "angular-cookies": "^1.5.8",
     "angular-resource": "^1.5.8",
     "angular-route": "^1.5.8",
     "angular-sanitize": "^1.5.8",
-    "angular-flickr-integrations": "git@github.com:kylemoseby/angular-flickr-integrations.git",
-    "angular-seattle-crime-data": "git@github.com:kylemoseby/angular-seattle-crime-data.git",
-    "angular-codepen": "git@github.com:kylemoseby/angular-codepen.git",
-    "angular-material": "^1.0.9"
+    "angular-material": "^1.0.9",
+    "angular-codepen": "git@github.com:kylemoseby/angular-codepen.git"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.8"
   },
   "appPath": "app",
   "moduleName": "kylemosebyDotcomApp",
-  "overrides": {
-    "bootstrap": {
-      "main": [
-        "less/bootstrap.less",
-        "dist/css/bootstrap.css",
-        "dist/js/bootstrap.js"
-      ]
-    }
-  },
   "resolutions": {
     "angular": "1.5.9",
     "angular-route": "^1.5.8",
