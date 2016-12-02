@@ -1,6 +1,5 @@
 /*
   FONTS
-
 */
 @import 'https://fonts.googleapis.com/css?family=Oswald:400,700';
 /*!
@@ -6991,71 +6990,9 @@ flickr-album .gallery-thumbs img {
 body {
   background-color: #fafafa;
 }
-#main-page li {
-  font-size: 30px;
-}
-#main-page li a {
-  color: white;
-}
-.fp-100 {
-  width: 100vw;
-  height: 100vh;
-  background: url("../images/camera.jpg") no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-.fp-100 .fp-100-lg {
-  width: 50vw;
-  height: 100vh;
-  background: url("../images/camera.jpg") no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  margin: 0 auto;
-}
-.fp-vik {
-  width: 100vw;
-  height: 100vh;
-  background: url("../images/vik.jpg") no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-.fp-seoul {
-  width: 100vw;
-  height: 100vh;
-  background: url("../images/seoul.jpg") no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-.fp-zion {
-  width: 100vw;
-  height: 100vh;
-  background: url("../images/zion_park_utah.jpg") no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-.fp-donotenter {
-  width: 100vw;
-  height: 100vh;
-  background: url("../images/korea/korea_2.jpg") no-repeat bottom center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
 .main-menu {
   display: block;
   position: fixed;
-  color: #fff;
   font-family: 'Oswald', "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding-left: 16px;
 }
