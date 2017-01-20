@@ -12,7 +12,8 @@ angular
   .module('kylemosebyDotcomApp', [
     'ngAnimate',
     'ngRoute',
-    'ngSanitize'
+    'ngSanitize',
+    'ngMaterial'
   ])
   .config(function($routeProvider) {
     $routeProvider
@@ -20,6 +21,16 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
+      })
+      .when('/code', {
+        templateUrl: 'views/code.html',
+        controller: 'CodeCtrl',
+        controllerAs: 'code'
+      })
+      .when('/photography', {
+        templateUrl: 'views/photography.html',
+        controller: 'PhotographyCtrl',
+        controllerAs: 'photography'
       })
       .when('/contact', {
         templateUrl: 'views/contact.html',

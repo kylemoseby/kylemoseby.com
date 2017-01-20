@@ -1,18 +1,18 @@
-'use strict';
+// 'use strict';
 
-describe('Service: api', function () {
+// describe('Service: api', function () {
 
-  // load the service's module
-  beforeEach(module('kylemosebyDotcomApp'));
+//   // load the service's module
+//   beforeEach(module('kylemosebyDotcomApp'));
 
-  // instantiate service
-  var api;
-  beforeEach(inject(function (_api_) {
-    api = _api_;
-  }));
+//   // instantiate service
+//   var api;
+//   beforeEach(inject(function (_api_) {
+//     api = _api_;
+//   }));
 
-  it('should do something', function () {
-    expect(!!api).toBe(true);
-  });
+//   it('should do something', function () {
+//     expect(!!api).toBe(true);
+//   });
 
-});
+// });
