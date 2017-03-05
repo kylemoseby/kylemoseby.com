@@ -9,6 +9,5 @@
  */
 angular.module('kylemosebyDotcomApp')
   .controller('HeaderCtrl', ['$scope', '_kylemoseby_', function($scope, $mkm) {
-    console.log($mkm);
     $scope.pages = Object.keys($mkm);
   }]);

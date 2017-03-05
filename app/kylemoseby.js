@@ -11,65 +11,60 @@
 angular
   .module('kylemosebyDotcomApp')
   .factory('_kylemoseby_', [function() {
-    return {
 
-      code: {
-        flickr: {
-          github: 'angular-flickr-integrations',
-          code_pen: {
-            recent: {
-              less: '',
-              html: '',
-              js: ''
-            },
-            album: {
-              less: '',
-              html: '',
-              js: ''
-            }
-          }
-        },
-        seattle_crime_data: {
-          github: 'angular-seattle-crime-data',
-          code_pen: {
-            timeline: {
-              less: '',
-              html: '',
-              js: ''
-            },
-            map: {
-              less: '',
-              html: '',
-              js: ''
-            },
-            type: {
-              less: '',
-              html: '',
-              js: ''
-            }
-          }
-        },
-        github: {
-          github: '',
-          code_pen: {
-            activity: {
-              less: '',
-              html: '',
-              js: ''
-            }
-          }
-        },
-        codepen: {
-          github: 'angular-codepen',
-          code_pen: {
-            open_in: {
-              less: '',
-              html: '',
-              js: ''
-            }
+    var mkm = {
+      code: [{
+        github: 'angular-seattle-crime-data',
+        code_pen: {
+          timeline: {
+            less: '',
+            html: '',
+            js: ''
+          },
+          map: {
+            less: '',
+            html: '',
+            js: ''
+          },
+          type: {
+            less: '',
+            html: '',
+            js: ''
           }
         }
-      },
+      }, {
+        github: 'angular-flickr-integrations',
+        code_pen: {
+          recent: {
+            less: '',
+            html: '',
+            js: ''
+          },
+          album: {
+            less: '',
+            html: '',
+            js: ''
+          }
+        }
+      }, {
+        github: '',
+        code_pen: {
+          activity: {
+            less: '',
+            html: '',
+            js: ''
+          }
+        }
+      }, {
+        github: 'angular-codepen',
+        code_pen: {
+          open_in: {
+            less: '',
+            html: '',
+            js: ''
+          }
+        }
+      }],
       photography: {
         recentFlickr: [{}],
         recentInstagram: [{}],
@@ -96,4 +91,7 @@ angular
         }
       }
     };
+
+
+    return mkm;
   }]);

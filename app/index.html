@@ -30,23 +30,6 @@
       </li>
     </ul>
   </div>
-  <!-- SIDENAV -->
-  <div id="sidenav" ng-controller="SidenavCtrl">
-    <button type="button" class="btn btn-default" ng-click="toggleLeft()">
-      <span class="glyphicon glyphicon-menu-hamburger"></span>
-    </button>
-    <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop md-whiteframe="4">
-      <md-toolbar class="">
-      </md-toolbar>
-      <md-content>
-        <p>Hello world</p>
-        <md-button ng-click="toggleLeft()" class="md-accent">
-          <span class="glyphicon glyphicon-remove"></span>
-        </md-button>
-      </md-content>
-    </md-sidenav>
-  </div>
-  <!-- END SIDENAV -->
   <div id="content" flex layout-fill ng-view=""></div>
   <div id="footer" ng-controller="FooterCtrl">
     <ul class="list-inline">
