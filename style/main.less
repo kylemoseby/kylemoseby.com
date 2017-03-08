@@ -49,6 +49,7 @@
 // Utility classes
 // @import "../bower_components/bootstrap/less/utilities.less";
 // @import "../bower_components/bootstrap/less/responsive-utilities.less";
+@import 'code.less';
 @import 'fonts.less';
 @import 'footer.less';
 #header {
@@ -61,4 +62,37 @@
 
 #content {
   padding: @padding-large-vertical @padding-large-horizontal;
+}
+
+codepen {
+  .code-list {}
+  .codepen-code {}
+  .codepen-type {}
+  // CodePen SVG Logo
+  .logo {
+    width: @font-size-h3;
+    /* required to center */
+    height: @font-size-h3;
+    position: relative;
+    top: 3px;
+  }
+  .outer-ring {
+    fill: #fff;
+  }
+  .inner-box {
+    fill: #fff;
+  }
+  .btn {
+    font-size: @font-size-base;
+    font-weight: @headings-font-weight;
+  }
+  .btn-codepen {
+    .btn-label {
+      position: relative;
+      top: -5px;
+    }
+  }
+  body {
+    text-align: center;
+  }
 }

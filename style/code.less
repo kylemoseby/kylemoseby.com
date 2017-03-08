@@ -1,6 +1,64 @@
-.code-meta {
-  text-align: left;
-  padding-right: @padding-large-horizontal;
+.map-canvas,
+.crime-report-timeline {
+  display: block;
+  height: 55vh;
+  wdith: 100%;
+}
+
+#crime-reports-block {
+  display: block;
+  height: 40vh;
+  width: 100%;
+  svg {
+    rect {
+      cursor: pointer;
+    }
+  }
+}
+
+.report-type-detail {
+  background: @well-bg;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+  .btn-close {
+    top: 12px;
+    right: 12px;
+    position: absolute;
+  }
+}
+
+report-type-day {
+  display: block;
+  width: 100%;
+}
+
+.report-type {
+  display: inline-block;
+  overflow: hidden;
+}
+
+report-type-child {
+  .report-types {
+    display: inline-block;
+  }
+}
+
+.report-zone-beat {
+  display: block;
+  width: 100%;
+  .report-districts {
+    display: inline-block;
+    vertical-align: top;
+    .report-zones {
+      display: block;
+      width: 100%;
+      .badge {
+        color: #fff;
+        width: 100%;
+      }
+    }
+  }
 }
 
 @media (min-width: @screen-sm-min) {}
@@ -8,11 +66,19 @@
 
 /* Medium devices (desktops, 992px and up) */
 
-@media (min-width: @screen-md-min) {
-  .code-meta {
-    text-align: right;
-  }
-}
+@media (min-width: @screen-md-min) {}
+
+
+/* Large devices (large desktops, 1200px and up) */
+
+@media (min-width: @screen-lg-min) {}
+
+@media (min-width: @screen-sm-min) {}
+
+
+/* Medium devices (desktops, 992px and up) */
+
+@media (min-width: @screen-md-min) {}
 
 
 /* Large devices (large desktops, 1200px and up) */

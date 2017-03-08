@@ -1,2 +1,7 @@
-I am currently based out of Seattle WA.
-<br>
+<div layout-margin layout-padding layout-wrap>
+  <h2>I am currently based out of Seattle WA.</h2>
+  <h3>Designer Developer</h3>
+</div>
+<div ng-include="'views/code.html'" ng-controller="CodeCtrl"></div>
+<div ng-include="'views/photography.html'" scope="mkm.photography" onload="PhotographyCtrl"></div>
+<div ng-include="'views/contact.html'" scope="mkm.contact" onload="ContactCtrl"></div>

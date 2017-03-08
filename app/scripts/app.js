@@ -13,7 +13,10 @@ angular
     'ngAnimate',
     'ngRoute',
     'ngSanitize',
-    'ngMaterial'
+    'ngMaterial',
+    'mkm.flickr',
+    'mkm.seaCrimeData',
+    'mkm.codepen'
   ])
   .config(function($routeProvider) {
     $routeProvider

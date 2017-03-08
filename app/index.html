@@ -31,11 +31,12 @@
     </ul>
   </div>
   <div id="content" flex layout-fill ng-view=""></div>
-  <div id="footer" ng-controller="FooterCtrl">
+  <div ng-controller="FooterCtrl">
     <ul class="list-inline">
       <li ng-repeat="(key, val) in social">
         <a ng-href="val.url" target="_blank" ng-class="val.spanClass">&nbsp;</a>
       </li>
+      <li>id="footer" </li>
     </ul>
   </div>
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -64,13 +65,14 @@
   <script src="bower_components/angular-material/angular-material.js"></script>
   <script src="bower_components/angular-code-mirror/dist/angular-code-mirror.js"></script>
   <script src="bower_components/angular-codepen/source/angular-codepen.js"></script>
+  <script src="bower_components/angular-flickr-integrations/source/angular-flickr-integrations.js"></script>
+  <script src="bower_components/angular-seattle-crime-data/source/seattle-crime-reports-scripts.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:js({.tmp,app}) scripts/scripts.js -->
   <script src="scripts/api_key.js"></script>
   <script src="scripts/app.js"></script>
   <script src="kylemoseby.js"></script>
-  <script src="scripts/controllers/main.js"></script>
   <script src="scripts/controllers/code.js"></script>
   <script src="scripts/controllers/contact.js"></script>
   <script src="scripts/controllers/photo.js"></script>
@@ -78,6 +80,7 @@
   <script src="scripts/controllers/header.js"></script>
   <script src="scripts/controllers/photography.js"></script>
   <script src="scripts/controllers/sidenav.js"></script>
+  <script src="scripts/controllers/main.js"></script>
   <!-- endbuild -->
 </body>
 
