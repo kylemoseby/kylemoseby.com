@@ -9,15 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('kylemosebyDotcomApp', [
-    'ngAnimate',
-    'ngRoute',
-    'ngSanitize',
-    'ngMaterial',
-    'mkm.flickr',
-    'mkm.seaCrimeData',
-    'mkm.codepen'
-  ])
+  .module('kylemosebyDotcomApp')
   .config(function($routeProvider) {
     $routeProvider
       .when('/', {
@@ -54,4 +46,22 @@ angular
   })
   .controller('404', [function() {
 
-  }]);
+  }])
+  .config(['$locationProvider', function($locationProvider) {
+    $locationProvider.hashPrefix('');
+  }])
+  .config(function($sceDelegateProvider) {
+
+    $sceDelegateProvider.resourceUrlWhitelist([
+      // Allow same origin resource loads.
+      'self',
+      // Allow loading from our assets domain.  Notice the difference between * and **.
+      'https://api.flickr.com/services/rest/**'
+    ]);
+
+    // The blacklist overrides the whitelist so the open redirect here is blocked.
+    // $sceDelegateProvider.resourceUrlBlacklist([
+    // 'http://myapp.example.com/clickThru**'
+    // ]);
+
+  });

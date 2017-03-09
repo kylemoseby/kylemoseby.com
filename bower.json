@@ -2,11 +2,13 @@
   "name": "kylemoseby-dotcom",
   "version": "1.0.1",
   "dependencies": {
-    "angular": "^1.5.8",
-    "angular-animate": "^1.5.8",
-    "angular-resource": "^1.5.8",
-    "angular-route": "^1.5.8",
-    "angular-sanitize": "^1.5.8",
+    "angular": "#1.4.14",
+    "bootstrap": "^3.2.0",
+    "angular-animate": "#1.4.14",
+    "angular-resource": "#1.4.14",
+    "angular-route": "#1.4.14",
+    "angular-sanitize": "#1.4.14",
+    "angular-touch": "#1.4.14",
     "angular-material": "^1.0.9",
     "angular-seattle-crime-data": "https://github.com/kylemoseby/angular-seattle-crime-data.git",
     "angular-flickr-integrations": "https://github.com/kylemoseby/angular-flickr-integrations.git",
@@ -18,8 +20,10 @@
   "appPath": "app",
   "moduleName": "kylemosebyDotcomApp",
   "resolutions": {
-    "angular": "1.6.3",
-    "angular-route": "^1.5.8",
-    "angular-mocks": "^1.5.8"
+    "angular": "1.4.14",
+    "angular-animate": "1.4.14",
+    "angular-sanitize": "1.4.14",
+    "angular-resource": "1.4.14",
+    "angular-route": "1.4.14"
   }
 }

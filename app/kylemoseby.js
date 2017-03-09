@@ -9,7 +9,15 @@
  * Main module of the application.
  */
 angular
-  .module('kylemosebyDotcomApp')
+  .module('kylemosebyDotcomApp', [
+    // 'ngAnimate',
+    'ngRoute',
+    // 'ngSanitize',
+    'ngMaterial',
+    'mkm.flickr',
+    'mkm.seaCrimeData',
+    'mkm.codepen'
+  ])
   .factory('_kylemoseby_', [function() {
 
     var flickrRoot = 'https://kylemoseby.github.io/angular-flickr-integrations/';
