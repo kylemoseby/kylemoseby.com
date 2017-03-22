@@ -4,6 +4,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+@import url('https://fonts.googleapis.com/css?family=Hammersmith+One');
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -1294,7 +1295,7 @@ a.bg-danger:focus {
 .page-header {
   padding-bottom: 9px;
   margin: 40px 0 20px;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #f9f9f9;
 }
 ul,
 ol {
@@ -1362,7 +1363,7 @@ blockquote {
   padding: 10px 20px;
   margin: 0 0 20px;
   font-size: 17.5px;
-  border-left: 5px solid #eeeeee;
+  border-left: 5px solid #f9f9f9;
 }
 blockquote p:last-child,
 blockquote ul:last-child,
@@ -1386,7 +1387,7 @@ blockquote .small:before {
 blockquote.pull-right {
   padding-right: 15px;
   padding-left: 0;
-  border-right: 5px solid #eeeeee;
+  border-right: 5px solid #f9f9f9;
   border-left: 0;
   text-align: right;
 }
@@ -2143,14 +2144,37 @@ report-type-child .report-types {
 }
 /* Medium devices (desktops, 992px and up) */
 /* Large devices (large desktops, 1200px and up) */
+body {
+  font-family: 'Hammersmith One';
+}
 #header {
-  padding: 10px 16px;
+  padding: 10px 0 0 16px;
+}
+#header h1 {
+  display: inline-block;
+}
+#header a {
+  text-decoration: none;
+  color: #000;
 }
 #sidenav {
   padding: 10px 16px;
 }
-#content {
+#main-page {
+  width: 100%;
+  height: 95vh;
+  display: block;
   padding: 10px 16px;
+  background-position: center;
+  color: #f9f9f9;
+}
+#main-page.landscape {
+  background: url('https://c2.staticflickr.com/4/3764/9593133957_ff1da03631_h.jpg') center no-repeat;
+  background-size: cover;
+}
+#main-page.portrait {
+  background: url('https://c2.staticflickr.com/4/3738/13840561083_b9041d2ef0_h.jpg') center no-repeat;
+  background-size: cover;
 }
 codepen .logo {
   width: 24px;

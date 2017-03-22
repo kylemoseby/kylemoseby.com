@@ -1,14 +1,15 @@
 <md-content layout-margin layout-padding layout-wrap>
   <h2>Code Samples</h2>
   <div ng-repeat="(key, value) in mkm.code" ng-switch="key">
+    <!-- FLICKR INTEGRATIONS START -->
     <div ng-switch-when="flickrIntegrations">
-      <!-- FLICKR INTEGRATIONS START -->
       <h3>Flickr Integrations for Angular</h3>
       <p>These samples use <a href="https://www.flickr.com/services/api/" target="_blank">Flickr's REST API</a>.</p>
       <p><a href="https://github.com/kylemoseby/angular-flickr-portfolio" target="_blank">GitHub Repo <span class="icon-github"></span></a></p>
     </div>
+    <!-- // FLICKR INTEGRATIONS -->
+    <!--  SEATTLE CRIME REPORTS -->
     <div ng-switch-when="seattleCrimeData">
-      <!--  SEATTLE CRIME REPORTS -->
       <h3>Seattle Police Reports</h3>
       <ul class="list-unstyled">
         <li>These samples use public data from <a href="https://data.seattle.gov/Public-Safety/Seattle-Police-Department-Police-Report-Incident/7ais-f98f" target="_blank">data.seattle.gov</a>. Data is provided by an HTTP request that <a href="https://data.seattle.gov/resource/7ais-f98f.json" target="_blank">gets a JSON object</a>.</li>
@@ -16,9 +17,12 @@
         <li><a href="https://github.com/kylemoseby/angular-seattle-crime-data" target="_blank"><span class="icon-github"></span> GitHub Repo</a></li>
       </ul>
     </div>
+    <!--  // SEATTLE CRIME REPORTS -->
+    <!--  GITHUB ACTIVITY -->
     <div ng-switch-when="gitHubActivity">
       <h3>Github Activity Viz</h3>
     </div>
+    <!-- //  GITHUB ACTIVITY -->
     <div ng-switch-when="angularCodepen">
       angularCodepen
     </div>
@@ -29,27 +33,4 @@
       <codepen info="pen"></codepen>
     </div>
   </div>
-  <!-- FLICKR RECENT PHOTOS -->
-  <!-- <h3>Recent Photos</h3> -->
-  <!-- <recent-photos flickr-id="flickrID" count="12"></recent-photos> -->
-  <!-- <codepen info="flickrRecent"></codepen> -->
-  <!--  // FLICKR RECENT PHOTOS -->
-  <!--  FLICKR ALBUM -->
-  <!-- <h3>Flickr Album</h3> -->
-  <!-- <flickr-album album-id="albumID"></flickr-album> -->
-  <!--  // FLICKR ALBUM -->
-  <!-- FLICKR INTEGRATIONS END -->
-  <!-- TIMELINE -->
-  <!-- <h3>Reports by time</h3> -->
-  <!-- <div id="sea-crime-viz" viz-time-line viz-time-data="crimeData"></div> -->
-  <!-- //  TIMELINE -->
-  <!-- BAR CHART -->
-  <!-- <h3>Count by Report Type</h3> -->
-  <!-- <div id="crime-reports-block" crime-reports-block crime-reports-data="crimeData"></div> -->
-  <!-- //  BAR CHART -->
-  <!-- GOOGLE MAP -->
-  <!-- <h3>Reports plotted by latitude and longitude</h3> -->
-  <!-- <map-canvas map-promise="crimeData"></map-canvas> -->
-  <!-- // GOOGLE MAP -->
-  <!-- // SEATTLE CRIME REPORTS -->
 </md-content>

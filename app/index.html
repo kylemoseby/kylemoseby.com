@@ -24,19 +24,22 @@
   <!-- Add your site or application content here -->
   <div id="header" ng-controller="HeaderCtrl">
     <h1><a ng-href="#/">Kyle Moseby</a></h1>
-    <ul class="list-inline">
+    <span class="glyphicon glyphicon-menu-hamburger" ng-click="menuToggle()" ng-hide="showMenu"></span>
+    <ul class="list-inline" ng-show="showMenu">
       <li ng-repeat="page in pages">
         <a ng-href="#/{{page}}">{{page}}</a>
       </li>
+      <li>
+        <span class="glyphicon glyphicon-remove" ng-click="menuToggle()"></span>
+      </li>
     </ul>
   </div>
-  <div id="content" flex layout-fill ng-view=""></div>
-  <div ng-controller="FooterCtrl">
+  <div id="content" ng-view=""></div>
+  <div id="footer" ng-controller="FooterCtrl">
     <ul class="list-inline">
       <li ng-repeat="(key, val) in social">
         <a ng-href="val.url" target="_blank" ng-class="val.spanClass">&nbsp;</a>
       </li>
-      <li>id="footer" </li>
     </ul>
   </div>
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->

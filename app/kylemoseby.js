@@ -10,9 +10,9 @@
  */
 angular
   .module('kylemosebyDotcomApp', [
-    // 'ngAnimate',
+    'ngAnimate',
     'ngRoute',
-    // 'ngSanitize',
+    'ngSanitize',
     'ngMaterial',
     'mkm.flickr',
     'mkm.seaCrimeData',
@@ -153,8 +153,6 @@ angular
         }
       },
       photography: {
-        recentFlickr: [{}],
-        recentInstagram: [{}],
         portfolio: [{}]
       },
       contact: {
