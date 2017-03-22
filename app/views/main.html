@@ -7,8 +7,20 @@
   <h3>Photographer</h3>
   <p>Editorial photography production and editing.</p>
   <p>Stock photos available through Getty.</p>
-  <span class="glyphicon glyphicon-chevron-down"></span>
+  <button class="center-block btn btn-primary" ng-click="gotoAnchor('site-content')">
+    <span class="glyphicon glyphicon-chevron-down"></span>
+  </button>
 </div>
-<div ng-include="'views/code.html'" ng-controller="CodeCtrl"></div>
-<div ng-include="'views/photography.html'" scope="mkm.photography" onload="PhotographyCtrl"></div>
-<div ng-include="'views/contact.html'" scope="mkm.contact" onload="ContactCtrl"></div>
+<div id="site-content">
+  <div ng-include="'views/code.html'" ng-controller="CodeCtrl"></div>
+  <ul class="list-inline">
+    <li> <span class="glyphicon glyphicon-chevron-up">Code</span></li>
+    <li> <span class="glyphicon glyphicon-chevron-down">Photography</span></li>
+  </ul>
+  <div ng-include="'views/photography.html'" scope="mkm.photography" onload="PhotographyCtrl"></div>
+  <ul class="list-inline">
+    <li> <span class="glyphicon glyphicon-chevron-up">Photography</span></li>
+    <li> <span class="glyphicon glyphicon-chevron-down">Contact</span></li>
+  </ul>
+  <div ng-include="'views/contact.html'" scope="mkm.contact" onload="ContactCtrl"></div>
+</div>

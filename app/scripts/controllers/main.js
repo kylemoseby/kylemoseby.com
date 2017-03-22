@@ -8,9 +8,9 @@
  * Controller of the kylemosebyDotcomApp
  */
 angular.module('kylemosebyDotcomApp')
-  .controller('MainCtrl', ['$scope', '$window', function($scope, $window) {
+  .controller('MainCtrl', ['$scope', '$window', '$anchorScroll', '$location', function($scope, $window, $anchorScroll, $location) {
 
-
+    // BACKGROUND IMAGE ASPECT RATIO STUFF
     function checkAspectRatio($win) {
 
       var aspect = $win.innerWidth / $win.innerHeight;
@@ -24,10 +24,22 @@ angular.module('kylemosebyDotcomApp')
       $scope.windAspectRatio = checkAspectRatio($window);
 
     }
+    // // BACKGROUND IMAGE ASPECT RATIO STUFF
 
 
 
     $window.onresize = setAspectRatio;
+
+    // ANCHOR SCROLL STUFF
+    $scope.gotoAnchor = function(id) {
+      console.log(id);
+      $location.hash(id);
+
+      $anchorScroll();
+    };
+
+    // // ANCHOR SCROLL STUFF
+
 
 
     // INIT

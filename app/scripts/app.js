@@ -22,6 +22,11 @@ angular
         controller: 'CodeCtrl',
         controllerAs: 'code'
       })
+      .when('/cv', {
+        templateUrl: 'views/cv.html',
+        controller: 'CvCtrl',
+        controllerAs: 'cv'
+      })
       .when('/photography', {
         templateUrl: 'views/photography.html',
         controller: 'PhotographyCtrl',
@@ -50,7 +55,7 @@ angular
   .config(['$locationProvider', function($locationProvider) {
     $locationProvider.hashPrefix('');
   }])
-  .config(function($sceDelegateProvider) {
+  .config(['$sceDelegateProvider', function($sceDelegateProvider) {
 
     $sceDelegateProvider.resourceUrlWhitelist([
       // Allow same origin resource loads.
@@ -63,5 +68,7 @@ angular
     // $sceDelegateProvider.resourceUrlBlacklist([
     // 'http://myapp.example.com/clickThru**'
     // ]);
-
-  });
+    // }])
+    // .run(['$anchorScroll', '$window', function($anchorScroll, $window) {
+    // $anchorScroll.yOffset = Math.floor($window.outerHeight * 0.05); // always scroll by 50 extra pixels
+  }]);

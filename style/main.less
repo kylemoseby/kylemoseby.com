@@ -10,14 +10,30 @@
 @import 'code.less';
 @import 'fonts.less';
 @import 'footer.less';
-body {
+h1,
+h2,
+h3 {
   font-family: 'Hammersmith One';
 }
 
+// @header-height: 5vh;
+// body {
+// padding-top: @header-height;
+// }
 #header {
-  padding: @padding-large-vertical 0 0 @padding-large-horizontal;
+  // padding: @padding-small-vertical @padding-large-horizontal;
+  // z-index: 0;
+  // position: fixed;
+  // top: 0;
+  // background: #fff;
+  // height: @header-height;
   h1 {
     display: inline-block;
+    padding-top: @padding-small-vertical;
+    margin-top: @padding-small-vertical;
+  }
+  #menu-toggle {
+    font-size: @font-size-h2;
   }
   a {
     text-decoration: none;
@@ -30,12 +46,14 @@ body {
 }
 
 #main-page {
-  width: 100%;
   height: 95vh;
   display: block;
   padding: @padding-large-vertical @padding-large-horizontal;
   background-position: center;
   color: @gray-lighter;
+  p {
+    font-weight: @headings-font-weight;
+  }
 }
 
 #main-page.landscape {

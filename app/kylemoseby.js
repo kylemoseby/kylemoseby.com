@@ -152,6 +152,7 @@ angular
           codepen: []
         }
       },
+      cv: {},
       photography: {
         portfolio: [{}]
       },

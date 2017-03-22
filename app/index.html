@@ -23,8 +23,10 @@
     <![endif]-->
   <!-- Add your site or application content here -->
   <div id="header" ng-controller="HeaderCtrl">
+    <button id="menu-toggle" ng-click="menuToggle()" aria-label="Toggle Menu" class="btn btn-default">
+      <span class="glyphicon glyphicon-menu-hamburger" ng-hide="showMenu"></span>
+    </button>
     <h1><a ng-href="#/">Kyle Moseby</a></h1>
-    <span class="glyphicon glyphicon-menu-hamburger" ng-click="menuToggle()" ng-hide="showMenu"></span>
     <ul class="list-inline" ng-show="showMenu">
       <li ng-repeat="page in pages">
         <a ng-href="#/{{page}}">{{page}}</a>
@@ -88,6 +90,7 @@
   <script src="scripts/controllers/header.js"></script>
   <script src="scripts/controllers/photography.js"></script>
   <script src="scripts/controllers/sidenav.js"></script>
+  <script src="scripts/controllers/cv.js"></script>
   <script src="scripts/controllers/main.js"></script>
   <!-- endbuild -->
 </body>
