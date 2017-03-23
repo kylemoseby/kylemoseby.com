@@ -12,6 +12,7 @@
     "angular-material": "^1.0.9",
     "angular-seattle-crime-data": "https://github.com/kylemoseby/angular-seattle-crime-data.git",
     "angular-flickr-integrations": "https://github.com/kylemoseby/angular-flickr-integrations.git",
+    "github-activity-viz": "https://github.com/kylemoseby/github-activity-viz.git",
     "angular-codepen": "https://github.com/kylemoseby/angular-codepen.git"
   },
   "devDependencies": {
@@ -24,6 +25,7 @@
     "angular-animate": "1.4.14",
     "angular-sanitize": "1.4.14",
     "angular-resource": "1.4.14",
-    "angular-route": "1.4.14"
+    "angular-route": "1.4.14",
+    "angular-mocks": "~1.4.0"
   }
 }

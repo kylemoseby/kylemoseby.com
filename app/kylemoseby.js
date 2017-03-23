@@ -61,6 +61,7 @@ angular
 
 
     var mkm = {
+      cv: {},
       code: {
         seattleCrimeData: {
           gitUrl: 'angular-seattle-crime-data',
@@ -152,7 +153,6 @@ angular
           codepen: []
         }
       },
-      cv: {},
       photography: {
         portfolio: [{}]
       },

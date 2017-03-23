@@ -9,5 +9,5 @@
  */
 angular.module('kylemosebyDotcomApp')
   .controller('CvCtrl', ['$scope', function($scope) {
-
+    $scope.cv = 'Kyle Moseby';
   }]);
