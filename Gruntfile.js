@@ -38,7 +38,7 @@ module.exports = function(grunt) {
         tasks: ['wiredep']
       },
       js: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+        files: ['<%= yeoman.app %>/kylemoseby.js', '<%= yeoman.app %>/scripts/{,*/}*.js'],
         tasks: ['newer:jshint:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -49,7 +49,7 @@ module.exports = function(grunt) {
         tasks: ['newer:jshint:test', 'karma']
       },
       styles: {
-        files: ['style/{,*/}*.less'],
+        files: ['less/{,*/}*.less'],
         tasks: ['less', 'newer:copy:styles', 'autoprefixer']
       },
       gruntfile: {
@@ -128,13 +128,13 @@ module.exports = function(grunt) {
           paths: [""]
         },
         files: {
-          "<%= yeoman.app %>/styles/main.css": "style/main.less"
+          "<%= yeoman.app %>/styles/main.css": "less/main.less"
         }
       }
     },
 
     lesslint: {
-      src: ['style/**/*.less']
+      src: ['less/**/*.less']
     },
 
     // Make sure code styles are up to par and there are no obvious mistakes

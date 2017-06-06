@@ -16,6 +16,7 @@ angular
     'ngMaterial',
     'mkm.flickr',
     'mkm.seaCrimeData',
+    'mkm.githubActivityVizApp',
     'mkm.codepen'
   ])
   .factory('_kylemoseby_', [function() {
@@ -63,6 +64,26 @@ angular
     var mkm = {
       cv: {},
       code: {
+        gitHubActivity: {
+          gitUrl: 'github-activity-viz',
+          codepen: [{
+            'title': 'Github Activity Vizualization',
+            'description': 'A vizualization of recent Github activity written in Angular',
+            'tags': ['github', 'angular', 'javascript', 'data vizualization', 'jsonp'],
+            'layout': 'left',
+            'example': '/code/',
+            'html': 'app/views/flickr-album-codepen.html',
+            'css': 'less/flickr-albums.less',
+            'css_pre_processor': 'less',
+            'js': 'app/flickr/flickr-album.js',
+            'head': '<meta name=\"viewport\" content=\"width=device-width\">',
+            'css_external': [
+              '/styles/main.css',
+              'styles/vendor.css'
+            ],
+            'js_external': flickrExtJS
+          }]
+        },
         seattleCrimeData: {
           gitUrl: 'angular-seattle-crime-data',
           codepen: [{
@@ -144,13 +165,22 @@ angular
             'js_external': flickrExtJS
           }]
         },
-        gitHubActivity: {
-          gitUrl: 'github-activity-viz',
-          codepen: []
-        },
         angularCodepen: {
           gitUrl: 'angular-codepen',
-          codepen: []
+          codepen: [{
+            'title': 'Open With Codepen Directive',
+            'description': 'A Angular directive that opens a project in Codepen',
+            'tags': [''],
+            'layout': '',
+            'example': '',
+            'html': '',
+            'css': '',
+            'css_pre_processor': '',
+            'js': '',
+            'head': '<meta name=\"viewport\" content=\"width=device-width\">',
+            'css_external': [],
+            'js_external': ''
+          }]
         }
       },
       photography: {

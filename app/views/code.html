@@ -21,16 +21,47 @@
     <!--  GITHUB ACTIVITY -->
     <div ng-switch-when="gitHubActivity">
       <h3>Github Activity Viz</h3>
+      <!-- <div class="github-file-mdpanel" ng-include="'github-activity/github-file-mdpanel.html'"></div> -->
+<!--  CURRENT USER CARD -->
+<div class="user-card">
+  <input ng-model="username">
+  <button ng-click="setGitHubUser()">set user</button>
+  <img src="{{userInfo.data.avatar_url}}" class="profile-avatar img-circle">
+  <a ng-href="userInfo.data.blog">{{userInfo.data.blog}}</a>
+  <a ng-href="userInfo.data.html_url"><span class="icon-github"></span></a>
+  <div>Public Gists {{userInfo.data.public_gists}}</div>
+  <div>Public Repos {{userInfo.data.public_repos}}</div>
+  <div class="alert alert-danger" role="alert" ng-hide="userInfo.status !== 404">
+    <span class="glyphicon glyphicon-alert"></span>
+  </div>
+</div>
+<!-- // CURRENT USER CARD -->
+
+
+
+<!--  ALL FILES -->
+<h3>All commits on all files</h3>
+<github-allfiles></github-allfiles>
+<!-- // ALL FILES -->
+<!-- NEW LATEST COMMITS -->
+<h3>Latest Commits</h3>
+<github-commits></github-commits>
+<!-- // NEW LATEST COMMITS -->
+<github-filters></github-filters>
     </div>
     <!-- //  GITHUB ACTIVITY -->
+    <!-- ANGULAR CODEPEN -->
     <div ng-switch-when="angularCodepen">
       angularCodepen
     </div>
+    <!-- ANGULAR CODEPEN -->
+    <!-- CODEPENS -->
     <div ng-repeat="pen in value.codepen">
       {{pen.title}}
       <br>{{pen.description}}
       <div ng-include="pen.example"></div>
-      <codepen info="pen"></codepen>
+      <!-- <codepen info="pen"></codepen> -->
     </div>
+    <!-- // CODEPENS -->
   </div>
 </div>

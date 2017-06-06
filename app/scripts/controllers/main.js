@@ -32,7 +32,7 @@ angular.module('kylemosebyDotcomApp')
 
     // ANCHOR SCROLL STUFF
     $scope.gotoAnchor = function(id) {
-      console.log(id);
+
       $location.hash(id);
 
       $anchorScroll();

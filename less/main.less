@@ -46,28 +46,10 @@ h3 {
 }
 
 #main-page {
-  height: 95vh;
-  display: block;
   padding: @padding-large-vertical @padding-large-horizontal;
-  background-position: center;
-  color: @gray-lighter;
   p {
     font-weight: @headings-font-weight;
   }
-}
-
-#main-page.landscape {
-  background: url('https://c2.staticflickr.com/4/3764/9593133957_ff1da03631_h.jpg') center no-repeat;
-  background-size: cover;
-}
-
-#main-page.portrait {
-  background: url('https://c2.staticflickr.com/4/3738/13840561083_b9041d2ef0_h.jpg') center no-repeat;
-  background-size: cover;
-}
-
-#content {
-  // padding: @padding-large-vertical @padding-large-horizotal;
 }
 
 codepen {
@@ -102,3 +84,5 @@ codepen {
     text-align: center;
   }
 }
+
+@import 'github-activity.less';

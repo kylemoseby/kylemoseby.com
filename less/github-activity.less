@@ -1,0 +1,134 @@
+@import "variables.less";
+@import "bootstrap.less";
+@import "fonts.less";
+.profile-avatar {
+  max-height: 5vh;
+}
+
+.actor-avatar {
+  max-height: 33px;
+}
+
+.grad-key-val {
+  display: inline-block;
+  width: 1%;
+  height: @font-size-large;
+}
+
+.github-activity {
+  font-size: 18px;
+  li {
+    .glyphicon {
+      font-size: 28px
+    }
+  }
+}
+
+// github-file {
+.file {
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: @padding-small-vertical @padding-small-horizontal 0 0;
+  font-size: @font-size-base;
+  color: @gray-lighter;
+  display: inline-block;
+  .sorted-by {
+    position: absolute;
+    top: @padding-small-vertical;
+    left: @padding-small-horizontal;
+  }
+  .file-actions {
+    position: absolute;
+    padding-left: @padding-base-horizontal;
+    padding-top: 33%;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    // visibility: hidden;
+  }
+  .file-name {
+    position: absolute;
+    bottom: @padding-small-vertical;
+    left: @padding-small-horizontal;
+    visibility: hidden;
+  }
+}
+
+.github-file-mdpanel {
+  margin: @padding-small-vertical @padding-small-horizontal;
+  padding: @padding-small-vertical @padding-small-horizontal;
+  background: @body-bg;
+  height: 80vh;
+  width: 80vw;
+  overflow: scroll;
+  .code-line {
+    display: block;
+    clear: both;
+    background: @gray-light;
+    color: @body-bg;
+  }
+  .code-addition {
+    background: @brand-success;
+    color: @body-bg;
+  }
+  .code-deletion {
+    background: @brand-danger;
+    color: @body-bg;
+  }
+  .code-line.seperated {
+    width: 50%;
+    margin: 0 auto;
+  }
+  .code-addition.seperated {
+    float: right;
+  }
+  .code-deletion.seperated {
+    float: left;
+  }
+  .code-wrap {
+    white-space: nowrap;
+    overflow: hidden;
+    height: @line-height-computed;
+    color: transparent;
+  }
+}
+
+// ALL FILES
+.all-files-wrap {
+  .glyphicon,
+  .icon-github {
+    font-size: @font-size-h4;
+    color: @gray-lighter;
+    padding: @padding-small-vertical 0;
+  }
+  .glyphicon,
+  .icon-github {
+    visibility: show;
+  }
+  .btn-filetype {
+    background: @gray;
+  }
+}
+
+// END ALL FILES
+// COMMITS
+.commits {
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+// END COMMITS
+@media screen and (min-width: @screen-md) {
+  .file {
+    .file-actions {
+      visibility: hidden;
+    }
+    .file-name {}
+  }
+}
+
+@media screen and (min-width: @screen-sm) {}
