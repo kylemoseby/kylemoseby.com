@@ -15,6 +15,7 @@ angular.module('kylemosebyDotcomApp')
     $scope.showMenu = false;
 
     $scope.menuToggle = function() {
+
       $scope.showMenu = !$scope.showMenu;
     };
 

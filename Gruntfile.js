@@ -50,7 +50,7 @@ module.exports = function(grunt) {
       },
       styles: {
         files: ['less/{,*/}*.less'],
-        tasks: ['less', 'newer:copy:styles', 'autoprefixer']
+        tasks: ['lesslint', 'less', 'newer:copy:styles', 'autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
