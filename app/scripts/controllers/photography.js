@@ -8,10 +8,7 @@
  * Controller of the kylemosebyDotcomApp
  */
 angular.module('kylemosebyDotcomApp')
-  .controller('PhotographyCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('PhotographyCtrl', ['_kylemoseby_', '$scope', function (_mkm_, $scope) {
+      console.log($scope);
+      $scope.portfolio = _mkm_.photography.flickrPortfolio;
+    }]);

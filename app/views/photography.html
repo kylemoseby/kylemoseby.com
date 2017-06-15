@@ -1,3 +1,6 @@
-<md-content layout="row" layout-margin layout-padding layout-wrap>
+<md-content layout-margin layout-padding layout-wrap>
   <h2>Photography</h2>
+  <div ng-repeat="albumID in portfolio">
+    <flickr-album album-id="albumID"></flickr-album>
+  </div>
 </md-content>

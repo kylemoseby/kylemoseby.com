@@ -4,20 +4,19 @@
   <p>Technical consultant for over 15 years for corporations, nonprofits, small businesses and agencies.</p>
   <p>Experience includes roles in development, design, and suppport.</p>
   <p>Development experince includes JavaScript, LAMP, Wordpress, Salesforce.</p>
+  <div ng-click="showHide.code = !showHide.code">
+    {{showHide.code ? '' : 'Code Samples'}} <span class="glyphicon glyphicon-remove" ng-show="showHide.code"></span>
+  </div>
+  <div ng-include="'views/code.html'" ng-controller="CodeCtrl" ng-show="showHide.code"></div>
   <h3>Photographer</h3>
   <p>Editorial photography production and editing.</p>
   <p>Stock photos available through Getty.</p>
-</div>
-<div id="site-content">
-  <div ng-include="'views/code.html'" ng-controller="CodeCtrl"></div>
-  <ul class="list-inline">
-    <li> <span class="glyphicon glyphicon-chevron-up">Code</span></li>
-    <li> <span class="glyphicon glyphicon-chevron-down">Photography</span></li>
-  </ul>
-  <div ng-include="'views/photography.html'" scope="mkm.photography" onload="PhotographyCtrl"></div>
-  <ul class="list-inline">
-    <li> <span class="glyphicon glyphicon-chevron-up">Photography</span></li>
-    <li> <span class="glyphicon glyphicon-chevron-down">Contact</span></li>
-  </ul>
-  <div ng-include="'views/contact.html'" scope="mkm.contact" onload="ContactCtrl"></div>
+  <div ng-click="showHide.photography = !showHide.photography">
+    {{showHide.photography ? '' : 'Portfolio'}} <span class="glyphicon glyphicon-remove" ng-show="showHide.photography"></span>
+  </div>
+  <div ng-include="'views/photography.html'" ng-controller="PhotographyCtrl" ng-show="showHide.photography"></div>
+  <div ng-click="showHide.contact = !showHide.contact">
+    {{showHide.contact ? '' : 'Contact Form'}} <span class="glyphicon glyphicon-remove" ng-show="showHide.contact"></span>
+  </div>
+  <div ng-include="'views/contact.html'" ng-controller="ContactCtrl" ng-show="showHide.contact"></div>
 </div>

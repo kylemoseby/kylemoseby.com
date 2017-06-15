@@ -1,11 +1,20 @@
+<h2>Code Samples</h2>
 <div layout-margin layout-padding layout-wrap>
-  <h2>Code Samples</h2>
   <div ng-repeat="(key, value) in mkm.code" ng-switch="key">
     <!-- FLICKR INTEGRATIONS START -->
     <div ng-switch-when="flickrIntegrations">
       <h3>Flickr Integrations for Angular</h3>
       <p>These samples are Angular directives using <a href="https://www.flickr.com/services/api/" target="_blank">Flickr's REST API</a>. Google Material is used for some components as well</p>
       <p><a href="https://github.com/kylemoseby/angular-flickr-portfolio" target="_blank">GitHub Repo <span class="icon-github"></span></a></p>
+      <div ng-repeat="(_key, demo) in value.examples" ng-switch="_key">
+        <div ng-switch-when="album">
+          <flickr-album album-id="albumID"></flickr-album>
+        </div>
+        <div ng-switch-when="recentPhotos">
+          <recent-photos flickr-id="flickrID" count="7"></recent-photos>
+        </div>
+        <launch-codepen options="demo"></launch-codepen>
+      </div>
     </div>
     <!-- // FLICKR INTEGRATIONS -->
     <!--  SEATTLE CRIME REPORTS -->
@@ -16,38 +25,24 @@
         <li>Data is indexed and formatted using <a href="https://d3js.org/" target="_blank">d3</a>. All these samples are developed in <a href="https://angularjs.org/" target="_blank">Angularjs</a>.</li>
         <li><a href="https://github.com/kylemoseby/angular-seattle-crime-data" target="_blank"><span class="icon-github"></span> GitHub Repo</a></li>
       </ul>
+      <div ng-repeat="(_key, demo) in value.examples" ng-switch="_key">
+        <div ng-switch-when="byLocation">
+          <map-canvas map-promise="crimeData" map-style="mapStyle"></map-canvas>
+        </div>
+        <div ng-switch-when="byTimeReported">
+          <viz-time-line id="sea-crime-viz" viz-time-data="crimeData"></viz-time-line>
+        </div>
+        <div ng-switch-when="byType">
+          <div id="crime-reports-block" crime-reports-block crime-reports-data="crimeData"></div>
+        </div>
+        <launch-codepen options="demo"></launch-codepen>
+      </div>
     </div>
     <!--  // SEATTLE CRIME REPORTS -->
     <!--  GITHUB ACTIVITY -->
     <div ng-switch-when="gitHubActivity">
       <h3>Github Activity Viz</h3>
-      <!-- <div class="github-file-mdpanel" ng-include="'github-activity/github-file-mdpanel.html'"></div> -->
-<!--  CURRENT USER CARD -->
-<div class="user-card">
-  <input ng-model="username">
-  <button ng-click="setGitHubUser()">set user</button>
-  <img src="{{userInfo.data.avatar_url}}" class="profile-avatar img-circle">
-  <a ng-href="userInfo.data.blog">{{userInfo.data.blog}}</a>
-  <a ng-href="userInfo.data.html_url"><span class="icon-github"></span></a>
-  <div>Public Gists {{userInfo.data.public_gists}}</div>
-  <div>Public Repos {{userInfo.data.public_repos}}</div>
-  <div class="alert alert-danger" role="alert" ng-hide="userInfo.status !== 404">
-    <span class="glyphicon glyphicon-alert"></span>
-  </div>
-</div>
-<!-- // CURRENT USER CARD -->
-
-
-
-<!--  ALL FILES -->
-<h3>All commits on all files</h3>
-<github-allfiles></github-allfiles>
-<!-- // ALL FILES -->
-<!-- NEW LATEST COMMITS -->
-<h3>Latest Commits</h3>
-<github-commits></github-commits>
-<!-- // NEW LATEST COMMITS -->
-<github-filters></github-filters>
+      <github-activity></github-activity>
     </div>
     <!-- //  GITHUB ACTIVITY -->
     <!-- ANGULAR CODEPEN -->
@@ -55,13 +50,4 @@
       angularCodepen
     </div>
     <!-- ANGULAR CODEPEN -->
-    <!-- CODEPENS -->
-    <div ng-repeat="pen in value.codepen">
-      {{pen.title}}
-      <br>{{pen.description}}
-      <div ng-include="pen.example"></div>
-      <!-- <codepen info="pen"></codepen> -->
-    </div>
-    <!-- // CODEPENS -->
   </div>
-</div>

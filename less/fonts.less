@@ -1,3 +1,4 @@
+// GOOGLE FONTS
 @import url('https://fonts.googleapis.com/css?family=Hammersmith+One');
 @font-face {
   font-family: 'icomoon';
@@ -6,9 +7,21 @@
   font-weight: normal;
   font-style: normal;
 }
+// GOOGLE FONTS
 
-[class^="icon-"],
-[class*=" icon-"] {
+// ICONMOON
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?bax266');
+  src:  url('fonts/icomoon.eot?bax266#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?bax266') format('truetype'),
+    url('fonts/icomoon.woff?bax266') format('woff'),
+    url('fonts/icomoon.svg?bax266#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: none;
@@ -17,23 +30,22 @@
   font-variant: normal;
   text-transform: none;
   line-height: 1;
+
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .icon-instagram:before {
-  content: "\e900";
+  content: "\ea92";
 }
-
-.icon-flickr2:before {
-  content: "\e901";
-}
-
 .icon-github:before {
-  content: "\e902";
+  content: "\eab0";
 }
-
 .icon-tumblr:before {
-  content: "\e903";
+  content: "\eab9";
 }
+.icon-codepen:before {
+  content: "\eae8";
+}
+// END ICONMOON

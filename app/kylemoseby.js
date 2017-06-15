@@ -17,175 +17,157 @@ angular
     'mkm.flickr',
     'mkm.seaCrimeData',
     'mkm.githubActivityVizApp',
-    'mkm.codepen'
+    'mkm.codetools'
   ])
   .factory('_kylemoseby_', [function() {
 
     var flickrRoot = 'https://kylemoseby.github.io/angular-flickr-integrations/';
 
 
-    var flickrExtJS = [
-      'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js',
-      'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js',
-      'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js',
-      'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js',
-      'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js',
-      'https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.0/angular-material.js',
-      '/app/flickr/flickr-restapi.js',
-      '/app/flickr/flickr-img.js',
-      '/source/angular-flickr-templates.js',
-      'https://dl.dropboxusercontent.com/u/227926/MiscWeb/api_key.js'
-    ];
-
-    //   CODE PEN OPTIONS
-
-    // All Optional
-    // title                 : "New Pen!",
-    // description           : "It's about stuff.",
-    // private               : false, // true || false - When the Pen is saved, it will save as Private if logged in user has that privledge, otherwise it will save as public
-    // parent                : id // If supplied, the Pen will save as a fork of this id. Note it's not the slug, but ID. You can find the ID of a Pen with `window.CP.pen.id` in the browser console.
-    // tags                  : ["tag1", "tag2"], // an array of strings
-    // editors               : "101", // Set which editors are open. In this example HTML open, CSS closed, JS open
-    // layout                : "left", // top | left | right
-    // html                  : "<div>HTML here.</div>",
-    // html_pre_processor    : "none" || "slim" || "haml" || "markdown",
-    // css                   : "html { color: red; }",
-    // css_pre_processor     : "none" || "less" || "scss" || "sass" || "stylus",
-    // css_starter           : "normalize" || "reset" || "neither",
-    // css_prefix            : "autoprefixer" || "prefixfree" || "neither",
-    // js                    : "alert('test');",
-    // js_pre_processor      : "none" || "coffeescript" || "babel" || "livescript" || "typescript",
-    // html_classes          : "loading",
-    // head                  : "<meta name='viewport' content='width=device-width'>",
-    // css_external          : "http://yoursite.com/style.css", // semi-colon separate multiple files
-    // js_external           : "http://yoursite.com/script.js" // semi-colon separate multiple files
-
-
     var mkm = {
-      cv: {},
+
       code: {
+
         gitHubActivity: {
           gitUrl: 'github-activity-viz',
-          codepen: [{
-            'title': 'Github Activity Vizualization',
-            'description': 'A vizualization of recent Github activity written in Angular',
-            'tags': ['github', 'angular', 'javascript', 'data vizualization', 'jsonp'],
-            'layout': 'left',
-            'example': '/code/',
-            'html': 'app/views/flickr-album-codepen.html',
-            'css': 'less/flickr-albums.less',
-            'css_pre_processor': 'less',
-            'js': 'app/flickr/flickr-album.js',
-            'head': '<meta name=\"viewport\" content=\"width=device-width\">',
-            'css_external': [
-              '/styles/main.css',
-              'styles/vendor.css'
-            ],
-            'js_external': flickrExtJS
-          }]
+          examples: {
+            commitsRecentFiles: {
+              'title': 'Vizualization of Recent Files Committed to Github',
+              'description': '',
+              'tags': ['github', 'angular', 'javascript', 'data vizualization', 'jsonp'],
+              'layout': 'left',
+              'html': '',
+              'css': '',
+              'css_pre_processor': 'less',
+              'js': '',
+              'head': '',
+              'css_external': [
+                '/styles/main.css',
+                'styles/vendor.css'
+              ],
+              'js_external': null
+            },
+            commitsByDate: {
+              'title': 'Vizualization of Commits by Date',
+              'description': '',
+              'tags': ['github', 'angular', 'javascript', 'data vizualization', 'jsonp'],
+              'layout': 'left',
+              'html': '',
+              'css': '',
+              'css_pre_processor': 'less',
+              'js': '',
+              'head': '',
+              'css_external': [
+                '/styles/main.css',
+                'styles/vendor.css'
+              ],
+              'js_external': null
+            }
+          },
         },
-        seattleCrimeData: {
-          gitUrl: 'angular-seattle-crime-data',
-          codepen: [{
-            'title': 'Reports by Location',
-            'description': 'All crime reports filed by the SPD.  Data found at data.gov',
-            'parent': '10406123',
-            'tags': ['google maps', 'angular'],
-            'layout': 'left',
-            'example': '/code/angular-seattle-crime-data/example-map-canvas.html',
-            'html': '',
-            'css': '',
-            'css_pre_processor': 'less',
-            'js': '',
-            'head': '<meta name=\"viewport\" content=\"width=device-width\">',
-            'css_external': [],
-            'js_external': ''
-          }, {
-            'title': 'Reports by Time',
-            'description': 'All crime reports filed by the SPD.  Data found at data.gov',
-            'tags': ['d3', 'angular'],
-            'layout': 'left',
-            'example': '/code/angular-seattle-crime-data/example-crime-timeline.html',
-            'html': '',
-            'css': '',
-            'css_pre_processor': 'less',
-            'js': '',
-            'head': '<meta name=\"viewport\" content=\"width=device-width\">',
-            'css_external': [],
-            'js_external': ''
-          }, {
-            'title': 'Reports by Type',
-            'description': 'All crime reports filed by the SPD.  Data found at data.gov',
-            'tags': ['d3', 'angular'],
-            'layout': 'left',
-            'example': '/code/angular-seattle-crime-data/example-crime-block.html',
-            'html': '',
-            'css': '',
-            'css_pre_processor': 'less',
-            'js': '',
-            'head': '<meta name=\"viewport\" content=\"width=device-width\">',
-            'css_external': [],
-            'js_external': ''
-          }]
-        },
+
         flickrIntegrations: {
           gitUrl: 'angular-flickr-integrations',
-          codepen: [{
-            'title': 'Flickr Recent Photos',
-            'gitrepo': 'https://github.com/kylemoseby/angular-flickr-integrations',
-            'description': 'A Flickr API integration written in Angular',
-            'tags': ['flickr', 'angular'],
-            'layout': 'left',
-            'example': '/code/angular-flickr-integrations/flickr-recent-codepen.html',
-            'html': flickrRoot + 'app/views/flickr-recent-codepen.html',
-            'css': flickrRoot + 'less/flickr-recents.less',
-            'css_pre_processor': 'less',
-            'js': flickrRoot + 'app/flickr/flickr-recent.js',
-            'head': '<meta name=\"viewport\" content=\"width=device-width\">',
-            'css_external': [
-              flickrRoot + '/styles/main.css',
-              flickrRoot + 'styles/vendor.css'
-            ],
-            'js_external': flickrExtJS
-          }, {
-            'title': 'Flickr Album',
-            'description': 'A Flickr API integration written in Angular',
-            'tags': ['flickr', 'angular'],
-            'layout': 'left',
-            'example': '/code/angular-flickr-integrations/flickr-album-codepen.html',
-            'html': flickrRoot + 'app/views/flickr-album-codepen.html',
-            'css': flickrRoot + 'less/flickr-albums.less',
-            'css_pre_processor': 'less',
-            'js': flickrRoot + 'app/flickr/flickr-album.js',
-            'head': '<meta name=\"viewport\" content=\"width=device-width\">',
-            'css_external': [
-              flickrRoot + '/styles/main.css',
-              flickrRoot + 'styles/vendor.css'
-            ],
-            'js_external': flickrExtJS
-          }]
+          examples: {
+            recentPhotos: {
+              'title': 'Flickr Recent Photos',
+              'gitrepo': 'https://github.com/kylemoseby/angular-flickr-integrations',
+              'description': 'A Flickr API integration written in Angular',
+              'tags': ['flickr', 'angular', 'javascript'],
+              'layout': 'left',
+              'example': '/code/angular-flickr-integrations/flickr-recent-codepen.html',
+              'html': flickrRoot + 'app/views/flickr-recent-codepen.html',
+              'css': flickrRoot + 'less/flickr-recents.less',
+              'css_pre_processor': 'less',
+              'js': flickrRoot + 'app/flickr/flickr-recent.js',
+              'head': '<meta name=\"viewport\" content=\"width=device-width\">',
+              'css_external': [
+                flickrRoot + '/styles/main.css',
+                flickrRoot + 'styles/vendor.css'
+              ],
+              // 'js_external': null
+            },
+            album: {
+              'title': 'Flickr Album',
+              'description': 'A Flickr API integration written in Angular',
+              'tags': ['flickr', 'angular'],
+              'layout': 'left',
+              'example': '/code/angular-flickr-integrations/flickr-album-codepen.html',
+              'html': flickrRoot + 'app/views/flickr-album-codepen.html',
+              'css': flickrRoot + 'less/flickr-albums.less',
+              'css_pre_processor': 'less',
+              'js': flickrRoot + 'app/flickr/flickr-album.js',
+              'head': '<meta name=\"viewport\" content=\"width=device-width\">',
+              'css_external': [
+                flickrRoot + '/styles/main.css',
+                flickrRoot + 'styles/vendor.css'
+              ],
+              // 'js_external': null
+            }
+          }
         },
-        angularCodepen: {
-          gitUrl: 'angular-codepen',
-          codepen: [{
-            'title': 'Open With Codepen Directive',
-            'description': 'A Angular directive that opens a project in Codepen',
-            'tags': [''],
-            'layout': '',
-            'example': '',
-            'html': '',
-            'css': '',
-            'css_pre_processor': '',
-            'js': '',
-            'head': '<meta name=\"viewport\" content=\"width=device-width\">',
-            'css_external': [],
-            'js_external': ''
-          }]
+
+        seattleCrimeData: {
+          gitUrl: 'angular-seattle-crime-data',
+          examples: {
+            byLocation: {
+              'title': 'Reports by Location',
+              'description': 'All crime reports filed by the SPD.  Data found at data.gov',
+              'parent': '10406123',
+              'tags': ['google maps', 'angular'],
+              'layout': 'left',
+              'example': '/code/angular-seattle-crime-data/example-map-canvas.html',
+              'html': '',
+              'css': '',
+              'css_pre_processor': 'less',
+              'js': '',
+              'head': '<meta name=\"viewport\" content=\"width=device-width\">',
+              'css_external': [],
+              'js_external': ''
+            },
+            byTimeReported: {
+              'title': 'Reports by Time',
+              'description': 'All crime reports filed by the SPD.  Data found at data.gov',
+              'tags': ['d3', 'angular'],
+              'layout': 'left',
+              'example': '/code/angular-seattle-crime-data/example-crime-timeline.html',
+              'html': '',
+              'css': '',
+              'css_pre_processor': 'less',
+              'js': '',
+              'head': '<meta name=\"viewport\" content=\"width=device-width\">',
+              'css_external': [],
+              'js_external': ''
+            },
+            byType: {
+              'title': 'Reports by Type',
+              'description': 'All crime reports filed by the SPD.  Data found at data.gov',
+              'tags': ['d3', 'angular'],
+              'layout': 'left',
+              'example': '/code/angular-seattle-crime-data/example-crime-block.html',
+              'html': '',
+              'css': '',
+              'css_pre_processor': 'less',
+              'js': '',
+              'head': '<meta name=\"viewport\" content=\"width=device-width\">',
+              'css_external': [],
+              'js_external': ''
+            }
+          }
         }
       },
+
       photography: {
-        portfolio: [{}]
+        flickrPortfolio: [
+          '72157641683609583',
+          '72157642608822784',
+          '72157642607219393',
+          '72157671573143060'
+        ]
       },
+
+      cv: {},
+
       contact: {
         social: {
           instagram: {
@@ -211,3 +193,18 @@ angular
 
     return mkm;
   }]);
+
+
+
+// var flickrExtJS = [
+//   'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js',
+//   'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js',
+//   'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js',
+//   'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js',
+//   'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js',
+//   'https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.0/angular-material.js',
+//   '/app/flickr/flickr-restapi.js',
+//   '/app/flickr/flickr-img.js',
+//   '/source/angular-flickr-templates.js',
+//   'https://dl.dropboxusercontent.com/u/227926/MiscWeb/api_key.js'
+// ];

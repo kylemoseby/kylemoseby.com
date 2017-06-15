@@ -22,7 +22,6 @@ angular.module('kylemosebyDotcomApp')
     function setAspectRatio() {
 
       $scope.windAspectRatio = checkAspectRatio($window);
-
     }
     // // BACKGROUND IMAGE ASPECT RATIO STUFF
 
@@ -38,9 +37,12 @@ angular.module('kylemosebyDotcomApp')
       $anchorScroll();
     };
 
-    // // ANCHOR SCROLL STUFF
-
-
+  // Display Defaults
+    $scope.showHide = {
+      code: false,
+      photography: false,
+      contact: false
+    };
 
     // INIT
     setAspectRatio();

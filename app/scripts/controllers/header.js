@@ -12,7 +12,7 @@ angular.module('kylemosebyDotcomApp')
 
     $scope.pages = Object.keys($mkm);
 
-    $scope.showMenu = true;
+    $scope.showMenu = false;
 
     $scope.menuToggle = function() {
       $scope.showMenu = !$scope.showMenu;

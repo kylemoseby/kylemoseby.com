@@ -23,10 +23,11 @@
     <![endif]-->
   <!-- Add your site or application content here -->
   <div id="header" ng-controller="HeaderCtrl">
-    <button id="menu-toggle" ng-click="menuToggle()" aria-label="Toggle Menu" class="btn btn-default">
+    <h1><a ng-href="#/">Kyle Moseby</a></h1>
+        <button id="menu-toggle" ng-click="menuToggle()" aria-label="Toggle Menu" class="btn btn-default">
       <span class="glyphicon glyphicon-menu-hamburger" ng-hide="showMenu"></span>
     </button>
-    <h1><a ng-href="#/">Kyle Moseby</a></h1>
+
     <ul class="list-inline" ng-show="showMenu">
       <li ng-repeat="page in pages">
         <a ng-href="#/{{page}}">{{page}}</a>
@@ -58,11 +59,8 @@
   </script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUoQBYmNXt-dcHE-oqFKED_loQKhmCeVY"></script>
   <script src="https://d3js.org/d3.v4.min.js"></script>
-  <!-- <script src="https://d3js.org/d3.v3.min.js"></script> -->
   <!-- build:js(.) scripts/vendor.js -->
   <!-- bower:js -->
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -71,18 +69,18 @@
   <script src="bower_components/angular-aria/angular-aria.js"></script>
   <script src="bower_components/angular-messages/angular-messages.js"></script>
   <script src="bower_components/angular-material/angular-material.js"></script>
+  <script src="bower_components/angular-flickr-integrations/source/angular-flickr-integrations.js"></script>
   <script src="bower_components/angular-loader/angular-loader.js"></script>
   <script src="bower_components/angular-mocks/angular-mocks.js"></script>
-  <script src="bower_components/angular-seattle-crime-data/source/seattle-crime-reports-scripts.js"></script>
-  <script src="bower_components/angular-flickr-integrations/source/angular-flickr-integrations.js"></script>
-  <script src="bower_components/angular-code-mirror/dist/angular-code-mirror.js"></script>
-  <script src="bower_components/angular-codepen/source/angular-codepen.js"></script>
+  <script src="bower_components/angular-seattle-crime-data/source/seattle-crime-reports-source.js"></script>
   <!-- endbower -->
   <script src="bower_components/github-activity-viz/source/github-activity.js"></script>
+  <script src="bower_components/angular-directives-code/app/scripts/directives/codetools.js"></script>
   <!-- endbuild -->
   <!-- build:js({.tmp,app}) scripts/scripts.js -->
   <script src="scripts/api_key.js"></script>
   <script src="kylemoseby.js"></script>
+  <script src="scripts/mapstyle.js"></script>
   <script src="scripts/app.js"></script>
   <script src="scripts/controllers/code.js"></script>
   <script src="scripts/controllers/contact.js"></script>
