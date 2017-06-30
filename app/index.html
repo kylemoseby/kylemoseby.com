@@ -10,6 +10,7 @@
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+  <link rel="stylesheet" href="bower_components/prism/themes/prism.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
@@ -22,9 +23,9 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
   <!-- Add your site or application content here -->
-  <div id="header" ng-controller="HeaderCtrl">
+  <div class="header" ng-controller="HeaderCtrl">
     <h1><a ng-href="#/">Kyle Moseby</a></h1>
-        <button id="menu-toggle" ng-click="menuToggle()" aria-label="Toggle Menu" class="btn btn-default">
+        <button class="menu-toggle" ng-click="menuToggle()" aria-label="Toggle Menu" class="btn btn-default">
       <span class="glyphicon glyphicon-menu-hamburger" ng-hide="showMenu"></span>
     </button>
 
@@ -37,8 +38,8 @@
       </li>
     </ul>
   </div>
-  <div id="content" ng-view=""></div>
-  <div id="footer" ng-controller="FooterCtrl">
+  <div ng-view="" class="container-fluid"></div>
+  <div class="footer" ng-controller="FooterCtrl">
     <ul class="list-inline">
       <li ng-repeat="(key, val) in social">
         <a ng-href="val.url" target="_blank" ng-class="val.spanClass">&nbsp;</a>
@@ -61,6 +62,7 @@
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <!-- build:js(.) scripts/vendor.js -->
   <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -69,6 +71,8 @@
   <script src="bower_components/angular-aria/angular-aria.js"></script>
   <script src="bower_components/angular-messages/angular-messages.js"></script>
   <script src="bower_components/angular-material/angular-material.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/prism/prism.js"></script>
   <script src="bower_components/angular-flickr-integrations/source/angular-flickr-integrations.js"></script>
   <script src="bower_components/angular-loader/angular-loader.js"></script>
   <script src="bower_components/angular-mocks/angular-mocks.js"></script>

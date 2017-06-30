@@ -50,7 +50,8 @@ module.exports = function(grunt) {
       },
       styles: {
         files: ['less/{,*/}*.less'],
-        tasks: ['lesslint', 'less', 'newer:copy:styles', 'autoprefixer']
+        tasks: ['less', 'newer:copy:styles', 'autoprefixer']
+        // 'lesslint',
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -135,7 +136,10 @@ module.exports = function(grunt) {
     },
 
     lesslint: {
-      src: ['less/**/*.less']
+      src: [
+        'less/app/**/*.less',
+        'less/main.less'
+        ]
     },
 
     // Make sure code styles are up to par and there are no obvious mistakes

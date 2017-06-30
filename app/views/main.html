@@ -1,22 +1,29 @@
-<div id="main-page" ng-class="windAspectRatio">
-  <h2>I am currently based out of Seattle WA.</h2>
-  <h3>Designer/Developer</h3>
-  <p>Technical consultant for over 15 years for corporations, nonprofits, small businesses and agencies.</p>
-  <p>Experience includes roles in development, design, and suppport.</p>
-  <p>Development experince includes JavaScript, LAMP, Wordpress, Salesforce.</p>
-  <div ng-click="showHide.code = !showHide.code">
-    {{showHide.code ? '' : 'Code Samples'}} <span class="glyphicon glyphicon-remove" ng-show="showHide.code"></span>
+<div id="main-page" ng-class="windAspectRatio" class="row">
+  <div class="col-lg-12">
+    <h2>I am currently based out of Seattle WA.</h2>
+    <h3>Designer/Developer</h3>
+    <p>Technical consultant for over 15 years for corporations, nonprofits, small businesses and agencies.</p>
+    <p>Experience includes roles in development, design, and suppport.</p>
+    <p>Development experince includes JavaScript, LAMP, Wordpress, Salesforce.</p>
+    <button ng-click="showHide.code = !showHide.code" class="btn btn-primary">
+      {{showHide.code ? '' : 'Code Samples'}} <span class="glyphicon glyphicon-remove" ng-show="showHide.code"></span>
+    </button>
   </div>
-  <div ng-include="'views/code.html'" ng-controller="CodeCtrl" ng-show="showHide.code"></div>
-  <h3>Photographer</h3>
-  <p>Editorial photography production and editing.</p>
-  <p>Stock photos available through Getty.</p>
-  <div ng-click="showHide.photography = !showHide.photography">
-    {{showHide.photography ? '' : 'Portfolio'}} <span class="glyphicon glyphicon-remove" ng-show="showHide.photography"></span>
+</div>
+<div ng-include="'views/code.html'" ng-controller="CodeCtrl" ng-show="showHide.code"></div>
+<div class="row">
+  <div class="col-lg-12">
+    <h3>Photographer</h3>
+    <p>Editorial photography production and editing.</p>
+    <p>Stock photos available through Getty.</p>
+    <button ng-click="showHide.photography = !showHide.photography" class="btn btn-primary">
+      {{showHide.photography ? '' : 'Portfolio'}} <span class="glyphicon glyphicon-remove" ng-show="showHide.photography"></span>
+    </button>
   </div>
-  <div ng-include="'views/photography.html'" ng-controller="PhotographyCtrl" ng-show="showHide.photography"></div>
-  <div ng-click="showHide.contact = !showHide.contact">
-    {{showHide.contact ? '' : 'Contact Form'}} <span class="glyphicon glyphicon-remove" ng-show="showHide.contact"></span>
-  </div>
-  <div ng-include="'views/contact.html'" ng-controller="ContactCtrl" ng-show="showHide.contact"></div>
+</div>
+<div ng-include="'views/photography.html'" ng-controller="PhotographyCtrl" ng-show="showHide.photography"></div>
+<div ng-click="showHide.contact = !showHide.contact">
+  {{showHide.contact ? '' : 'Contact Form'}} <span class="glyphicon glyphicon-remove" ng-show="showHide.contact"></span>
+</div>
+<div ng-include="'views/contact.html'" ng-controller="ContactCtrl" ng-show="showHide.contact"></div>
 </div>

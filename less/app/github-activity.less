@@ -1,6 +1,5 @@
-@import "variables.less";
-@import "bootstrap.less";
-@import "fonts.less";
+@import '../dev/variables.less';
+
 .profile-avatar {
   max-height: 5vh;
 }
@@ -24,7 +23,6 @@
   }
 }
 
-// github-file {
 .file {
   position: relative;
   white-space: nowrap;
@@ -41,12 +39,9 @@
   }
   .file-actions {
     position: absolute;
-    padding-left: @padding-base-horizontal;
-    padding-top: 33%;
-    top: 0%;
+    top: 0;
     width: 100%;
     height: 100%;
-    // visibility: hidden;
   }
   .file-name {
     position: absolute;
@@ -58,7 +53,6 @@
 
 .github-file-mdpanel {
   margin: @padding-small-vertical @padding-small-horizontal;
-  padding: @padding-small-vertical @padding-small-horizontal;
   background: @body-bg;
   height: 80vh;
   width: 80vw;
@@ -77,16 +71,6 @@
     background: @brand-danger;
     color: @body-bg;
   }
-  .code-line.seperated {
-    width: 50%;
-    margin: 0 auto;
-  }
-  .code-addition.seperated {
-    float: right;
-  }
-  .code-deletion.seperated {
-    float: left;
-  }
   .code-wrap {
     white-space: nowrap;
     overflow: hidden;
@@ -102,10 +86,6 @@
     font-size: @font-size-h4;
     color: @gray-lighter;
     padding: @padding-small-vertical 0;
-  }
-  .glyphicon,
-  .icon-github {
-    visibility: show;
   }
   .btn-filetype {
     background: @gray;

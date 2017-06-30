@@ -5,24 +5,22 @@
  */
 
 // Core variables and mixins
-@import 'variables.less';
-@import 'bootstrap.less';
-@import 'code.less';
-@import 'fonts.less';
-@import 'footer.less';
+@import 'dev/variables.less';
+@import 'dev/bootstrap.less';
+@import 'dev/fonts.less';
 h1,
 h2,
 h3 {
   font-family: 'Hammersmith One';
 }
 
-#header {
+.header {
   h1 {
     display: inline-block;
     padding-top: @padding-small-vertical;
     margin-top: @padding-small-vertical;
   }
-  #menu-toggle {
+  .menu-toggle {
     font-size: @font-size-h2;
   }
   a {
@@ -32,8 +30,37 @@ h3 {
 }
 
 
-#main-page {
-}
+@import 'app/code.less';
+@import 'app/footer.less';
+@import 'app/github-activity.less';
+@import 'app/code.less';
+@import 'app/crime-map.less';
+@import 'app/flickr-portfolio.less';
+@import 'app/footer.less';
 
 
-@import 'github-activity.less';
+
+
+@media (min-width: @screen-sm-min) {}
+
+
+/* Medium devices (desktops, 992px and up) */
+
+@media (min-width: @screen-md-min) {}
+
+
+/* Large devices (large desktops, 1200px and up) */
+
+@media (min-width: @screen-lg-min) {}
+
+@media (min-width: @screen-sm-min) {}
+
+
+/* Medium devices (desktops, 992px and up) */
+
+@media (min-width: @screen-md-min) {}
+
+
+/* Large devices (large desktops, 1200px and up) */
+
+@media (min-width: @screen-lg-min) {}
