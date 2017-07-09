@@ -13,21 +13,22 @@
         <div ng-switch-when="recentPhotos">
           <recent-photos flickr-id="flickrID" count="7"></recent-photos>
         </div>
-        <launch-codepen options="demo"></launch-codepen>
+        <code-launcher options="demo"></code-launcher>
       </div>
     </div>
     <!-- // FLICKR INTEGRATIONS -->
     <!--  SEATTLE CRIME REPORTS -->
     <div ng-switch-when="seattleCrimeData">
       <h3>Seattle Police Reports</h3>
-      <ul class="list-unstyled">
-        <li>These samples use public data from <a href="https://data.seattle.gov/Public-Safety/Seattle-Police-Department-Police-Report-Incident/7ais-f98f" target="_blank">data.seattle.gov</a>. Data is provided by an HTTP request that <a href="https://data.seattle.gov/resource/7ais-f98f.json" target="_blank">gets a JSON object</a>.</li>
-        <li>Data is indexed and formatted using <a href="https://d3js.org/" target="_blank">d3</a>. All these samples are developed in <a href="https://angularjs.org/" target="_blank">Angularjs</a>.</li>
-        <li><a href="https://github.com/kylemoseby/angular-seattle-crime-data" target="_blank"><span class="icon-github"></span> GitHub Repo</a></li>
-      </ul>
+        <p>This samples uses public data from <a href="https://data.seattle.gov/Public-Safety/Seattle-Police-Department-Police-Report-Incident/7ais-f98f" target="_blank">data.seattle.gov</a>. Data is provided by an HTTP request that <a href="https://data.seattle.gov/resource/7ais-f98f.json" target="_blank">gets a JSON object</a>.</p>
+        <p>Data is indexed and formatted using <a href="https://d3js.org/" target="_blank">d3</a>. All these samples are developed in <a href="https://angularjs.org/" target="_blank">Angularjs</a>.</p>
+        <button class="btn btn-default">
+          <a href="https://github.com/kylemoseby/angular-seattle-crime-data" target="_blank"><span class="icon-github"></span> GitHub Repo</a>
+        </button>
       <div ng-repeat="(_key, demo) in value.examples" ng-switch="_key">
-        <div ng-switch-when="byLocation">
-          <map-canvas map-promise="crimeData" map-style="mapStyle"></map-canvas>
+        <div ng-switch-when="byLocation" ng-controller="CrimeReportrsCtrl">
+          <map-canvas map-promise="crimeData"></map-canvas>
+          <map-filters></map-filters>
         </div>
         <div ng-switch-when="byTimeReported">
           <viz-time-line id="sea-crime-viz" viz-time-data="crimeData"></viz-time-line>
@@ -35,14 +36,29 @@
         <div ng-switch-when="byType">
           <div class="crime-reports-block" crime-reports-block crime-reports-data="crimeData"></div>
         </div>
-        <launch-codepen options="demo"></launch-codepen>
+        <code-launcher options="demo"></code-launcher>
       </div>
     </div>
     <!--  // SEATTLE CRIME REPORTS -->
     <!--  GITHUB ACTIVITY -->
-    <div ng-switch-when="gitHubActivity">
+    <div ng-switch-when="gitHubActivity" ng-controller="githubActivity">
       <h3>Github Activity Viz</h3>
-      <github-activity></github-activity>
+      <p>These examples use d3 and Github's API.</p>
+      <section layout="row" layout-padding layout-margin>
+        <md-content flex layout="column">
+          <github-account></github-account>
+          <button ng-click="showFilter = !showFilter" class="github-filter btn btn-default">
+            <span class="glyphicon glyphicon-filter"></span>
+          </button>
+          <div ng-class="{'show-filter': !showFilter}">
+            <github-filters></github-filters>
+          </div>
+          <h3>All commits on all files</h3>
+          <github-allfiles></github-allfiles>
+          <h3>Latest Commits</h3>
+          <github-commits></github-commits>
+        </md-content>
+      </section>
     </div>
     <!-- //  GITHUB ACTIVITY -->
     <!-- ANGULAR CODEPEN -->

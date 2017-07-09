@@ -10,7 +10,7 @@
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
-  <link rel="stylesheet" href="bower_components/prism/themes/prism.css" />
+  <link rel="stylesheet" href="bower_components/highlightjs/styles/default.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
@@ -38,7 +38,7 @@
       </li>
     </ul>
   </div>
-  <div ng-view="" class="container-fluid"></div>
+  <div layout="column" tabindex="-1" role="main" flex="" class="layout-column flex" ng-view=""></div>
   <div class="footer" ng-controller="FooterCtrl">
     <ul class="list-inline">
       <li ng-repeat="(key, val) in social">
@@ -72,19 +72,18 @@
   <script src="bower_components/angular-messages/angular-messages.js"></script>
   <script src="bower_components/angular-material/angular-material.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="bower_components/prism/prism.js"></script>
+  <script src="bower_components/highlightjs/highlight.pack.js"></script>
+  <script src="bower_components/github-activity-viz/source/github-activity.js"></script>
   <script src="bower_components/angular-flickr-integrations/source/angular-flickr-integrations.js"></script>
   <script src="bower_components/angular-loader/angular-loader.js"></script>
   <script src="bower_components/angular-mocks/angular-mocks.js"></script>
   <script src="bower_components/angular-seattle-crime-data/source/seattle-crime-reports-source.js"></script>
+  <script src="bower_components/angular-directives-code/source/codetools.js"></script>
   <!-- endbower -->
-  <script src="bower_components/github-activity-viz/source/github-activity.js"></script>
-  <script src="bower_components/angular-directives-code/app/scripts/directives/codetools.js"></script>
   <!-- endbuild -->
   <!-- build:js({.tmp,app}) scripts/scripts.js -->
   <script src="scripts/api_key.js"></script>
   <script src="kylemoseby.js"></script>
-  <script src="scripts/mapstyle.js"></script>
   <script src="scripts/app.js"></script>
   <script src="scripts/controllers/code.js"></script>
   <script src="scripts/controllers/contact.js"></script>

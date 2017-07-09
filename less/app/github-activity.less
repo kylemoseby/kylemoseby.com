@@ -1,7 +1,46 @@
-@import '../dev/variables.less';
+
+// ANIMATIONS CONSOLIDATE AT SOME POINT
+
+// ANIMATIONS
+.show-filter-add,
+.show-filter-remove {
+  transition: all 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+}
+
+.show-filter,
+.show-filter-add.show-filter-add-active {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.show-filter-remove.show-filter-remove-active {
+  opacity: 1;
+  height: inherit;
+}
+// ENDIMATIONS
+
+
+
+
+github-filters {
+  font-size: @font-size-small;
+  .filter-type {
+    font-size: @font-size-base;
+    font-weight: @headings-font-weight;
+  }
+}
+
+
 
 .profile-avatar {
-  max-height: 5vh;
+  max-height: 10vh;
+}
+
+.repo-name-shim {
+  height: @font-size-h3;
+  background: @body-bg;
+  width: 100%;
 }
 
 .actor-avatar {
@@ -23,25 +62,22 @@
   }
 }
 
+// github-file {
 .file {
   position: relative;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   margin: @padding-small-vertical @padding-small-horizontal 0 0;
   font-size: @font-size-base;
   color: @gray-lighter;
   display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   .sorted-by {
     position: absolute;
-    top: @padding-small-vertical;
-    left: @padding-small-horizontal;
-  }
-  .file-actions {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    top: 0px;
+    left: 5px;
+    font-weight: @headings-font-weight;
+    visibility: hidden;
   }
   .file-name {
     position: absolute;
@@ -53,29 +89,15 @@
 
 .github-file-mdpanel {
   margin: @padding-small-vertical @padding-small-horizontal;
+  padding: @padding-small-vertical @padding-small-horizontal;
   background: @body-bg;
   height: 80vh;
   width: 80vw;
   overflow: scroll;
   .code-line {
-    display: block;
-    clear: both;
-    background: @gray-light;
-    color: @body-bg;
-  }
-  .code-addition {
-    background: @brand-success;
-    color: @body-bg;
-  }
-  .code-deletion {
-    background: @brand-danger;
-    color: @body-bg;
-  }
-  .code-wrap {
     white-space: nowrap;
-    overflow: hidden;
-    height: @line-height-computed;
-    color: transparent;
+    overflow: scroll;
+    text-overflow: clip;
   }
 }
 
@@ -87,28 +109,38 @@
     color: @gray-lighter;
     padding: @padding-small-vertical 0;
   }
+  .glyphicon,
+  .icon-github {
+    visibility: show;
+  }
   .btn-filetype {
     background: @gray;
   }
 }
 
 // END ALL FILES
-// COMMITS
-.commits {
-  ul {
-    margin: 0;
-    padding: 0;
-  }
+// END COMMITS
+//
+.addition {
+  background: @brand-success;
 }
 
-// END COMMITS
+.deletion {
+  background: @brand-warning;
+}
+
 @media screen and (min-width: @screen-md) {
   .file {
-    .file-actions {
-      visibility: hidden;
+    .file-name {
+      visibility: visible;
     }
-    .file-name {}
   }
 }
 
-@media screen and (min-width: @screen-sm) {}
+@media screen and (min-width: @screen-sm) {
+  .file {
+    .sorted-by {
+      visibility: visible;
+    }
+  }
+}

@@ -45,7 +45,7 @@ angular
                 '/styles/main.css',
                 'styles/vendor.css'
               ],
-              'js_external': null
+              'js_external': []
             },
             commitsByDate: {
               'title': 'Vizualization of Commits by Date',
@@ -61,7 +61,7 @@ angular
                 '/styles/main.css',
                 'styles/vendor.css'
               ],
-              'js_external': null
+              'js_external': []
             }
           },
         },
@@ -75,34 +75,46 @@ angular
               'description': 'A Flickr API integration written in Angular',
               'tags': ['flickr', 'angular', 'javascript'],
               'layout': 'left',
-              'example': '/code/angular-flickr-integrations/flickr-recent-codepen.html',
-              'html': flickrRoot + 'app/views/flickr-recent-codepen.html',
-              'css': flickrRoot + 'less/flickr-recents.less',
+              'html': 'code/angular-flickr-integrations/flickr-recent-codepen.html',
+              'css': 'code/angular-flickr-integrations/flickr-recent-codepen.less',
               'css_pre_processor': 'less',
-              'js': flickrRoot + 'app/flickr/flickr-recent.js',
-              'head': '<meta name=\"viewport\" content=\"width=device-width\">',
-              'css_external': [
-                flickrRoot + '/styles/main.css',
-                flickrRoot + 'styles/vendor.css'
+              'js': 'code/angular-flickr-integrations/flickr-recent-codepen.js',
+              'js_external': [
+                'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js',
+                'https://u227926.dl.dropboxusercontent.com/u/227926/MiscWeb/api_key.js',
+                'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js',
+                'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js',
+                'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js',
+                'https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js'
               ],
-              // 'js_external': null
+              'css_external': [
+                'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css',
+                'https://s3-us-west-2.amazonaws.com/s.cdpn.io/765020/variables.less',
+                'https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css'
+              ]
             },
             album: {
               'title': 'Flickr Album',
               'description': 'A Flickr API integration written in Angular',
-              'tags': ['flickr', 'angular'],
+              'tags': ['flickr', 'angular', 'javascript', 'angular material'],
               'layout': 'left',
-              'example': '/code/angular-flickr-integrations/flickr-album-codepen.html',
-              'html': flickrRoot + 'app/views/flickr-album-codepen.html',
-              'css': flickrRoot + 'less/flickr-albums.less',
+              'html': '/code/angular-flickr-integrations/flickr-album-codepen.html',
+              'css': '/code/angular-flickr-integrations/flickr-album-codepen.less',
               'css_pre_processor': 'less',
-              'js': flickrRoot + 'app/flickr/flickr-album.js',
-              'head': '<meta name=\"viewport\" content=\"width=device-width\">',
-              'css_external': [
-                flickrRoot + '/styles/main.css',
-                flickrRoot + 'styles/vendor.css'
+              'js': '/code/angular-flickr-integrations/flickr-album-codepen.js',
+              'js_external': [
+                'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js',
+                'https://u227926.dl.dropboxusercontent.com/u/227926/MiscWeb/api_key.js',
+                'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js',
+                'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js',
+                'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js',
+                'https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js'
               ],
-              // 'js_external': null
+              'css_external': [
+                'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css',
+                'https://s3-us-west-2.amazonaws.com/s.cdpn.io/765020/variables.less',
+                'https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css'
+              ]
             }
           }
         },
@@ -111,50 +123,40 @@ angular
           gitUrl: 'angular-seattle-crime-data',
           examples: {
             byLocation: {
+
               'title': 'Reports by Location',
+
               'description': 'All crime reports filed by the SPD.  Data found at data.gov',
+
               'parent': '10406123',
-              'tags': ['google maps', 'angular'],
+
+              'tags': ['google maps', 'angular', 'data visualization'],
+
               'layout': 'left',
-              'example': '/code/angular-seattle-crime-data/example-map-canvas.html',
-              'html': '',
-              'css': '',
-              'css_pre_processor': 'less',
-              'js': '',
-              'head': '<meta name=\"viewport\" content=\"width=device-width\">',
-              'css_external': [],
-              'js_external': ''
-            },
-            byTimeReported: {
-              'title': 'Reports by Time',
-              'description': 'All crime reports filed by the SPD.  Data found at data.gov',
-              'tags': ['d3', 'angular'],
-              'layout': 'left',
-              'example': '/code/angular-seattle-crime-data/example-crime-timeline.html',
-              'html': '',
-              'css': '',
-              'css_pre_processor': 'less',
-              'js': '',
-              'head': '<meta name=\"viewport\" content=\"width=device-width\">',
-              'css_external': [],
-              'js_external': ''
-            },
-            byType: {
-              'title': 'Reports by Type',
-              'description': 'All crime reports filed by the SPD.  Data found at data.gov',
-              'tags': ['d3', 'angular'],
-              'layout': 'left',
-              'example': '/code/angular-seattle-crime-data/example-crime-block.html',
-              'html': '',
-              'css': '',
-              'css_pre_processor': 'less',
-              'js': '',
-              'head': '<meta name=\"viewport\" content=\"width=device-width\">',
-              'css_external': [],
-              'js_external': ''
+
+              'css': '/code/angular-seattle-crime-data/crime-map-codepen.css',
+
+              'html': '/code/angular-seattle-crime-data/crime-map-codepen.html',
+
+              'js': '/code/angular-seattle-crime-data/crime-map-codepen.js',
+
+              'js_external': 'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js;' +
+                'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false;' +
+                'https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js;' +
+                'https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js;' +
+                'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js;' +
+                'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js;' +
+                'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js;',
+
+              'css_external': [
+                'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css;',
+                'https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css;'
+              ]
             }
+
           }
         }
+
       },
 
       photography: {
@@ -193,18 +195,3 @@ angular
 
     return mkm;
   }]);
-
-
-
-// var flickrExtJS = [
-//   'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js',
-//   'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js',
-//   'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js',
-//   'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js',
-//   'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js',
-//   'https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.0/angular-material.js',
-//   '/app/flickr/flickr-restapi.js',
-//   '/app/flickr/flickr-img.js',
-//   '/source/angular-flickr-templates.js',
-//   'https://dl.dropboxusercontent.com/u/227926/MiscWeb/api_key.js'
-// ];

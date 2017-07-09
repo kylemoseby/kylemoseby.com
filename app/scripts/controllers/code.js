@@ -8,7 +8,7 @@
  * Controller of the kylemosebyDotcomApp
  */
 angular.module('kylemosebyDotcomApp') // 'seattleDataGov',
-  .controller('CodeCtrl', ['$scope', '_kylemoseby_', 'seattleDataGov',  function($scope, _mkm_, seattleDataGov) {
+  .controller('CodeCtrl', ['$scope', '_kylemoseby_', function($scope, _mkm_) {
 
     $scope.mkm = _mkm_;
 
@@ -19,17 +19,4 @@ angular.module('kylemosebyDotcomApp') // 'seattleDataGov',
     $scope.git = {};
     $scope.git.username = 'kylemoseby';
 
-    /*
-      SEATTLE CRIME MAP STUFF
-    */
-    $scope.crimeData = seattleDataGov;
-
-    $scope.crimeData.promise
-      .then(function(data) {
-
-        $scope.$index = data.index;
-
-        $scope.$reports = data.incidents;
-
-      });
   }]);
