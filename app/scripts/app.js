@@ -58,17 +58,7 @@ angular
   .config(['$sceDelegateProvider', function($sceDelegateProvider) {
 
     $sceDelegateProvider.resourceUrlWhitelist([
-      // Allow same origin resource loads.
       'self',
-      // Allow loading from our assets domain.  Notice the difference between * and **.
       'https://api.flickr.com/services/rest/**'
     ]);
-
-    // The blacklist overrides the whitelist so the open redirect here is blocked.
-    // $sceDelegateProvider.resourceUrlBlacklist([
-    // 'http://myapp.example.com/clickThru**'
-    // ]);
-    // }])
-    // .run(['$anchorScroll', '$window', function($anchorScroll, $window) {
-    // $anchorScroll.yOffset = Math.floor($window.outerHeight * 0.05); // always scroll by 50 extra pixels
   }]);

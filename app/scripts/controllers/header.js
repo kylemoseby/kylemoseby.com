@@ -12,11 +12,15 @@ angular.module('kylemosebyDotcomApp')
 
     $scope.pages = Object.keys($mkm);
 
-    $scope.showMenu = false;
+    $scope.$on('$routeChangeSuccess', function($event, $current) {
 
-    $scope.menuToggle = function() {
+      $scope.currentPage = $current.originalPath.replace('/', '');
 
-      $scope.showMenu = !$scope.showMenu;
-    };
+      if ($scope.currentPage === '/') {
+        $scope.hideMenu = true;
+      }
+    });
+
+    // $scope.showMenu = true;
 
   }]);

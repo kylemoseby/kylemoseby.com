@@ -1,23 +1,25 @@
-<div id="main-page" ng-class="windAspectRatio" class="row">
+<div class="row main-page" ng-style="{ 'background-image': 'url(' + coverImage + ')'}">
   <div class="col-lg-12">
-    <h2>I am currently based out of Seattle WA.</h2>
-  </div>
-</div>
-<div class="row">
-  <div class="col-lg-12">
-    <div class="btn-group">
-      <button ng-click="showHide.photography = !showHide.photography" class="btn btn-primary">
-        {{showHide.photography ? '' : 'Portfolio'}} <span class="glyphicon glyphicon-remove" ng-show="showHide.photography"></span>
-      </button>
-      <button class="btn btn-primary" ng-click="showHide.contact = !showHide.contact">
-        {{showHide.contact ? '' : 'Contact Form'}} <span class="glyphicon glyphicon-remove" ng-show="showHide.contact"></span>
-      </button>
-      <button ng-click="showHide.code = !showHide.code" class="btn btn-primary">
-        {{showHide.code ? '' : 'Code Samples'}} <span class="glyphicon glyphicon-remove" ng-show="showHide.code"></span>
-      </button>
+    <h2>Seattle WA.</h2>
+     <div ng-repeat="(key, value) in _mkm_" ng-switch on="key" class="site-content">
+      <div ng-switch-when="photography">
+        <h3><a ng-href="#/{{key}}">Photography</a></h3>
+      </div>
+      <div ng-switch-when="code">
+        <h3><a ng-href="#/{{key}}">Code</a></h3>
+        <ul class="list-unstyled">
+          <li ng-repeat="(_key, code) in value">
+            <ul>
+              <li ng-repeat="(__key, example) in code.examples">
+                <a ng-href="#code/?id={{__key}}">{{example.title}}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div ng-switch-when="contact">
+        <h3><a ng-href="#/{{key}}">Contact</a></h3>
+      </div>
     </div>
-    <div ng-include="'views/photography.html'" ng-controller="PhotographyCtrl" ng-show="showHide.photography"></div>
-    <div ng-include="'views/contact.html'" ng-controller="ContactCtrl" ng-show="showHide.contact"></div>
-    <div ng-include="'views/code.html'" ng-controller="CodeCtrl" ng-show="showHide.code"></div>
   </div>
 </div>

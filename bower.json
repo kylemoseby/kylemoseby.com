@@ -8,10 +8,7 @@
     "angular-route": "^1.6.4",
     "angular-sanitize": "^1.6.4",
     "angular-material": "^1.1.4",
-    "github-activity-viz": "https://github.com/kylemoseby/github-activity-viz.git",
-    "angular-flickr-integrations": "https://github.com/kylemoseby/angular-flickr-integrations.git",
-    "angular-seattle-crime-data": "https://github.com/kylemoseby/angular-seattle-crime-data.git",
-    "angular-directives-code": "https://github.com/kylemoseby/angular-directives-code.git"
+    "angular-flickr-integrations": "https://github.com/kylemoseby/angular-flickr-integrations.git"
   },
   "devDependencies": {
     "bootstrap": "^3.3.7"

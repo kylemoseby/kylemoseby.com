@@ -8,25 +8,17 @@
 @import 'dev/variables.less';
 @import 'dev/bootstrap.less';
 @import 'dev/fonts.less';
-h1,
-h2,
-h3 {
-  font-family: 'Hammersmith One';
+body {
+  padding: @padding-large-vertical @padding-large-horizontal;
 }
 
-.header {
-  h1 {
-    display: inline-block;
-    padding-top: @padding-small-vertical;
-    margin-top: @padding-small-vertical;
-  }
-  .menu-toggle {
-    font-size: @font-size-h2;
-  }
-  a {
-    text-decoration: none;
-    color: @gray-base;
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Hammersmith One';
 }
 
 // BETTER WAY TO DO THIS REPLACE LATER
@@ -35,33 +27,118 @@ h3 {
 }
 
 ;
+
+// index.html
+// bootstrap tweaks
+.nav>li>a {
+  padding: @padding-large-vertical @padding-large-horizontal @padding-base-vertical 0;
+}
+
+nav {
+  text-transform: capitalize;
+
+  .navbar-header {
+    a.navbar-brand {
+      padding-left: @padding-small-horizontal;
+      font-family: 'Hammersmith One'; // display: inline-block;
+    }
+  }
+  .nav-wrap {
+    display: block;
+    width: 100%;
+    clear: both;
+    padding: @padding-small-vertical @padding-small-horizontal 0;
+  }
+  .active {
+    font-weight: 800;
+  }
+}
+
+.container-fluid {
+  position: relative;
+  top: -@padding-large-vertical;
+}
+
+// end index.html
+.fourohfour {
+  background-image: url("/images/iceland_roadsign.jpg");
+  background-size: cover;
+  background-position: center;
+  padding-top: @padding-large-vertical;
+  height: 75vh;
+  text-align: center;
+  font-size: @font-size-h3;
+  font-family: 'Hammersmith One';
+}
+
+.main-page {
+  position: relative; // Fix for main page container fluid
+  top: @padding-large-vertical;
+  height: 67vh;
+  overflow: scroll;
+  color: @gray-lighter;
+  background-size: cover;
+  background-position: top;
+  a {
+    color: @gray-lighter; // text-shadow: @gray-dark 1px 1px 0px;
+    font-weight: 800;
+  }
+}
+
+.footer {
+  ul {
+    position: relative; // Fix for main page container fluid
+    top: @padding-large-vertical;
+  }
+  border-top: @line-height-computed solid #000;
+  margin: @padding-large-vertical 0;
+  padding: @padding-large-vertical 0;
+}
+
+.contact-form {
+  textarea {
+    height: 67vh;
+  }
+}
+
 @import 'app/code.less';
 @import 'app/footer.less';
-@import 'app/github-activity.less';
 @import 'app/code.less';
-@import 'app/crime-map.less';
 @import 'app/flickr-portfolio.less';
 @import 'app/footer.less';
-@media (min-width: @screen-sm-min) {}
-
-
-/* Medium devices (desktops, 992px and up) */
-
-@media (min-width: @screen-md-min) {}
-
-
-/* Large devices (large desktops, 1200px and up) */
-
-@media (min-width: @screen-lg-min) {}
 
 @media (min-width: @screen-sm-min) {}
 
 
+
+
+
+
 /* Medium devices (desktops, 992px and up) */
 
-@media (min-width: @screen-md-min) {}
+@media (min-width: @screen-md-min) {
+  nav {
+    .navbar-header {
+      a.navbar-brand {
+        line-height: @font-size-h1;
+        font-size: @font-size-h1;
+      }
+    }
+  }
+}
+
+
+
+
 
 
 /* Large devices (large desktops, 1200px and up) */
 
-@media (min-width: @screen-lg-min) {}
+@media (min-width: @screen-lg-min) {
+  .contact-form {
+    font-size: @font-size-h3;
+    textarea {
+      height: 67vh;
+    }
+  }
+}

@@ -1,64 +1,30 @@
 @import '../dev/variables.less';
 
-.map-canvas,
-.crime-report-timeline {
-  display: block;
-  height: 55vh;
-  width: 100%;
+.code-examples {
+	// margin-top: @font-size-h3;
+	// padding-top: @padding-large-vertical;
+	h4 {
+		display: inline-block;
+	}
 }
 
-.crime-reports-block {
-  display: block;
-  height: 40vh;
-  width: 100%;
-  svg {
-    rect {
-      cursor: pointer;
-    }
-  }
+.codepen {
+	overflow: hidden;
+	height: 0;
 }
 
-.report-type-detail {
-  background: @well-bg;
-  height: 100vh;
-  width: 100vw;
-  overflow-y: scroll;
-  .btn-close {
-    top: 12px;
-    right: 12px;
-    position: absolute;
-  }
+// ANIMATIONS
+.show-codepen-add,
+.show-codepen-remove {
+  transition: all 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);
 }
 
-report-type-day {
-  display: block;
-  width: 100%;
+.show-codepen,
+.show-codepen-add.show-codepen-add-active {
+  height: 600px;
 }
 
-.report-type {
-  display: inline-block;
-  overflow: hidden;
+.show-codepen-remove.show-codepen-remove-active {
+  height: 0px;
 }
-
-report-type-child {
-  .report-types {
-    display: inline-block;
-  }
-}
-
-.report-zone-beat {
-  display: block;
-  width: 100%;
-  .report-districts {
-    display: inline-block;
-    vertical-align: top;
-    .report-zones {
-      display: block;
-      width: 100%;
-      .badge {
-        color: #fff;
-        width: 100%;
-      }
-    }
-  }
-}
+// ENDIMATIONS

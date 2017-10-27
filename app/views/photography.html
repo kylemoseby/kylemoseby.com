@@ -1,6 +1,4 @@
-<md-content layout-margin layout-padding layout-wrap>
-  <h2>Photography</h2>
-  <div ng-repeat="albumID in portfolio">
-    <flickr-album album-id="albumID"></flickr-album>
-  </div>
-</md-content>
+<h2>Photography</h2>
+<div ng-repeat="albumID in portfolio" class="row">
+  <flickr-album album-id="albumID" class="col-lg-9"></flickr-album>
+</div>
