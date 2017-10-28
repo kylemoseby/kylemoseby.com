@@ -38,7 +38,7 @@ module.exports = function(grunt) {
         tasks: ['wiredep']
       },
       js: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+        files: ['<%= yeoman.app %>/kylemoseby.js', '<%= yeoman.app %>/scripts/{,*/}*.js'],
         tasks: ['newer:jshint:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -49,8 +49,9 @@ module.exports = function(grunt) {
         tasks: ['newer:jshint:test', 'karma']
       },
       styles: {
-        files: ['style/{,*/}*.less'],
+        files: ['less/{,*/}*.less'],
         tasks: ['less', 'newer:copy:styles', 'autoprefixer']
+        // 'lesslint',
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -61,6 +62,7 @@ module.exports = function(grunt) {
         },
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
+          '<%= yeoman.app %>/code/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
@@ -70,10 +72,10 @@ module.exports = function(grunt) {
     // The actual grunt server settings
     connect: {
       options: {
-        port: 9000,
+        port: 9666,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost',
-        livereload: 35729
+        livereload: 35666
       },
       livereload: {
         options: {
@@ -100,7 +102,7 @@ module.exports = function(grunt) {
       },
       test: {
         options: {
-          port: 9001,
+          port: 9661,
           middleware: function(connect) {
             return [
               connect.static('.tmp'),
@@ -128,13 +130,16 @@ module.exports = function(grunt) {
           paths: [""]
         },
         files: {
-          "<%= yeoman.app %>/styles/main.css": "style/main.less"
+          "<%= yeoman.app %>/styles/main.css": "less/main.less"
         }
       }
     },
 
     lesslint: {
-      src: ['style/**/*.less']
+      src: [
+        'less/app/**/*.less',
+        'less/main.less'
+        ]
     },
 
     // Make sure code styles are up to par and there are no obvious mistakes

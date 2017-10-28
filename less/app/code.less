@@ -1,0 +1,30 @@
+@import '../dev/variables.less';
+
+.code-examples {
+	// margin-top: @font-size-h3;
+	// padding-top: @padding-large-vertical;
+	h4 {
+		display: inline-block;
+	}
+}
+
+.codepen {
+	overflow: hidden;
+	height: 0;
+}
+
+// ANIMATIONS
+.show-codepen-add,
+.show-codepen-remove {
+  transition: all 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+}
+
+.show-codepen,
+.show-codepen-add.show-codepen-add-active {
+  height: 600px;
+}
+
+.show-codepen-remove.show-codepen-remove-active {
+  height: 0px;
+}
+// ENDIMATIONS

@@ -1,38 +1,35 @@
-<div layout="row" layout-padding="16px">
-  <div flex>
-    <!-- FLICKR INTEGRATIONS START -->
-    <h2>Flickr Integrations for Angular</h2>
-    <p><a href="https://github.com/kylemoseby/angular-flickr-portfolio" target="_blank">GitHub Repo <span class="icon-github"></span></a></p>
-  </div>
-  <div flex>
-    <h3>Recent Photos</h3>
-    <recent-photos flickr-id="flickrID" count="12"></recent-photos>
-  </div>
-  <div flex>
-    <h3>Flickr Album</h3>
-    <flickr-album album-id="albumID"></flickr-album>
-    <!-- FLICKR INTEGRATIONS END -->
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Code Samples</h2>
   </div>
 </div>
-<div layout="row" layout-wrap layout-padding="16px" ng-controller="CrimeMapCtrl">
-  <div flex-gt-md="20" flex="10">
-    <!-- CRIME MAP START -->
-    <h2>Seattle Crime Reports</h2>
-    <p>Requests data from <a href="https://data.seattle.gov/" target="_blank">data.seattle.gov</a> then plots to a Google Map using latitude and longitude, and uses <a href="http://d3js.org" target="_blank">d3</a> to plots reports by time and report type. Reports can be filtered by types.</p>
-    <p><a href="https://github.com/kylemoseby/angular-seattle-crimemap" target="_blank">GitHub Repo <span class="icon-github"></span></a></p>
-    <div filter-report-types="$index" crime-map-filter="$crimeMap" crime-timeline-filter="$vizTimeline"></div>
+<div ng-repeat="(key, value) in mkm.code" ng-switch="key" class="row">
+  <!-- FLICKR INTEGRATIONS START -->
+  <div class="col-md-12" ng-switch-when="flickrIntegrations">
+    <h3>Flickr Rest API Integrations for Angular</h3>
+    <p>These directives query <a href="https://www.flickr.com/services/api/" target="_blank">Flickr's REST API</a> and render simple photo galleries using <a href="https://angularjs.org/" target="_blank">Google Angular</a> and <a href="https://material.angularjs.org/latest/" target="_blank">Google Material</a>.</p>
+    <p><a href="https://github.com/kylemoseby/angular-flickr-portfolio" target="_blank"><span class="icon-github"></span> GitHub Repo</a></p>
   </div>
-  <div flex="100" flex-gt-sm="30">
-    <div map-canvas="$crimeMap" map-promise="crimeData" map-timeline="$vizTimeline"></div>
+  <!-- // FLICKR INTEGRATIONS -->
+  <!--  SEATTLE CRIME REPORTS -->
+  <div class="col-md-12" ng-switch-when="seattleCrimeData">
+    <h3>Seattle Police Reports Data Visualizations</h3>
+    <p>These visualizations are rendered using data from <a href="https://data.seattle.gov/Public-Safety/Seattle-Police-Department-Police-Report-Incident/7ais-f98f" target="_blank">data.seattle.gov</a>, and are all written using <a href="https://angularjs.org/" target="_blank">Google Angular</a> and <a href="https://material.angularjs.org/latest/" target="_blank">Google Material</a>.  Other libraries used include <a href="https://d3js.org/" target="_blank">D3.js</a> and <a href="https://developers.google.com/maps/documentation/javascript/" target="_blank"> the Google Maps API</a>.</p>
+    <ul class="list-unstyled">
+      <!-- <li><a href="https://data.seattle.gov/Public-Safety/Seattle-Police-Department-Police-Report-Incident/7ais-f98f" target="_blank">data.seattle.gov</a>.</li>
+      <li><a href="https://data.seattle.gov/resource/7ais-f98f.json" target="_blank">JSON</a></li>
+      <li><a href="https://material.angularjs.org/latest/" target="_blank">Google Material</a></li>
+      <li><a href="https://d3js.org/" target="_blank">d3</a></li>
+      <li><a href="https://angularjs.org/" target="_blank">Angularjs</a>.</li>
+      <li><a href="https://developers.google.com/maps/documentation/javascript/" target="_blank">Google Maps API</a></li>
+       --><li><a href="https://github.com/kylemoseby/angular-seattle-crime-data" target="_blank"><span class="icon-github"></span> GitHub Repo</a></li>
+    </ul>
   </div>
-  <div flex="100" flex-gt-sm="50">
-    <!-- <div id="crime-reports-block" crime-reports-block="$vizBlocks" crime-reports-data="crimeData"></div> -->
-    <div crime-reports-summary="$typeDetail" summary-index="$index"></div>
+  <div class="col-md-12 code-examples">
+    <div ng-repeat="(_key, demo) in value.examples" ng-switch="_key">
+      <h4 class="code-title">{{demo.title}}:</h4>
+      <codepen-embed data-slug-hash="demo.slugHash" data-pen-title="demo.title" data-pen-url="demo.penUrl"></codepen-embed>
+    </div>
   </div>
-  <div flex="100">
-    <div id="sea-crime-viz" viz-time-line="$vizTimeline" viz-time-data="crimeData" crime-viz-map="$crimeMap"></div>
-  </div>
-  <!-- CRIME MAP END -->
-  <div incident-detail="crimeData" timeline-id="$vizTimeline" map-id="$crimeMap" ng-hide="incidentDetail === null">
-  </div>
+  <!--  // SEATTLE CRIME REPORTS -->
 </div>

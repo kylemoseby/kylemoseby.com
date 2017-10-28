@@ -1,0 +1,146 @@
+
+// ANIMATIONS CONSOLIDATE AT SOME POINT
+
+// ANIMATIONS
+.show-filter-add,
+.show-filter-remove {
+  transition: all 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+}
+
+.show-filter,
+.show-filter-add.show-filter-add-active {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.show-filter-remove.show-filter-remove-active {
+  opacity: 1;
+  height: inherit;
+}
+// ENDIMATIONS
+
+
+
+
+github-filters {
+  font-size: @font-size-small;
+  .filter-type {
+    font-size: @font-size-base;
+    font-weight: @headings-font-weight;
+  }
+}
+
+
+
+.profile-avatar {
+  max-height: 10vh;
+}
+
+.repo-name-shim {
+  height: @font-size-h3;
+  background: @body-bg;
+  width: 100%;
+}
+
+.actor-avatar {
+  max-height: 33px;
+}
+
+.grad-key-val {
+  display: inline-block;
+  width: 1%;
+  height: @font-size-large;
+}
+
+.github-activity {
+  font-size: 18px;
+  li {
+    .glyphicon {
+      font-size: 28px
+    }
+  }
+}
+
+// github-file {
+.file {
+  position: relative;
+  margin: @padding-small-vertical @padding-small-horizontal 0 0;
+  font-size: @font-size-base;
+  color: @gray-lighter;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  .sorted-by {
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    font-weight: @headings-font-weight;
+    visibility: hidden;
+  }
+  .file-name {
+    position: absolute;
+    bottom: @padding-small-vertical;
+    left: @padding-small-horizontal;
+    visibility: hidden;
+  }
+}
+
+.github-file-mdpanel {
+  margin: @padding-small-vertical @padding-small-horizontal;
+  padding: @padding-small-vertical @padding-small-horizontal;
+  background: @body-bg;
+  height: 80vh;
+  width: 80vw;
+  overflow: scroll;
+  .code-line {
+    white-space: nowrap;
+    overflow: scroll;
+    text-overflow: clip;
+  }
+}
+
+// ALL FILES
+.all-files-wrap {
+  .glyphicon,
+  .icon-github {
+    font-size: @font-size-h4;
+    color: @gray-lighter;
+    padding: @padding-small-vertical 0;
+  }
+  .glyphicon,
+  .icon-github {
+    visibility: show;
+  }
+  .btn-filetype {
+    background: @gray;
+  }
+}
+
+// END ALL FILES
+// END COMMITS
+//
+.addition {
+  background: @brand-success;
+}
+
+.deletion {
+  background: @brand-warning;
+}
+
+@media screen and (min-width: @screen-md) {
+  .file {
+    .file-name {
+      visibility: visible;
+    }
+  }
+}
+
+@media screen and (min-width: @screen-sm) {
+  .file {
+    .sorted-by {
+      visibility: visible;
+    }
+  }
+}
