@@ -10,9 +10,11 @@
 
 
 angular.module('kylemosebyDotcomApp')
-  .controller('CodeCtrl', ['$scope', '_kylemoseby_', function($scope, _mkm_) {
+  .controller('CodeCtrl', ['$scope', '$location', '_kylemoseby_', function($scope, $location, _mkm_) {
 
     $scope.mkm = _mkm_;
+
+    $scope.initOpen = $location.hash();
 
   }])
   .directive('codepenEmbed', [function() {
@@ -20,13 +22,14 @@ angular.module('kylemosebyDotcomApp')
     return {
       scope: {
         'penTitle': '=penTitle',
-        'slugHash': '=slugHash'
+        'slugHash': '=slugHash',
+        'showPen': '=showPen'
       },
       templateUrl: 'views/codepen-embed.html',
       link: function($scope) {
 
         $scope.loadPen = false;
-        $scope.showCodepen = false;
+        $scope.showCodepen = $scope.showPen ? true : false;
 
         $scope.codepenToggle = function() {
           $scope.showCodepen = !$scope.showCodepen;
@@ -37,7 +40,6 @@ angular.module('kylemosebyDotcomApp')
         } */
 
         (function codepenInit() {
-
 
           var headID = document.getElementsByTagName("head")[0];
           var newScript = document.createElement('script');
@@ -58,16 +60,4 @@ angular.module('kylemosebyDotcomApp')
       }
     };
 
-  }])
-  .factory('$codepenQueue', [function() {
-
-    var __queue = [];
-
-    return function $codepenQueue() {
-      return {
-        getQueue: function() {
-          return __queue;
-        },
-      };
-    };
   }]);

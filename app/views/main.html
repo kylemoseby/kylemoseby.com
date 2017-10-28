@@ -11,7 +11,7 @@
           <li ng-repeat="(_key, code) in value">
             <ul>
               <li ng-repeat="(__key, example) in code.examples">
-                <a ng-href="#code/?id={{__key}}">{{example.title}}</a>
+                <a ng-href="#code/#{{__key}}">{{example.title}}</a>
               </li>
             </ul>
           </li>

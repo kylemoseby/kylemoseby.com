@@ -1,11 +1,12 @@
 .DS_Store
 /node_modules
-/dist
 /.tmp
 /.sass-cache
 /bower_components
 app/images
 app/styles/fonts
+/dist/fonts
+/dist/styles/fonts
 /other_components
 app/scripts/api_key.js
 portfolio/
