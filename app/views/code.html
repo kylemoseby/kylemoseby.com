@@ -14,21 +14,13 @@
   <!--  SEATTLE CRIME REPORTS -->
   <div class="col-md-12" ng-switch-when="seattleCrimeData">
     <h3>Seattle Police Reports Data Visualizations</h3>
-    <p>These visualizations are rendered using data from <a href="https://data.seattle.gov/Public-Safety/Seattle-Police-Department-Police-Report-Incident/7ais-f98f" target="_blank">data.seattle.gov</a>, and are all written using <a href="https://angularjs.org/" target="_blank">Google Angular</a> and <a href="https://material.angularjs.org/latest/" target="_blank">Google Material</a>.  Other libraries used include <a href="https://d3js.org/" target="_blank">D3.js</a> and <a href="https://developers.google.com/maps/documentation/javascript/" target="_blank"> the Google Maps API</a>.</p>
-    <ul class="list-unstyled">
-      <!-- <li><a href="https://data.seattle.gov/Public-Safety/Seattle-Police-Department-Police-Report-Incident/7ais-f98f" target="_blank">data.seattle.gov</a>.</li>
-      <li><a href="https://data.seattle.gov/resource/7ais-f98f.json" target="_blank">JSON</a></li>
-      <li><a href="https://material.angularjs.org/latest/" target="_blank">Google Material</a></li>
-      <li><a href="https://d3js.org/" target="_blank">d3</a></li>
-      <li><a href="https://angularjs.org/" target="_blank">Angularjs</a>.</li>
-      <li><a href="https://developers.google.com/maps/documentation/javascript/" target="_blank">Google Maps API</a></li>
-       --><li><a href="https://github.com/kylemoseby/angular-seattle-crime-data" target="_blank"><span class="icon-github"></span> GitHub Repo</a></li>
-    </ul>
+    <p>These visualizations are rendered using data from <a href="https://data.seattle.gov/Public-Safety/Seattle-Police-Department-Police-Report-Incident/7ais-f98f" target="_blank">data.seattle.gov</a>, and are all written using <a href="https://angularjs.org/" target="_blank">Google Angular</a> and <a href="https://material.angularjs.org/latest/" target="_blank">Google Material</a>. Other libraries used include <a href="https://d3js.org/" target="_blank">D3.js</a> and <a href="https://developers.google.com/maps/documentation/javascript/" target="_blank"> the Google Maps API</a>.</p>
+    <p><a href="https://github.com/kylemoseby/angular-seattle-crime-data" target="_blank"><span class="icon-github"></span> GitHub Repo</a></p>
   </div>
   <div class="col-md-12 code-examples">
     <div ng-repeat="(_key, demo) in value.examples" ng-switch="_key">
-      <h4 class="code-title">{{demo.title}}:</h4>
-      <codepen-embed data-slug-hash="demo.slugHash" data-pen-title="demo.title" data-pen-url="demo.penUrl"></codepen-embed>
+      <h4 class="code-title">{{demo.title}}</h4>
+      <codepen-embed data-slug-hash="demo.slugHash" data-pen-title="demo.title" data-pen-url="demo.penUrl" data-show-pen="initOpen === _key"></codepen-embed>
     </div>
   </div>
   <!--  // SEATTLE CRIME REPORTS -->

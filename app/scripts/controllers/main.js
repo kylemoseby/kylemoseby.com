@@ -23,11 +23,11 @@ angular.module('kylemosebyDotcomApp')
     var images = {
       landscape: [
         'kylemoseby-cover-land-1.jpg', // Iceland
+        'kylemoseby-cover-port-2.jpg', // Korea camera
         'kylemoseby-cover-land-2.jpg' // Utah
       ],
       portrait: [
         'kylemoseby-cover-port-1.jpg', // Scotland
-        'kylemoseby-cover-port-2.jpg', // Korea camera
         'kylemoseby-cover-port-3.jpg' // Georgetown
       ]
     };
@@ -38,15 +38,15 @@ angular.module('kylemosebyDotcomApp')
       $scope.windAspectRatio = checkAspectRatio($window);
 
       function getRandomInt(length) {
-        let max = Math.floor(length);
+
+        var max = Math.floor(length);
+
         return Math.floor(Math.random() * max); //The maximum is exclusive and the minimum is inclusive
       }
 
-      let screenRatio = checkAspectRatio($window);
+      var screenRatio = checkAspectRatio($window);
 
       $scope.coverImage = '/images/' + images[screenRatio][getRandomInt(images[screenRatio].length)];
-
-      console.log($scope.coverImage);
     }
 
 

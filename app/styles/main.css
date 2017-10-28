@@ -1259,7 +1259,7 @@ h1,
 }
 h2,
 .h2 {
-  font-size: 63px;
+  font-size: 44px;
 }
 h3,
 .h3 {
@@ -6841,7 +6841,7 @@ nav .active {
   top: 40px;
 }
 .contact-form textarea {
-  height: 67vh;
+  height: 50vh;
 }
 .code-examples h4 {
   display: inline-block;
@@ -6917,6 +6917,6 @@ flickr-album .gallery-thumbs img {
     font-size: 32px;
   }
   .contact-form textarea {
-    height: 67vh;
+    height: 33vh;
   }
 }
