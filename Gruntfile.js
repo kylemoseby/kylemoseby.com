@@ -412,7 +412,27 @@ module.exports = function(grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
-      }
+      },
+      ghPages: {files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= yeoman.dist %>',
+                    dest: '',
+                    src: '{,*/}*'
+                  },{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= yeoman.dist %>',
+                    dest: '',
+                    src: 'styles/fonts/*'
+                  },
+                  {
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= yeoman.app %>',
+                    dest: '',
+                    src: 'images/*'
+                  }]}
     },
 
     // Run some tasks in parallel to speed up the build process
@@ -487,6 +507,7 @@ module.exports = function(grunt) {
     'htmlmin'
   ]);
 
+  grunt.registerTask('gh-pages', []);
   grunt.registerTask('default', [
     'newer:jshint',
     'test',
