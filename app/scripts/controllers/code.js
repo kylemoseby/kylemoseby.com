@@ -17,7 +17,7 @@ angular.module('kylemosebyDotcomApp')
     $scope.initOpen = $location.hash();
 
   }])
-  .directive('codepenEmbed', [function() {
+  .directive('codepenEmbed', ['$window', function($window) {
 
     return {
       scope: {
@@ -30,6 +30,18 @@ angular.module('kylemosebyDotcomApp')
 
         $scope.loadPen = false;
         $scope.showCodepen = $scope.showPen ? true : false;
+
+        function calcPenHeight(){
+          // Corrensponds to .show-codepen height: 75vh code.less
+          return Math.floor($window.innerHeight * 0.75);
+        }
+
+        $scope.penHeight = calcPenHeight();
+
+        angular.element($window).bind('resize', function() {
+
+          $scope.penHeight = calcPenHeight();
+        });
 
         $scope.codepenToggle = function() {
           $scope.showCodepen = !$scope.showCodepen;

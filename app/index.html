@@ -22,16 +22,16 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
   <nav class="navbar navbar-default" ng-controller="HeaderCtrl">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Kyle Moseby</a>
-      </div>
-      <div class="nav-wrap">
-      <ul class="nav navbar-nav" ng-hide="hideMenu">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Kyle Moseby</a>
+    </div>
+    <div class="nav-wrap">
+      <ul class="nav navbar-nav">
         <li ng-repeat="page in pages" ng-class="{ 'active': currentPage === page }">
           <a ng-href="#/{{page}}">{{page}}</a>
         </li>
       </ul>
-      </div>
+    </div>
   </nav>
   <div class="container-fluid" ng-view=""></div>
   <div class="footer" ng-controller="FooterCtrl">

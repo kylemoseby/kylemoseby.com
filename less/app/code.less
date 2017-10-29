@@ -1,16 +1,17 @@
 @import '../dev/variables.less';
 
 .code-examples {
-	// margin-top: @font-size-h3;
-	// padding-top: @padding-large-vertical;
-	h4 {
-		display: inline-block;
-	}
+  // padding: @padding-base-vertical 0;
+  // background: @brand-primary;
+  // color: @gray-lighter;
+  h4 {
+    display: inline-block;
+  }
 }
 
 .codepen {
-	overflow: hidden;
-	height: 0;
+  overflow: hidden;
+  height: 0;
 }
 
 // ANIMATIONS
@@ -21,10 +22,12 @@
 
 .show-codepen,
 .show-codepen-add.show-codepen-add-active {
-  height: 600px;
+  // Corrensponds to calcPenHeight $window.innerHeight * 0.75
+  height: 95vh;
 }
 
 .show-codepen-remove.show-codepen-remove-active {
   height: 0px;
 }
+
 // ENDIMATIONS

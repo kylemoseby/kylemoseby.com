@@ -9,7 +9,7 @@
 @import 'dev/bootstrap.less';
 @import 'dev/fonts.less';
 body {
-  padding: @padding-large-vertical @padding-large-horizontal;
+  padding: @padding-base-vertical @padding-base-horizontal;
 }
 
 h1,
@@ -30,8 +30,12 @@ h6 {
 
 // index.html
 // bootstrap tweaks
-.nav>li>a {
-  padding: @padding-large-vertical @padding-large-horizontal @padding-base-vertical 0;
+// .nav>li>a {
+// padding: @padding-large-vertical @padding-large-horizontal @padding-base-vertical 0;
+// background: yellow;
+// }
+.nav>li {
+  display: inline-block;
 }
 
 nav {
@@ -39,25 +43,23 @@ nav {
 
   .navbar-header {
     a.navbar-brand {
-      padding-left: @padding-small-horizontal;
-      font-family: 'Hammersmith One'; // display: inline-block;
+      padding-left: 0;
+      font-family: 'Hammersmith One';
+      line-height: @font-size-h3;
+      font-size: @font-size-h3;
+      height: @font-size-h3 + @padding-small-vertical;
     }
   }
   .nav-wrap {
     display: block;
     width: 100%;
     clear: both;
-    padding: @padding-small-vertical @padding-small-horizontal 0;
   }
   .active {
     font-weight: 800;
   }
 }
 
-.container-fluid {
-  position: relative;
-  top: -@padding-large-vertical;
-}
 
 // end index.html
 .fourohfour {
@@ -72,8 +74,8 @@ nav {
 }
 
 .main-page {
-  position: relative; // Fix for main page container fluid
-  top: @padding-large-vertical;
+  // position: relative; // Fix for main page container fluid
+  // top: @padding-large-vertical;
   height: 67vh;
   overflow: scroll;
   color: @gray-lighter;
@@ -87,11 +89,10 @@ nav {
 
 .footer {
   ul {
-    position: relative; // Fix for main page container fluid
-    top: @padding-large-vertical;
+    // position: relative; // Fix for main page container fluid
+    // top: @padding-large-vertical;
   }
   border-top: @line-height-computed solid #000;
-  margin: @padding-large-vertical 0;
   padding: @padding-large-vertical 0;
 }
 
@@ -111,25 +112,23 @@ nav {
 
 
 
-
-
-
 /* Medium devices (desktops, 992px and up) */
 
 @media (min-width: @screen-md-min) {
+  body {
+    padding: @padding-large-vertical @padding-large-horizontal;
+  }
+
   nav {
     .navbar-header {
       a.navbar-brand {
         line-height: @font-size-h1;
         font-size: @font-size-h1;
+        height: @font-size-h1 + @padding-small-vertical;
       }
     }
   }
 }
-
-
-
-
 
 
 /* Large devices (large desktops, 1200px and up) */
@@ -142,3 +141,34 @@ nav {
     }
   }
 }
+
+
+.main-page.land-1 {
+  background-image: url('/images/kylemoseby-cover-land-1.jpg');
+}
+
+;
+
+.main-page.land-2 {
+  background-image: url('/images/kylemoseby-cover-land-2.jpg');
+}
+
+;
+
+.main-page.port-1 {
+  background-image: url('/images/kylemoseby-cover-port-1.jpg');
+}
+
+;
+
+.main-page.port-2 {
+  background-image: url('/images/kylemoseby-cover-port-2.jpg');
+}
+
+;
+
+.main-page.port-3 {
+  background-image: url('/images/kylemoseby-cover-port-3.jpg');
+}
+
+;

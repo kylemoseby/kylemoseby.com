@@ -2554,10 +2554,10 @@ output {
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 .form-control:focus {
-  border-color: #66afe9;
+  border-color: #053e03;
   outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(5, 62, 3, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(5, 62, 3, 0.6);
 }
 .form-control::-moz-placeholder {
   color: #999;
@@ -6772,7 +6772,7 @@ button.close {
   content: "\ead8";
 }
 body {
-  padding: 40px 30px;
+  padding: 21px 30px;
 }
 h1,
 h2,
@@ -6785,28 +6785,26 @@ h6 {
 .md-panel-outer-wrapper {
   height: 10000000000000000%;
 }
-.nav > li > a {
-  padding: 40px 30px 21px 0;
+.nav > li {
+  display: inline-block;
 }
 nav {
   text-transform: capitalize;
 }
 nav .navbar-header a.navbar-brand {
-  padding-left: 12px;
+  padding-left: 0;
   font-family: 'Hammersmith One';
+  line-height: 32px;
+  font-size: 32px;
+  height: 39px;
 }
 nav .nav-wrap {
   display: block;
   width: 100%;
   clear: both;
-  padding: 7px 12px 0;
 }
 nav .active {
   font-weight: 800;
-}
-.container-fluid {
-  position: relative;
-  top: -40px;
 }
 .fourohfour {
   background-image: url("/images/iceland_roadsign.jpg");
@@ -6819,8 +6817,6 @@ nav .active {
   font-family: 'Hammersmith One';
 }
 .main-page {
-  position: relative;
-  top: 40px;
   height: 67vh;
   overflow: scroll;
   color: #f9f9f9;
@@ -6833,12 +6829,7 @@ nav .active {
 }
 .footer {
   border-top: 30px solid #000;
-  margin: 40px 0;
   padding: 40px 0;
-}
-.footer ul {
-  position: relative;
-  top: 40px;
 }
 .contact-form textarea {
   height: 50vh;
@@ -6856,7 +6847,7 @@ nav .active {
 }
 .show-codepen,
 .show-codepen-add.show-codepen-add-active {
-  height: 600px;
+  height: 95vh;
 }
 .show-codepen-remove.show-codepen-remove-active {
   height: 0px;
@@ -6906,9 +6897,13 @@ flickr-album .gallery-thumbs img {
 }
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+  body {
+    padding: 40px 30px;
+  }
   nav .navbar-header a.navbar-brand {
     line-height: 69px;
     font-size: 69px;
+    height: 76px;
   }
 }
 /* Large devices (large desktops, 1200px and up) */
@@ -6919,4 +6914,19 @@ flickr-album .gallery-thumbs img {
   .contact-form textarea {
     height: 33vh;
   }
+}
+.main-page.land-1 {
+  background-image: url('/images/kylemoseby-cover-land-1.jpg');
+}
+.main-page.land-2 {
+  background-image: url('/images/kylemoseby-cover-land-2.jpg');
+}
+.main-page.port-1 {
+  background-image: url('/images/kylemoseby-cover-port-1.jpg');
+}
+.main-page.port-2 {
+  background-image: url('/images/kylemoseby-cover-port-2.jpg');
+}
+.main-page.port-3 {
+  background-image: url('/images/kylemoseby-cover-port-3.jpg');
 }
