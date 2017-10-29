@@ -76,10 +76,10 @@ angular
 
       contact: {
         social: {
-          instagram: {
-            url: 'http://instagram.com/kylemoseby',
-            spanClass: 'icon-instagram',
-          },
+          // instagram: {
+          //   url: 'http://instagram.com/kylemoseby',
+          //   spanClass: 'icon-instagram',
+          // },
           flickr: {
             url: 'http://flickr.com/photos/kylemoseby',
             spanClass: 'icon-flickr2'

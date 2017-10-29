@@ -13,46 +13,49 @@ angular.module('kylemosebyDotcomApp')
     $scope._mkm_ = _mkm_;
 
     // BACKGROUND IMAGE ASPECT RATIO STUFF
-    function checkAspectRatio($win) {
+    function checkAspectRatio() {
 
-      var aspect = $win.innerWidth / $win.innerHeight;
+      var aspect = $window.innerWidth / $window.innerHeight;
 
       return aspect <= 1 ? 'portrait' : 'landscape';
     }
 
+    function getRandomInt(length) {
+
+      var max = Math.floor(length);
+
+      return Math.floor(Math.random() * max); //The maximum is exclusive and the minimum is inclusive
+    }
+
     var images = {
       landscape: [
-        'kylemoseby-cover-land-1.jpg', // Iceland
-        'kylemoseby-cover-port-2.jpg', // Korea camera
-        'kylemoseby-cover-land-2.jpg' // Utah
+        'land-1', // Iceland
+        'land-2' // Utah
       ],
       portrait: [
-        'kylemoseby-cover-port-1.jpg', // Scotland
-        'kylemoseby-cover-port-3.jpg' // Georgetown
+        'land-2' // Utah
+        // 'port-1', // Scotland
+        // 'port-2', // Korea camera
+        // 'port-3' // Georgetown
       ]
     };
 
+    $scope.windAspectRatio = checkAspectRatio($window);
 
-    function setAspectRatio() {
+    var screenRatio = checkAspectRatio($window);
+
+    $scope.coverImage = images[screenRatio][getRandomInt(images[screenRatio].length)];
+
+    angular.element($window).bind('resize', function() {
 
       $scope.windAspectRatio = checkAspectRatio($window);
 
-      function getRandomInt(length) {
-
-        var max = Math.floor(length);
-
-        return Math.floor(Math.random() * max); //The maximum is exclusive and the minimum is inclusive
-      }
-
       var screenRatio = checkAspectRatio($window);
 
-      $scope.coverImage = '/images/' + images[screenRatio][getRandomInt(images[screenRatio].length)];
-    }
+      $scope.coverImage = images[screenRatio][getRandomInt(images[screenRatio].length)];
 
+      $scope.$apply();
 
-    $window.onresize = setAspectRatio;
-
-    // INIT
-    setAspectRatio();
+    });
 
   }]);

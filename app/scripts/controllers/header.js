@@ -8,10 +8,11 @@
  * Controller of the kylemosebyDotcomApp
  */
 angular.module('kylemosebyDotcomApp')
-  .controller('HeaderCtrl', ['$scope', '_kylemoseby_', function($scope, $mkm) {
+  .controller('HeaderCtrl', ['$scope', '$window', '_kylemoseby_', function($scope, $window, $mkm) {
 
     $scope.pages = Object.keys($mkm);
 
+    // Update current page style
     $scope.$on('$routeChangeSuccess', function($event, $current) {
 
       $scope.currentPage = $current.originalPath.replace('/', '');
@@ -20,7 +21,4 @@ angular.module('kylemosebyDotcomApp')
         $scope.hideMenu = true;
       }
     });
-
-    // $scope.showMenu = true;
-
   }]);

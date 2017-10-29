@@ -1,20 +1,22 @@
-<div class="btn-group">
-  <button type="button" class="btn btn-primary" ng-click="codepenInit()" ng-hide="loadPen">
+<!-- <div class="btn-group"> -->
+  <!--   <button type="button" class="btn btn-primary" ng-click="codepenInit()" ng-hide="loadPen">
     Launch with Codepen <span class="icon-codepen"></span>
   </button>
+ -->
   <button type="button" class="btn btn-primary btn-sm" ng-click="codepenToggle()" ng-show="loadPen">
     <span ng-class="{ 'glyphicon': true, 'glyphicon-chevron-down': showCodepen, 'glyphicon-chevron-up': !showCodepen }"></span>
   </button>
-</div>
+<h4 class="code-title" ng-click="codepenToggle()">{{penTitle}}</h4>
+<!-- </div> -->
 <div class="codepen" ng-class="{ 'show-codepen': showCodepen }">
-  <p data-height="600"
-  data-theme-id="light"
-  data-slug-hash="{{slugHash}}"
-  data-default-tab="result"
-  data-user="kylemoseby"
-  data-embed-version="2"
-  data-pen-title="{{penTitle}}"
-  ng-class="{'codepen': loadPen }"></p>
+  <p data-height="{{penHeight}}"
+    data-theme-id="31680"
+    data-slug-hash="{{slugHash}}"
+    data-default-tab="result"
+    data-user="kylemoseby"
+    data-embed-version="2"
+    data-pen-title="{{penTitle}}"
+    ng-class="{'codepen': loadPen }"></p>
 </div>
 <!-- {{githubUrl}}
 <button type="button" class="btn btn-primary" ng-click="createGist()">
