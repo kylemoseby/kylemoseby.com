@@ -8,6 +8,13 @@ Production code:
 
 `grunt build` 
 
+
+Copy to root directory (to work with github pages):
+
+`grunt copy:ghPages` 
+
+
+
 ## kylemoseby-dotcom
 
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
