@@ -10,3 +10,14 @@ app/styles/fonts
 /other_components
 app/scripts/api_key.js
 portfolio/
+# React
+# testing
+/coverage
+# production
+/build
+# misc
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+

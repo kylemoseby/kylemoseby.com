@@ -1,0 +1,44 @@
+<form name="contactForm" class="contact-form" action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" novalidate>
+  <div class="row">
+    <div class="col-lg-12">
+      <h2>Contact Form</h2>
+      <p><span class="glyphicon glyphicon-asterisk"></span> All fields are required.</p>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <input type=hidden name="oid" value="00D50000000Ia2S">
+      <input type=hidden name="retURL" value="http://kylemoseby.com/#/contact_success">
+      <div class="form-group">
+        <label for="formFirstName">First Name</label>
+        <input name="first_name" class="form-control" id="formFirstName" placeholder="Name" ng-model="firstName" required/>
+        <span ng-show="contactForm.first_name.$error.required && !contactForm.first_name.$untouched">Name is required.</span>
+      </div>
+      <div class="form-group">
+        <label for="formSurname">Surname</label>
+        <input name="last_name" size="20" type="text" class="form-control" id="formSurname" placeholder="Surname" ng-model="surname" required />
+        <span ng-show="contactForm.last_name.$error.required && !contactForm.last_name.$untouched">Surname is required.</span>
+      </div>
+      <div class="form-group">
+        <label for="formEmail">Email address</label>
+        <input id="email" maxlength="80" name="email" size="20" class="form-control" id="formEmail" placeholder="Email" ng-model="email" required />
+        <span ng-show="contactForm.email.$error.required && !contactForm.email.$untouched">A valid email address is required.</span>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label for="formMessage">Message</label>
+        <textarea name="00N50000002CHu6" rows="3" type="text" wrap="soft" class="form-control" id="formMessage" placeholder="Message text" ng-model="message" required>
+        </textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="form-group pull-right">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</form>
