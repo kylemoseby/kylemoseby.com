@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {
@@ -12,6 +11,65 @@ import Masonry from 'react-masonry-component';
 import * as Icon from 'react-feather';
 import './KyleMoseby.css';
 
+const __kylemoseby__ = {
+  codepen: [
+    {
+      'title': 'Seattle Crime Report Map',
+      'description': 'Crime reports filed by the Seattle Police Department plotted to Google Maps.  Data found at data.gov',
+      'slugHash': 'JJZbPm',
+    },
+    {
+      'title': 'Seattle Crime Reports Timeline',
+      'description': 'A timeline plotted in D3js of crime reports filed by Seattle Police Department.  Data found at data.gov',
+      'slugHash': '0f10e6b7a6fb348908b7dbc212876d62',
+    },
+    {
+      'title': 'Flickr Recent Photos',
+      'description': 'A Flickr API integration written in Angular',
+      'slugHash': '86cbd886a137fb713c61126a98f05780'
+    },
+    {
+      'title': 'Flickr Album',
+      'description': 'A Flickr API integration written in Angular',
+      'slugHash': '48dc386f62becb37fcbb583066955f0b'
+    }
+  ],
+  gist : [
+    {
+      'title': 'Twitter Account Tools',
+      'description': 'Python scripts to automate certain account management tasks.',
+      'id': '3930a36183bca9acb3c02875be428d07'
+    },{
+      'title': 'Tumblr Account Tools',
+      'description': 'Python scripts to automate certain account management tasks.',
+      'id': '098a0271331019239b81afce6276f20d'
+    },
+  ],
+  contact: {
+    social: [
+      {
+        platform: 'instagram',
+        url: 'http://instagram.com/kylemoseby',
+        icoMoon: 'icon-instagram',
+      },
+      {
+        platform: 'flickr',
+        url: 'http://flickr.com/photos/kylemoseby',
+        icoMoon: 'icon-flickr2'
+      },
+      {
+        platform: 'github',
+        url: 'http://github.com/kylemoseby',
+        icoMoon: 'icon-github'
+      },
+      {
+        platform: 'codepen',
+        url: 'https://codepen.io/kylemoseby/',
+        icoMoon: 'icon-codepen'
+      }
+    ]
+  }
+};
 
 function Flickrimg(props) {
   const img = props.photo;
@@ -24,7 +82,7 @@ function Flickrimg(props) {
     img.id +
     "_" +
     img.secret +
-    "_b.jpg";
+    "_z.jpg";
   return (
     <img src={imgSrc} alt={img.id} />
   );
@@ -104,7 +162,7 @@ class FlickrGallery extends React.Component {
     });
 
     return (
-      <div className="col">
+      <div className="col-10">
         <Masonry
           className={'flickr-img'}
           elementType={'div'}
@@ -118,62 +176,7 @@ class FlickrGallery extends React.Component {
   }
 }
 
-function CodepenEmbed(props) {
-  const headID = document.getElementsByTagName("head")[0];
-  const newScript = document.createElement('script');
-  newScript.type = 'text/javascript';
-  newScript.id = 'codepen_' + props.hash;
-  newScript.src = 'https://production-assets.codepen.io/assets/embed/ei.js';
-  headID.appendChild(newScript);
-
-  return (
-    <div>
-      <p
-        data-height="800"
-        data-theme-id="light"
-        data-slug-hash={props.hash}
-        data-show-tab-bar="no"
-        data-default-tab="js,result"
-        data-embed-version="2"
-        className="codepen"
-      >
-      </p>
-    </div>
-  );
-}
-
-function CodeExmplTemplates(props){
-  if (props.platform === 'gist'){
-    return (
-      <Gist id={props.id} />
-    );
-  } else if (props.platform === "codepen"){
-    return(
-      <CodepenEmbed hash={props.id} />
-    );
-  }
-}
-
-class CodeExample extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      id: props.match.params.id,
-      platform: props.match.params.platform,
-    };
-  }
-
-  render(){
-    return (
-      <div className="col">
-        <h2>Code Example</h2>
-        <CodeExmplTemplates {...this.state} />
-      </div>
-    );
-  }
-}
-
-class PhotoTest extends Component {
+class PhotoDetail extends Component {
   constructor(props){
     super(props);
     this.state = props.match.params;
@@ -188,107 +191,147 @@ class PhotoTest extends Component {
   }
 }
 
-class KyleMoseby extends Component {
+class CodepenEmbed extends Component {
 
+  updatePen(){
+    console.log('update pen');
+
+    let wrapper = document.getElementById("wrapper-" + this.props.hash);
+    let _elmP_= document.createElement("div");
+
+    _elmP_.className = "codepen";
+    _elmP_.setAttribute('data-height', '800');
+    _elmP_.setAttribute('data-theme-id', 'dark');
+    _elmP_.setAttribute('data-slug-hash', this.props.hash);
+    _elmP_.setAttribute('data-show-tab-bar', 'no');
+    _elmP_.setAttribute('data-default-tab', 'js,result');
+    _elmP_.setAttribute('data-embed-version', '2');
+    wrapper.prepend(_elmP_);
+
+    const headID = document.getElementsByTagName("head")[0];
+    const newScript = document.createElement('script');
+
+    newScript.type = 'text/javascript';
+    newScript.id = 'codepen_' + this.props.hash;
+    newScript.src = 'https://production-assets.codepen.io/assets/embed/ei.js';
+    headID.appendChild(newScript);
+  }
+
+  componentDidUpdate(prevProps){
+    let hashRemove = prevProps.hash;
+    let penIframe = document.getElementById("cp_embed_" + hashRemove);
+    penIframe.parentNode.remove();
+    this.updatePen();
+  }
+
+  componentDidMount(){
+    this.updatePen();
+  }
+
+  render(){
+    console.log('render');
+    return (
+      <div className="react-wrapper">
+        <div id={"wrapper-" + this.props.hash} />
+        <ul>
+          <li>hash {this.props.hash}</li>
+        </ul>
+      </div>
+    );
+  }
+}
+
+class CodeExample extends Component {
+  render(){
+
+    const exmplePlat  = this.props.match.params.platform;
+    const exmpleId = this.props.match.params.id;
+
+    let exampleEmbed = null;
+
+    if (exmplePlat === 'gist'){
+      exampleEmbed = <Gist id={exmpleId} />;
+    } else if (exmplePlat === "codepen"){
+      exampleEmbed = <CodepenEmbed hash={exmpleId} />;
+    }
+
+    let currentInd = Number(this.props.match.params.ind);
+    let t2 = __kylemoseby__[exmplePlat].length;
+    let isFirst = currentInd === 0;
+    let isLast = currentInd === t2;
+    let prevUrl = ["/example", (isFirst ? currentInd - 1 : t2), exmplePlat, exmpleId];
+    let nextUrl = ["/example", (isLast ? (currentInd + 1) : 0), exmplePlat, exmpleId];
+
+    return (
+      <div className="col-10">
+        <h2>Code Example</h2>
+        {exampleEmbed}
+        <ul className="list-inline">
+          <li className="list-inline-item">
+            <Link to={prevUrl.join('/')}>Prev</Link>
+          </li>
+          <li className="list-inline-item">
+            <Link to={nextUrl.join('/')}>Next</Link>
+          </li>
+        </ul>
+      </div>
+    );
+  }
+}
+
+class CodePage extends Component {
+  constructor (props) {
+    super(props);
+    this.state = __kylemoseby__;
+  }
+  render(){
+    const codepens = this.state.codepen;
+    const gists = this.state.gist;
+    return (
+      <div className="col-10">
+        <h2>JavaScript, HTML, CSS</h2>
+        {codepens.map((pen, index) =>
+          <div key={index}>
+            <h3>{pen.title}</h3>
+            <div>{pen.description}</div>
+            <Link to={'/example/' + index + '/codepen/' + pen.slugHash}><span className="icon-codepen" /></Link>
+          </div>
+        )}
+        <h2>Python</h2>
+        {gists.map((gist, index) =>
+          <div key={index}>
+            <h3>{gist.title}</h3>
+            <div>{gist.description}</div>
+            <Link to={'/example/' + index + '/gist/' + gist.id}><span className="icon-github" /></Link>
+          </div>
+        )}
+      </div>
+    );
+  }
+}
+
+class KyleMoseby extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      code: [
-        {
-          'title': 'Seattle Crime Report Map',
-          'description': 'Crime reports filed by the Seattle Police Department plotted to Google Maps.  Data found at data.gov',
-          'slugHash': 'JJZbPm',
-        },
-        {
-          'title': 'Seattle Crime Reports Timeline',
-          'description': 'A timeline plotted in D3js of crime reports filed by Seattle Police Department.  Data found at data.gov',
-          'slugHash': '0f10e6b7a6fb348908b7dbc212876d62',
-        },
-        {
-          'title': 'Flickr Recent Photos',
-          'description': 'A Flickr API integration written in Angular',
-          'slugHash': '86cbd886a137fb713c61126a98f05780'
-        },
-        {
-          'title': 'Flickr Album',
-          'description': 'A Flickr API integration written in Angular',
-          'slugHash': '48dc386f62becb37fcbb583066955f0b'
-        }
-      ],
-      gists : [
-        {
-          'title': 'Twitter Account Tools',
-          'description': 'Python scripts to automate certain account management tasks.',
-          'id': '3930a36183bca9acb3c02875be428d07'
-        },{
-          'title': 'Tumblr Account Tools',
-          'description': 'Python scripts to automate certain account management tasks.',
-          'id': '098a0271331019239b81afce6276f20d'
-        },
-      ],
-      contact: {
-        social: [
-          {
-            platform: 'instagram',
-            url: 'http://instagram.com/kylemoseby',
-            icoMoon: 'icon-instagram',
-          },
-          {
-            platform: 'flickr',
-            url: 'http://flickr.com/photos/kylemoseby',
-            icoMoon: 'icon-flickr2'
-          },
-          {
-            platform: 'github',
-            url: 'http://github.com/kylemoseby',
-            icoMoon: 'icon-github'
-          },
-          {
-            platform: 'codepen',
-            url: 'https://codepen.io/kylemoseby/',
-            icoMoon: 'icon-codepen'
-          }
-        ]
-      }
-    };
+    this.state = __kylemoseby__;
   }
 
   render() {
     const accounts = this.state.contact.social;
-    const codepens = this.state.code;
-    const gists = this.state.gists;
     return (
       <Router>
         <div className="container-fluid">
           <div className="row KyleMoseby">
-            <Navigation className="col" {...this.state} />
+            <Navigation  {...this.state} />
             <Route exact path="/" render={props => (
               <div className="col">
                 <img src="https://c1.staticflickr.com/7/6070/6078025602_346479fb66_z.jpg" alt="Whatever" />
               </div>
             )}/>
-            <Route exact path="/code/:platform/:id" component={CodeExample}/>
-            <Route path="/code" render={props => (
-              <div>
-                <h2>JavaScript, HTML, CSS</h2>
-                {codepens.map((pen, index) =>
-                  <div key={index}>
-                    <h3>{pen.title}</h3>
-                    <div>{pen.description}</div>
-                    <Link to={'/code/codepen/' + pen.slugHash}><span className="icon-codepen" /></Link>
-                  </div>
-                )}
-                <h2>Python</h2>
-                {gists.map((gist, index) =>
-                  <div key={index}>
-                    <h3>{gist.title}</h3>
-                    <div>{gist.description}</div>
-                    <Link to={'/code/gist/' + gist.id}><span className="icon-github" /></Link>
-                  </div>
-                )}
-              </div>
-            )}/>
-            <Route path="/photo/:secret/:farm/:server/:id" component={PhotoTest} />
+            <Route path="/example/:ind/:platform/:id" component={CodeExample}/>
+            <Route exact path="/code" component={CodePage}>
+            </Route>
+            <Route path="/photo/:secret/:farm/:server/:id" component={PhotoDetail} />
             <Route path="/gallery" component={FlickrGallery}/>
           </div>
           <nav className="navbar fixed-bottom navbar-light">
@@ -317,19 +360,25 @@ class Navigation extends React.Component {
   }
 
   render(){
-    const menuPens = this.state.code.map((_pen_, index) =>
+    const menuPens = this.state.codepen.map((_pen_, index) =>
       <li key={index}>
-        <Link to={"/code/codepen/" + _pen_.slugHash}>{_pen_.title}</Link>
+        <Link to={{
+            pathname: "/example/" + index + "/codepen/" + _pen_.slugHash,
+            state: _pen_
+          }}>{_pen_.title}</Link>
       </li>
     );
-    const menuGists = this.state.gists.map((_gist_, index) =>
+    const menuGists = this.state.gist.map((_gist_, index) =>
       <li key={index}>
-         <Link to={"/code/gist/" + _gist_.id}>{_gist_.title}</Link>
+         <Link to={{
+            pathname: "/example/" + index + "/gist/" + _gist_.id,
+            state: _gist_
+          }}>{_gist_.title}</Link>
       </li>
     );
 
     return (
-      <div>
+      <div className="col">
         <h1><Link to="/">Kyle Moseby</Link></h1>
         <Icon.Menu onClick={this.toggleMenu} />
         <ul className={this.state.menuShow ? "list-unstyled" : "invisible"}>

@@ -101,11 +101,6 @@ class KyleMoseby extends Component {
   }
 
   render() {
-
-    const accounts = this.state.contact.social;
-    const codepens = this.state.code;
-    const gists = this.state.gists;
-
     return (
       <Router>
       <div className="container-fluid">
@@ -121,7 +116,7 @@ class KyleMoseby extends Component {
             <Route path="/photography" component={Photography}/>
           </div>
           <div className="row footer">
-            <SocialMedia accounts={accounts} className="col" />
+            <SocialMedia accounts={this.state.contact.social} className="col" />
           </div>
         </div>
       </Router>
