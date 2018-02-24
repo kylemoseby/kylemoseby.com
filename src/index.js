@@ -1,4 +1,7 @@
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
+import ExecutionEnvironment from 'exenv';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
@@ -10,6 +13,27 @@ import Gist from 'react-gist';
 import Masonry from 'react-masonry-component';
 import * as Icon from 'react-feather';
 import './KyleMoseby.css';
+
+// Returns a function, that, as long as it continues to be invoked, will not
+// be triggered. The function will be called after it stops being called for
+// N milliseconds. If `immediate` is passed, trigger the function on the
+// leading edge, instead of the trailing.
+// https://davidwalsh.name/javascript-debounce-function
+function debounce(func, wait, immediate) {
+  var timeout;
+  return function() {
+    var context = this, args = arguments;
+    var later = function() {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
+};
+
 
 const __kylemoseby__ = {
   codepen: [
@@ -71,65 +95,8 @@ const __kylemoseby__ = {
   }
 };
 
-function Flickrimg(props) {
-  const img = props.photo;
-  const imgSrc =
-    "https://farm" +
-    img.farm +
-    ".staticflickr.com/" +
-    img.server +
-    "/" +
-    img.id +
-    "_" +
-    img.secret +
-    "_z.jpg";
-  return (
-    <img src={imgSrc} alt={img.id} />
-  );
-}
 
 class FlickrGallery extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      photos: []
-    };
-
-    const galleryIDs = [
-      '72157671573143060',
-      '72157642607219393',
-      '72157642608822784',
-      '72157641683609583',
-    ];
-
-    let addImages = function(newPhotos) {
-      const updated = this.state.photos.slice().concat(newPhotos);
-      this.setState({
-        photos: updated
-      });
-    }
-    addImages = addImages.bind(this);
-
-    galleryIDs.forEach(function(_id_){
-      axios
-      .get("https://api.flickr.com/services/rest/", {
-        params: {
-          nojsoncallback: 1,
-          method: "flickr.photosets.getPhotos",
-          api_key: "cf8f1cf4fdd37bce0498531da5f31ed1",
-          photoset_id: _id_,
-          extras: "description",
-          format: "json"
-        }
-      })
-      .then(function(response) {
-        addImages(response.data.photoset.photo);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-    });
-  }
 
   calcWindowSize(){
     const _wdth = window.innerWidth;
@@ -141,28 +108,121 @@ class FlickrGallery extends React.Component {
     };
   }
 
+  handleScroll() {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight){
+      debounce(this.addImages(), 750);
+    }
+  }
+
+  componentDidMount() {
+    if (ExecutionEnvironment.canUseDOM) {
+      window.addEventListener('scroll', this.handleScroll);
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  constructor() {
+    super();
+    this.state = {
+      photos: [],
+      ind: 0,
+      thumbs: true
+    };
+
+    this.galleryIDs = [
+      '72157671573143060',
+      '72157642607219393',
+      '72157642608822784',
+      '72157641683609583',
+    ];
+
+    let addImages = function(newPhotos) {
+      if(this.galleryIDs.length > 0){
+        let galId = this.galleryIDs.pop();
+
+        let _this_ = this;
+
+        axios
+        .get("https://api.flickr.com/services/rest/", {
+          params: {
+            nojsoncallback: 1,
+            method: "flickr.photosets.getPhotos",
+            api_key: "cf8f1cf4fdd37bce0498531da5f31ed1",
+            photoset_id: galId,
+            extras: "description",
+            format: "json"
+          }
+        })
+        .then(function(response) {
+          const updated = _this_.state.photos.slice().concat(response.data.photoset.photo);
+          _this_.setState({
+            photos: updated
+          });
+          console.log('images added');
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      }
+    }
+    this.addImages = addImages.bind(this);
+
+    let toggleThumbs = function() {
+      this.setState({
+        thumbs: !this.state.thumbs
+      });
+    }
+    this.toggleThumbs = toggleThumbs.bind(this);
+
+    this.handleScroll = this.handleScroll.bind(this);
+
+    this.addImages();
+  }
+
   render() {
+
     const photos = this.state.photos;
     const masonryOptions = {
       transitionDuration: 0
     };
+
+    let imgSize = this.state.thumbs ? "n": "h";
+
     const photoList = photos.map((photo, index) => {
       return (
-        <Link key={index} to={{
+      {/* <Link key={index} to={{
           pathname: ["/photo",
             photo.secret,
             photo.farm,
             photo.server,
             photo.id
           ].join("/")
-        }}>
-          <Flickrimg photo={photo} />
-        </Link>
+        }}> */
+          <img src={[
+            "https://farm",
+            photo.farm,
+            ".staticflickr.com/",
+            photo.server,
+            "/",
+            photo.id,
+            "_",
+            photo.secret,
+            "_",
+            imgSize,
+            ".jpg"
+          ].join("")} alt={photo.id} />
+       /*  </Link> */
       );
     });
 
     return (
       <div className="col-10">
+        <button className="btn btn-primary btn-sm" onClick={this.toggleThumbs}>
+          thumbsize
+        </button>
         <Masonry
           className={'flickr-img'}
           elementType={'div'}
@@ -180,12 +240,13 @@ class PhotoDetail extends Component {
   constructor(props){
     super(props);
     this.state = props.match.params;
+    debugger;
   }
 
   render() {
     return (
       <div>
-        <Flickrimg photo={this.state}/>
+      details
       </div>
     );
   }
@@ -194,26 +255,24 @@ class PhotoDetail extends Component {
 class CodepenEmbed extends Component {
 
   updatePen(){
-    console.log('update pen');
-
-    let wrapper = document.getElementById("wrapper-" + this.props.hash);
     let _elmP_= document.createElement("div");
-
     _elmP_.className = "codepen";
     _elmP_.setAttribute('data-height', '800');
-    _elmP_.setAttribute('data-theme-id', 'dark');
+    _elmP_.setAttribute('data-theme-id', 'light');
     _elmP_.setAttribute('data-slug-hash', this.props.hash);
     _elmP_.setAttribute('data-show-tab-bar', 'no');
     _elmP_.setAttribute('data-default-tab', 'js,result');
     _elmP_.setAttribute('data-embed-version', '2');
+
+    let wrapper = document.getElementById("wrapper-" + this.props.hash);
     wrapper.prepend(_elmP_);
 
-    const headID = document.getElementsByTagName("head")[0];
     const newScript = document.createElement('script');
-
     newScript.type = 'text/javascript';
     newScript.id = 'codepen_' + this.props.hash;
     newScript.src = 'https://production-assets.codepen.io/assets/embed/ei.js';
+
+    const headID = document.getElementsByTagName("head")[0];
     headID.appendChild(newScript);
   }
 
@@ -229,13 +288,9 @@ class CodepenEmbed extends Component {
   }
 
   render(){
-    console.log('render');
     return (
       <div className="react-wrapper">
         <div id={"wrapper-" + this.props.hash} />
-        <ul>
-          <li>hash {this.props.hash}</li>
-        </ul>
       </div>
     );
   }
@@ -266,7 +321,7 @@ class CodeExample extends Component {
       <div className="col-10">
         <h2>Code Example</h2>
         {exampleEmbed}
-        <ul className="list-inline">
+        <ul className="list-inline d-none">
           <li className="list-inline-item">
             <Link to={prevUrl.join('/')}>Prev</Link>
           </li>
@@ -325,7 +380,7 @@ class KyleMoseby extends Component {
             <Navigation  {...this.state} />
             <Route exact path="/" render={props => (
               <div className="col">
-                <img src="https://c1.staticflickr.com/7/6070/6078025602_346479fb66_z.jpg" alt="Whatever" />
+                Front page
               </div>
             )}/>
             <Route path="/example/:ind/:platform/:id" component={CodeExample}/>
