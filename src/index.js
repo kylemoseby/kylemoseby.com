@@ -161,7 +161,6 @@ class FlickrGallery extends React.Component {
           _this_.setState({
             photos: updated
           });
-          console.log('images added');
         })
         .catch(function(error) {
           console.log(error);
@@ -189,19 +188,23 @@ class FlickrGallery extends React.Component {
       transitionDuration: 0
     };
 
-    let imgSize = this.state.thumbs ? "n": "h";
 
     const photoList = photos.map((photo, index) => {
+
+      let imgSize = null;
+
+      if (index === this.state.photoDetail){
+        imgSize = "o";
+      }
+      else if (this.state.thumbs){
+        imgSize = "n";
+      }
+      else {
+        imgSize = "h"
+      }
+
       return (
-      {/* <Link key={index} to={{
-          pathname: ["/photo",
-            photo.secret,
-            photo.farm,
-            photo.server,
-            photo.id
-          ].join("/")
-        }}> */
-          <img src={[
+          <img key={index} src={[
             "https://farm",
             photo.farm,
             ".staticflickr.com/",
@@ -213,8 +216,7 @@ class FlickrGallery extends React.Component {
             "_",
             imgSize,
             ".jpg"
-          ].join("")} alt={photo.id} />
-       /*  </Link> */
+          ].join("")} alt={""} />
       );
     });
 
@@ -380,7 +382,7 @@ class KyleMoseby extends Component {
             <Navigation  {...this.state} />
             <Route exact path="/" render={props => (
               <div className="col">
-                Front page
+                <img src="kylemoseby_resume.jpg" />
               </div>
             )}/>
             <Route path="/example/:ind/:platform/:id" component={CodeExample}/>
