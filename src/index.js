@@ -34,7 +34,6 @@ function debounce(func, wait, immediate) {
   };
 };
 
-
 const __kylemoseby__ = {
   codepen: [
     {
@@ -95,7 +94,6 @@ const __kylemoseby__ = {
   }
 };
 
-
 class FlickrGallery extends React.Component {
 
   calcWindowSize(){
@@ -114,6 +112,42 @@ class FlickrGallery extends React.Component {
     }
   }
 
+  addImages(newPhotos) {
+
+    if(this.galleryIDs.length > 0){
+
+      let galId = this.galleryIDs.pop();
+      let _this_ = this;
+
+      axios
+      .get("https://api.flickr.com/services/rest/", {
+        params: {
+          nojsoncallback: 1,
+          method: "flickr.photosets.getPhotos",
+          api_key: "cf8f1cf4fdd37bce0498531da5f31ed1",
+          photoset_id: galId,
+          extras: "description",
+          format: "json"
+        }
+      })
+      .then(function(response) {
+        const updated = _this_.state.photos.slice().concat(response.data.photoset.photo);
+        _this_.setState({
+          photos: updated
+        });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    }
+  }
+
+  toggleThumbs() {
+    this.setState({
+      thumbs: !this.state.thumbs
+    });
+  }
+
   componentDidMount() {
     if (ExecutionEnvironment.canUseDOM) {
       window.addEventListener('scroll', this.handleScroll);
@@ -128,7 +162,7 @@ class FlickrGallery extends React.Component {
     super();
     this.state = {
       photos: [],
-      ind: 0,
+      ind: null,
       thumbs: true
     };
 
@@ -139,92 +173,94 @@ class FlickrGallery extends React.Component {
       '72157641683609583',
     ];
 
-    let addImages = function(newPhotos) {
-      if(this.galleryIDs.length > 0){
-        let galId = this.galleryIDs.pop();
-
-        let _this_ = this;
-
-        axios
-        .get("https://api.flickr.com/services/rest/", {
-          params: {
-            nojsoncallback: 1,
-            method: "flickr.photosets.getPhotos",
-            api_key: "cf8f1cf4fdd37bce0498531da5f31ed1",
-            photoset_id: galId,
-            extras: "description",
-            format: "json"
-          }
-        })
-        .then(function(response) {
-          const updated = _this_.state.photos.slice().concat(response.data.photoset.photo);
-          _this_.setState({
-            photos: updated
-          });
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-      }
-    }
-    this.addImages = addImages.bind(this);
-
-    let toggleThumbs = function() {
-      this.setState({
-        thumbs: !this.state.thumbs
-      });
-    }
-    this.toggleThumbs = toggleThumbs.bind(this);
-
     this.handleScroll = this.handleScroll.bind(this);
+    this.addImages = this.addImages.bind(this);
+    this.toggleThumbs = this.toggleThumbs.bind(this);
+    this.indexMove = this.indexMove.bind(this);
 
     this.addImages();
   }
 
+  indexMove($eve){
+    let elmId = $eve.currentTarget.getAttribute("id");
+    let __index = this.state.ind;
+    let __photoLngth = this.state.photos.length - 1;
+    let indUpdate = null;
+
+    console.log(elmId);
+
+    if (this.state.ind === null) {
+
+      indUpdate = 0;
+
+    } else if (elmId === 'indexFrwd'){
+      debugger;
+      indUpdate = __index === __photoLngth ? 0 : __index + 1;
+
+    } else if (elmId === 'indexBack'){
+      debugger;
+      indUpdate = __index === 0 ? __photoLngth : __index - 1;
+    }
+
+    this.setState({
+      ind: indUpdate
+    });
+  }
+
+
   render() {
+
+    let __gallery = this;
 
     const photos = this.state.photos;
     const masonryOptions = {
       transitionDuration: 0
     };
 
-
     const photoList = photos.map((photo, index) => {
+
+      function toggleThumbs(event) {
+        __gallery.setState({
+          ind: index
+        });
+      }
 
       let imgSize = null;
 
-      if (index === this.state.photoDetail){
-        imgSize = "o";
+      if (index === this.state.ind){
+        imgSize = "k";
       }
       else if (this.state.thumbs){
         imgSize = "n";
       }
       else {
-        imgSize = "h"
+        imgSize = "c"
       }
 
       return (
-          <img key={index} src={[
-            "https://farm",
-            photo.farm,
-            ".staticflickr.com/",
-            photo.server,
-            "/",
-            photo.id,
-            "_",
-            photo.secret,
-            "_",
-            imgSize,
-            ".jpg"
-          ].join("")} alt={""} />
+          <img key={index}
+            onClick={toggleThumbs}
+            src={[
+              "https://farm",
+              photo.farm,
+              ".staticflickr.com/",
+              photo.server,
+              "/",
+              photo.id,
+              "_",
+              photo.secret,
+              "_",
+              imgSize,
+              ".jpg"
+            ].join("")} alt={""} />
       );
     });
 
     return (
       <div className="col-10">
-        <button className="btn btn-primary btn-sm" onClick={this.toggleThumbs}>
-          thumbsize
-        </button>
+        <button type="button" className="btn btn-primary" id="indexBack" onClick={this.indexMove}>back</button>
+        <div>{this.state.ind}</div>
+        <button type="button" className="btn btn-primary" id="indexFrwd" onClick={this.indexMove}>forward</button>
         <Masonry
           className={'flickr-img'}
           elementType={'div'}
@@ -382,7 +418,7 @@ class KyleMoseby extends Component {
             <Navigation  {...this.state} />
             <Route exact path="/" render={props => (
               <div className="col">
-                <img src="kylemoseby_resume.jpg" />
+                <img src="kylemoseby_resume.jpg" alt=""/>
               </div>
             )}/>
             <Route path="/example/:ind/:platform/:id" component={CodeExample}/>
