@@ -177,6 +177,7 @@ class FlickrGallery extends React.Component {
     this.addImages = this.addImages.bind(this);
     this.toggleThumbs = this.toggleThumbs.bind(this);
     this.indexMove = this.indexMove.bind(this);
+    this.clearDetail = this.clearDetail.bind(this);
 
     this.addImages();
   }
@@ -186,8 +187,6 @@ class FlickrGallery extends React.Component {
     let __index = this.state.ind;
     let __photoLngth = this.state.photos.length - 1;
     let indUpdate = null;
-
-    console.log(elmId);
 
     if (this.state.ind === null) {
 
@@ -204,6 +203,12 @@ class FlickrGallery extends React.Component {
 
     this.setState({
       ind: indUpdate
+    });
+  }
+
+  clearDetail() {
+    this.setState({
+      ind: null
     });
   }
 
@@ -238,8 +243,9 @@ class FlickrGallery extends React.Component {
       }
 
       return (
-          <img key={index}
-            onClick={toggleThumbs}
+        <div key={index}>
+          <a href={["photo", photo.secret, photo.farm, photo.server, photo.id].join('/')}>permalink</a>
+          <img onClick={toggleThumbs}
             src={[
               "https://farm",
               photo.farm,
@@ -253,14 +259,16 @@ class FlickrGallery extends React.Component {
               imgSize,
               ".jpg"
             ].join("")} alt={""} />
+        </div>
       );
     });
 
     return (
-      <div className="col-10">
+      <div className="col">
         <button type="button" className="btn btn-primary" id="indexBack" onClick={this.indexMove}>back</button>
         <div>{this.state.ind}</div>
         <button type="button" className="btn btn-primary" id="indexFrwd" onClick={this.indexMove}>forward</button>
+        <button type="button" className="btn btn-primary" onClick={this.clearDetail}>close</button>
         <Masonry
           className={'flickr-img'}
           elementType={'div'}
@@ -471,7 +479,7 @@ class Navigation extends React.Component {
     );
 
     return (
-      <div className="col">
+      <div className="col-3">
         <h1><Link to="/">Kyle Moseby</Link></h1>
         <Icon.Menu onClick={this.toggleMenu} />
         <ul className={this.state.menuShow ? "list-unstyled" : "invisible"}>
