@@ -96,6 +96,31 @@ const __kylemoseby__ = {
 
 class FlickrGallery extends React.Component {
 
+  constructor() {
+    super();
+    this.state = {
+      photos: [],
+      ind: null,
+      thumbs: true
+    };
+
+    this.galleryIDs = [
+      '72157671573143060',
+      '72157642607219393',
+      '72157642608822784',
+      '72157641683609583',
+    ];
+
+    this.handleScroll = this.handleScroll.bind(this);
+    this.addImages = this.addImages.bind(this);
+    this.toggleThumbs = this.toggleThumbs.bind(this);
+    this.indexMove = this.indexMove.bind(this);
+    this.clearDetail = this.clearDetail.bind(this);
+
+    this.addImages();
+  }
+
+
   calcWindowSize(){
     const _wdth = window.innerWidth;
     const _hght = window.innerHeight;
@@ -156,30 +181,6 @@ class FlickrGallery extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
-  }
-
-  constructor() {
-    super();
-    this.state = {
-      photos: [],
-      ind: null,
-      thumbs: true
-    };
-
-    this.galleryIDs = [
-      '72157671573143060',
-      '72157642607219393',
-      '72157642608822784',
-      '72157641683609583',
-    ];
-
-    this.handleScroll = this.handleScroll.bind(this);
-    this.addImages = this.addImages.bind(this);
-    this.toggleThumbs = this.toggleThumbs.bind(this);
-    this.indexMove = this.indexMove.bind(this);
-    this.clearDetail = this.clearDetail.bind(this);
-
-    this.addImages();
   }
 
   indexMove($eve){
@@ -285,14 +286,59 @@ class FlickrGallery extends React.Component {
 class PhotoDetail extends Component {
   constructor(props){
     super(props);
-    this.state = props.match.params;
-    debugger;
+
+    let photoId = this.props.match.params.id;
+    let __this = this;
+
+    this.state = {
+      title: null,
+      description: null,
+    };
+
+    axios
+      .get("https://api.flickr.com/services/rest/", {
+        params: {
+          nojsoncallback: 1,
+          method: "flickr.photos.getInfo",
+          api_key: "cf8f1cf4fdd37bce0498531da5f31ed1",
+          photo_id: photoId,
+          extras: "description",
+          format: "json"
+        }
+      })
+      .then(function(response) {
+        let photoInfo = response.data.photo;
+        console.log(photoInfo);
+        debugger;
+        __this.setState({
+          title: photoInfo.title._content,
+          description: photoInfo.description._content
+        });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   render() {
+    let __photo = this.props.match.params;
+    console.log(this.state);
+    debugger;
     return (
       <div>
-      details
+        <div className="photo-title">{this.state.title}</div>
+        <div className="photo-description">{this.state.description}</div>
+        <img src={[
+            "https://farm",
+            __photo.farm,
+            ".staticflickr.com/",
+            __photo.server,
+            "/",
+            __photo.id,
+            "_",
+            __photo.secret,
+            ".jpg"
+          ].join("")} alt={""} />
       </div>
     );
   }
