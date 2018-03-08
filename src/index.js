@@ -109,35 +109,13 @@ class FlickrGallery extends React.Component {
     }
   }
 
-  addImages(newPhotos) {
+  addImages() {
+    if (this.state.photoShow <= this.state.photoQue.length) {
 
-    if(this.galleryIDs.length > 0){
+      let currentEnd = this.state.photoShow + 10;
 
-      let galId = this.galleryIDs.pop();
-      let __this = this;
-
-      axios
-      .get("https://api.flickr.com/services/rest/", {
-        params: {
-          nojsoncallback: 1,
-          method: "flickr.photosets.getPhotos",
-          api_key: "cf8f1cf4fdd37bce0498531da5f31ed1",
-          photoset_id: galId,
-          extras: "description",
-          format: "json"
-        }
-      })
-      .then(function(response) {
-        const updated = __this.state.photos.slice().concat(response.data.photoset.photo);
-        __this.setState({
-          photos: updated
-        });
-        if (__this.state.ind > __this.state.photos.length) {
-          __this.addImages();
-        }
-      })
-      .catch(function(error) {
-        console.log(error);
+      this.setState({
+        photoShow: currentEnd
       });
     }
   }
@@ -152,6 +130,10 @@ class FlickrGallery extends React.Component {
     if (ExecutionEnvironment.canUseDOM) {
       window.addEventListener('scroll', this.handleScroll);
     }
+    /*
+      INIT
+    */
+    this.addImages();
   }
 
   componentWillUnmount() {
@@ -165,15 +147,12 @@ class FlickrGallery extends React.Component {
     let indUpdate = null;
 
     if (this.state.ind === null) {
-
       indUpdate = 0;
 
     } else if (elmId === 'indexFrwd'){
-      debugger;
       indUpdate = __index === __photoLngth ? 0 : __index + 1;
 
     } else if (elmId === 'indexBack'){
-      debugger;
       indUpdate = __index === 0 ? __photoLngth : __index - 1;
     }
 
@@ -195,57 +174,65 @@ class FlickrGallery extends React.Component {
       null : Number(props.match.params.index);
 
     this.state = {
-      photos: [],
-      ind: optIndex
+      photoQue: [],
+      ind: optIndex,
+      photoShow: 10
     };
 
-    this.galleryIDs = [
+    let galleryIDs = [
       '72157671573143060',
       '72157642607219393',
       '72157642608822784',
       '72157641683609583',
     ];
 
+    let __gallery = this;
+
+    galleryIDs.forEach(function(__galId){
+      // Get image gallery data from flickr
+      axios
+      .get("https://api.flickr.com/services/rest/", {
+        params: {
+          nojsoncallback: 1,
+          method: "flickr.photosets.getPhotos",
+          api_key: "cf8f1cf4fdd37bce0498531da5f31ed1",
+          photoset_id: __galId,
+          extras: "description",
+          format: "json"
+        }
+      })
+      .then(function(response) {
+
+        let dataUpdated = __gallery.state.photoQue.slice().concat(response.data.photoset.photo);
+
+        __gallery.setState({
+          photoQue: dataUpdated
+        });
+
+      })
+      .catch(function(error) {
+
+        console.log(error);
+      });
+    });
+
+    // Bind methods to gallery Class
     this.handleScroll = this.handleScroll.bind(this);
     this.addImages = this.addImages.bind(this);
     this.toggleThumbs = this.toggleThumbs.bind(this);
     this.indexMove = this.indexMove.bind(this);
     this.clearDetail = this.clearDetail.bind(this);
-
-    this.addImages();
   }
 
   render() {
 
-    let __gallery = this;
-
-    const photos = this.state.photos;
     const masonryOptions = {
       transitionDuration: 0
     };
-
-    function linkBack() {
-      let indBack = null;
-
-      if (__gallery.state.ind >= 0) {
-        indBack = __gallery.state.photos.length - 1;
-      } else {
-        indBack = __gallery.state.ind - 1
-      }
-      return '/gallery/' + indBack;
-    }
-
-    function linkForward() {
-      let indBack = null;
-
-      if (__gallery.state.ind <= __gallery.state.photos.length - 1) {
-        indBack = __gallery.state.ind + 1
-      } else {
-        indBack = 0;
-      }
-
-      return '/gallery/' + indBack;
-    }
+    console.log('render');
+    console.log(this.state.photoShow);
+    let photos = this.state.photoQue.slice(0, this.state.photoShow);
+    let __gallery = this;
 
     const photoList = photos.map((photo, index) => {
 
@@ -266,9 +253,12 @@ class FlickrGallery extends React.Component {
 
       return (
         <div key={index} className="photo-wrap">
-          <Link className="photo-link" to={["/photo", photo.secret, photo.farm, photo.server, photo.id].join('/')}>
-            <Icon.Maximize2 />
-          </Link>
+          {/*
+            Add photodetail page later
+            <Link className="photo-link" to={["/photo", photo.secret, photo.farm, photo.server, photo.id].join('/')}>
+              <Icon.Maximize2 />
+            </Link>
+          */}
           <img onClick={toggleThumbs}
             src={[
               "https://farm",
@@ -287,7 +277,7 @@ class FlickrGallery extends React.Component {
       );
     });
 
-    const showButton = this.state? 'invisible' : 'btn btn-primary';
+    let showButton = this.state.ind === null ? 'invisible' : 'btn btn-primary';
 
     return (
       <div className="col">
@@ -446,6 +436,83 @@ class CodeExample extends Component {
   }
 }
 
+class ContactPage extends Component {
+  render() {
+    return(
+      <div>
+        <h2>Contact Form</h2>
+        <p><span class="glyphicon glyphicon-asterisk"></span> All fields are required.</p>
+        <form
+          name="contactForm"
+          class="contact-form"
+          action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
+          method="POST" novalidate
+        >
+          <div className="form-group">
+            <label>
+              First Name
+              <input
+                name="first_name"
+                placeholder="Name"
+                className="form-control"
+                required
+            />
+            </label>
+            <label for="formSurname">
+              Surname
+              <input
+                name="last_name"
+                size="20"
+                type="text"
+                placeholder="Surname"
+                className="form-control"
+                required
+              />
+            </label>
+          </div>
+          <div className="form-group">
+            <label
+              for="formEmail">
+              Email address
+              <input
+                name="email"
+                placeholder="Email"
+                className="form-control"
+                maxlength="80"
+                size="20"
+                required
+              />
+            </label>
+          </div>
+          <div className="form-group">
+            <label>Message
+            <textarea
+              name="message"
+              className="form-control"
+              placeholder="Message text"
+              rows="3"
+              type="text"
+              wrap="soft"
+              required
+            />
+            </label>
+            <button type="submit" class="btn btn-primary">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    );
+  }
+}
+
+{/*
+  Old SFDC for contact form
+  <input type="hidden" name="oid" value="00D50000000Ia2S" />
+  <input type="hidden" name="retURL" value="http://kylemoseby.com/#/contact_success" />
+  TEXTAREA name="00N50000002CHu6"
+*/}
+
 class CodePage extends Component {
   constructor (props) {
     super(props);
@@ -517,6 +584,7 @@ class KyleMoseby extends Component {
               <Navigation {...this.state} />
               <Route exact path="/" component={HomePage}/>
               <Route path="/example/:ind/:platform/:id" component={CodeExample}/>
+              <Route exact path="/contact" component={ContactPage} />
               <Route exact path="/code" component={CodePage} />
               <Route path="/photo/:secret/:farm/:server/:id" component={PhotoDetail} />
               <Route path="/gallery/:index?" component={FlickrGallery}/>
@@ -555,6 +623,7 @@ class Navigation extends React.Component {
     return (
       <div className={this.props.menuShow ? "col-md-3 col-lg-2" : "km-nav invisible"}>
         <ul className="list-unstyled">
+          <li><Link to="/contact"><Icon.Send /> Contact</Link></li>
           <li><Link to="/gallery"><Icon.Aperture /> Photography</Link></li>
           <li><Link to="/code"><Icon.Code /> Code</Link></li>
           <li>
