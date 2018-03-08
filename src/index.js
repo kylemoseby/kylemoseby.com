@@ -14,6 +14,8 @@ import Masonry from 'react-masonry-component';
 import * as Icon from 'react-feather';
 import './KyleMoseby.css';
 
+
+
 // Returns a function, that, as long as it continues to be invoked, will not
 // be triggered. The function will be called after it stops being called for
 // N milliseconds. If `immediate` is passed, trigger the function on the
@@ -72,55 +74,25 @@ const __kylemoseby__ = {
     social: [
       {
         platform: 'instagram',
-        url: 'http://instagram.com/kylemoseby',
-        icoMoon: 'icon-instagram',
+        url: 'http://instagram.com/kylemoseby'
       },
       {
         platform: 'flickr',
-        url: 'http://flickr.com/photos/kylemoseby',
-        icoMoon: 'icon-flickr2'
+        url: 'http://flickr.com/photos/kylemoseby'
       },
       {
         platform: 'github',
-        url: 'http://github.com/kylemoseby',
-        icoMoon: 'icon-github'
+        url: 'http://github.com/kylemoseby'
       },
       {
         platform: 'codepen',
-        url: 'https://codepen.io/kylemoseby/',
-        icoMoon: 'icon-codepen'
+        url: 'https://codepen.io/kylemoseby/'
       }
     ]
   }
 };
 
 class FlickrGallery extends React.Component {
-
-  constructor() {
-    super();
-    this.state = {
-      photos: [],
-      ind: null,
-      thumbs: true
-    };
-
-    this.galleryIDs = [
-      '72157671573143060',
-      '72157642607219393',
-      '72157642608822784',
-      '72157641683609583',
-    ];
-
-    this.handleScroll = this.handleScroll.bind(this);
-    this.addImages = this.addImages.bind(this);
-    this.toggleThumbs = this.toggleThumbs.bind(this);
-    this.indexMove = this.indexMove.bind(this);
-    this.clearDetail = this.clearDetail.bind(this);
-
-    this.addImages();
-  }
-
-
   calcWindowSize(){
     const _wdth = window.innerWidth;
     const _hght = window.innerHeight;
@@ -142,7 +114,7 @@ class FlickrGallery extends React.Component {
     if(this.galleryIDs.length > 0){
 
       let galId = this.galleryIDs.pop();
-      let _this_ = this;
+      let __this = this;
 
       axios
       .get("https://api.flickr.com/services/rest/", {
@@ -156,10 +128,13 @@ class FlickrGallery extends React.Component {
         }
       })
       .then(function(response) {
-        const updated = _this_.state.photos.slice().concat(response.data.photoset.photo);
-        _this_.setState({
+        const updated = __this.state.photos.slice().concat(response.data.photoset.photo);
+        __this.setState({
           photos: updated
         });
+        if (__this.state.ind > __this.state.photos.length) {
+          __this.addImages();
+        }
       })
       .catch(function(error) {
         console.log(error);
@@ -213,6 +188,32 @@ class FlickrGallery extends React.Component {
     });
   }
 
+  constructor(props) {
+    super(props);
+
+    let optIndex = props.match.params.index === undefined ?
+      null : Number(props.match.params.index);
+
+    this.state = {
+      photos: [],
+      ind: optIndex
+    };
+
+    this.galleryIDs = [
+      '72157671573143060',
+      '72157642607219393',
+      '72157642608822784',
+      '72157641683609583',
+    ];
+
+    this.handleScroll = this.handleScroll.bind(this);
+    this.addImages = this.addImages.bind(this);
+    this.toggleThumbs = this.toggleThumbs.bind(this);
+    this.indexMove = this.indexMove.bind(this);
+    this.clearDetail = this.clearDetail.bind(this);
+
+    this.addImages();
+  }
 
   render() {
 
@@ -222,6 +223,29 @@ class FlickrGallery extends React.Component {
     const masonryOptions = {
       transitionDuration: 0
     };
+
+    function linkBack() {
+      let indBack = null;
+
+      if (__gallery.state.ind >= 0) {
+        indBack = __gallery.state.photos.length - 1;
+      } else {
+        indBack = __gallery.state.ind - 1
+      }
+      return '/gallery/' + indBack;
+    }
+
+    function linkForward() {
+      let indBack = null;
+
+      if (__gallery.state.ind <= __gallery.state.photos.length - 1) {
+        indBack = __gallery.state.ind + 1
+      } else {
+        indBack = 0;
+      }
+
+      return '/gallery/' + indBack;
+    }
 
     const photoList = photos.map((photo, index) => {
 
@@ -234,18 +258,17 @@ class FlickrGallery extends React.Component {
       let imgSize = null;
 
       if (index === this.state.ind){
-        imgSize = "k";
-      }
-      else if (this.state.thumbs){
-        imgSize = "n";
+        imgSize = 'k';
       }
       else {
-        imgSize = "c"
+        imgSize = 'z'
       }
 
       return (
-        <div key={index}>
-          <a href={["photo", photo.secret, photo.farm, photo.server, photo.id].join('/')}>permalink</a>
+        <div key={index} className="photo-wrap">
+          <Link className="photo-link" to={["/photo", photo.secret, photo.farm, photo.server, photo.id].join('/')}>
+            <Icon.Maximize2 />
+          </Link>
           <img onClick={toggleThumbs}
             src={[
               "https://farm",
@@ -264,12 +287,13 @@ class FlickrGallery extends React.Component {
       );
     });
 
+    const showButton = this.state? 'invisible' : 'btn btn-primary';
+
     return (
       <div className="col">
-        <button type="button" className="btn btn-primary" id="indexBack" onClick={this.indexMove}>back</button>
-        <div>{this.state.ind}</div>
-        <button type="button" className="btn btn-primary" id="indexFrwd" onClick={this.indexMove}>forward</button>
-        <button type="button" className="btn btn-primary" onClick={this.clearDetail}>close</button>
+        <button type="button" className={showButton} id="indexBack" onClick={this.indexMove}>back</button>
+        <button type="button" className={showButton} id="indexFrwd" onClick={this.indexMove}>forward</button>
+        <button type="button" className={showButton} onClick={this.clearDetail}>close</button>
         <Masonry
           className={'flickr-img'}
           elementType={'div'}
@@ -308,8 +332,6 @@ class PhotoDetail extends Component {
       })
       .then(function(response) {
         let photoInfo = response.data.photo;
-        console.log(photoInfo);
-        debugger;
         __this.setState({
           title: photoInfo.title._content,
           description: photoInfo.description._content
@@ -322,8 +344,6 @@ class PhotoDetail extends Component {
 
   render() {
     let __photo = this.props.match.params;
-    console.log(this.state);
-    debugger;
     return (
       <div>
         <div className="photo-title">{this.state.title}</div>
@@ -337,7 +357,7 @@ class PhotoDetail extends Component {
             __photo.id,
             "_",
             __photo.secret,
-            ".jpg"
+            "_o.jpg"
           ].join("")} alt={""} />
       </div>
     );
@@ -410,7 +430,7 @@ class CodeExample extends Component {
     let nextUrl = ["/example", (isLast ? (currentInd + 1) : 0), exmplePlat, exmpleId];
 
     return (
-      <div className="col-10">
+      <div className="col">
         <h2>Code Example</h2>
         {exampleEmbed}
         <ul className="list-inline d-none">
@@ -435,7 +455,7 @@ class CodePage extends Component {
     const codepens = this.state.codepen;
     const gists = this.state.gist;
     return (
-      <div className="col-10">
+      <div className="col">
         <h2>JavaScript, HTML, CSS</h2>
         {codepens.map((pen, index) =>
           <div key={index}>
@@ -457,45 +477,22 @@ class CodePage extends Component {
   }
 }
 
-class KyleMoseby extends Component {
-  constructor(props){
-    super(props);
-    this.state = __kylemoseby__;
-  }
-
+class HomePage extends Component {
   render() {
-    const accounts = this.state.contact.social;
-    return (
-      <Router>
-        <div className="container-fluid">
-          <div className="row KyleMoseby">
-            <Navigation  {...this.state} />
-            <Route exact path="/" render={props => (
-              <div className="col">
-                <img src="kylemoseby_resume.jpg" alt=""/>
-              </div>
-            )}/>
-            <Route path="/example/:ind/:platform/:id" component={CodeExample}/>
-            <Route exact path="/code" component={CodePage}>
-            </Route>
-            <Route path="/photo/:secret/:farm/:server/:id" component={PhotoDetail} />
-            <Route path="/gallery" component={FlickrGallery}/>
-          </div>
-          <nav className="navbar fixed-bottom navbar-light">
-            <SocialMedia accounts={accounts} className="col" />
-          </nav>
-        </div>
-      </Router>
+    return(
+      <div className="col">
+        <img src="kylemoseby_resume.jpg" className="img-fluid" alt=""/>
+      </div>
     );
   }
 }
 
-class Navigation extends React.Component {
-  constructor(props) {
-    super(props);
+class KyleMoseby extends Component {
+  constructor(){
+    super()
     this.state = Object.assign({
       menuShow: true,
-    }, props);
+    }, __kylemoseby__);
     this.toggleMenu = this.toggleMenu.bind(this);
   }
 
@@ -506,8 +503,38 @@ class Navigation extends React.Component {
     });
   }
 
+  render() {
+    const accounts = this.state.contact.social;
+    return (
+      <Router>
+        <div>
+          <nav className="navbar">
+            <Link className="navbar-brand" to="/">Kyle Moseby</Link>
+            <Icon.Menu onClick={this.toggleMenu} />
+          </nav>
+          <div className="container-fluid">
+            <div className="row">
+              <Navigation {...this.state} />
+              <Route exact path="/" component={HomePage}/>
+              <Route path="/example/:ind/:platform/:id" component={CodeExample}/>
+              <Route exact path="/code" component={CodePage} />
+              <Route path="/photo/:secret/:farm/:server/:id" component={PhotoDetail} />
+              <Route path="/gallery/:index?" component={FlickrGallery}/>
+            </div>
+            <nav className="navbar">
+              <SocialMedia accounts={accounts} className="col" />
+            </nav>
+          </div>
+        </div>
+      </Router>
+    );
+  }
+}
+
+class Navigation extends React.Component {
   render(){
-    const menuPens = this.state.codepen.map((_pen_, index) =>
+
+    const menuPens = this.props.codepen.map((_pen_, index) =>
       <li key={index}>
         <Link to={{
             pathname: "/example/" + index + "/codepen/" + _pen_.slugHash,
@@ -515,7 +542,8 @@ class Navigation extends React.Component {
           }}>{_pen_.title}</Link>
       </li>
     );
-    const menuGists = this.state.gist.map((_gist_, index) =>
+
+    const menuGists = this.props.gist.map((_gist_, index) =>
       <li key={index}>
          <Link to={{
             pathname: "/example/" + index + "/gist/" + _gist_.id,
@@ -525,17 +553,15 @@ class Navigation extends React.Component {
     );
 
     return (
-      <div className="col-3">
-        <h1><Link to="/">Kyle Moseby</Link></h1>
-        <Icon.Menu onClick={this.toggleMenu} />
-        <ul className={this.state.menuShow ? "list-unstyled" : "invisible"}>
+      <div className={this.props.menuShow ? "col-md-3 col-lg-2" : "km-nav invisible"}>
+        <ul className="list-unstyled">
           <li><Link to="/gallery"><Icon.Aperture /> Photography</Link></li>
           <li><Link to="/code"><Icon.Code /> Code</Link></li>
           <li>
-            <ul className="list-unstyled">{menuPens}</ul>
+            <ul>{menuPens}</ul>
           </li>
           <li>
-            <ul className="list-unstyled">{menuGists}</ul>
+            <ul>{menuGists}</ul>
           </li>
         </ul>
       </div>
@@ -546,18 +572,35 @@ class Navigation extends React.Component {
 class SocialMedia extends Component {
   render() {
     const tester = this.props.accounts;
+    const icon = function(__platform){
+      switch(__platform){
+        case 'codepen' : return (
+            <Icon.Codepen />
+          );
+          break;
+        case 'github' : return (
+            <Icon.Github />
+          );
+          break;
+        case 'instagram' : return (
+            <Icon.Instagram />
+          );
+          break;
+      };
+    };
+
     const accounts = tester.map((account, index) =>
       <li className="list-inline-item" key={index}>
-        <a href={account.url} target="blank">
-          <span className={account.icoMoon} />
-        </a>
+        <Link to={account.url} target="blank">
+          {icon(account.platform)}
+        </Link>
       </li>
     );
     return (
       <ul className="list-inline">{accounts}</ul>
     );
   }
-v}
+}
 
 ReactDOM.render(
   <KyleMoseby />,
