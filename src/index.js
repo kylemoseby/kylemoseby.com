@@ -437,69 +437,114 @@ class CodeExample extends Component {
 }
 
 class ContactPage extends Component {
+
+  submitForm(_event) {
+
+    _event.nativeEvent.preventDefault()
+
+    let __contactPage = this;
+
+    axios.post('https://maker.ifttt.com/trigger/kylemoseby_form_contact/with/key/paj55zq9xejIeveDVQ0cW', {
+      value1 : this.state.name,
+      value2 : this.state.email,
+      value3 : this.state.message
+    })
+    .then(function (response) {
+      debugger;
+      console.log(response);
+    })
+    .catch(function (__error) {
+      debugger;
+      __contactPage.state.error = {
+        name: __error.name,
+        message: __error.message
+      }
+    });
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name] : event.target.value
+    });
+  }
+
+  constructor(){
+    super();
+    this.state = {
+      name: 'name',
+      email: 'email',
+      message: 'message',
+      error: null
+    }
+    // BIND METHODS
+    this.submitForm = this.submitForm.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
   render() {
+
+    function errorMessage(){
+
+      let formHasError = this.state.error;
+
+      if (formHasError) {
+
+        return (
+          <p>Error: {formHasError.name} - {formHasError.message}</p>
+        )
+      } else {
+
+        return null;
+      };
+    }
+
     return(
       <div>
         <h2>Contact Form</h2>
-        <p><span class="glyphicon glyphicon-asterisk"></span> All fields are required.</p>
-        <form
-          name="contactForm"
-          class="contact-form"
-          action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
-          method="POST" novalidate
+        <p> All fields are required.</p>
+        <div className={this.state.error ? 'alert alert-error' : 'invisible'} role="alert">
+          <p>Something went wrong.  Please try again later.</p>
+        </div>
+        <form name="contactForm"
+          className="contact-form"
+          action=""
+          method="POST"
         >
           <div className="form-group">
             <label>
-              First Name
-              <input
-                name="first_name"
-                placeholder="Name"
+              Name
+              <input value={this.state.name}
+                name="name"
+                onChange={this.handleChange}
                 className="form-control"
-                required
-            />
-            </label>
-            <label for="formSurname">
-              Surname
-              <input
-                name="last_name"
-                size="20"
-                type="text"
-                placeholder="Surname"
-                className="form-control"
-                required
-              />
-            </label>
+              /></label>
           </div>
           <div className="form-group">
-            <label
-              for="formEmail">
+            <label>
               Email address
-              <input
+              <input value={this.state.email}
                 name="email"
-                placeholder="Email"
+                onChange={this.handleChange}
                 className="form-control"
-                maxlength="80"
+                maxLength="80"
                 size="20"
-                required
-              />
-            </label>
+              /></label>
           </div>
           <div className="form-group">
-            <label>Message
-            <textarea
-              name="message"
-              className="form-control"
-              placeholder="Message text"
-              rows="3"
-              type="text"
-              wrap="soft"
-              required
-            />
-            </label>
-            <button type="submit" class="btn btn-primary">
-              Submit
-            </button>
+            <label>
+              Message
+              <textarea value={this.state.message}
+                name="message"
+                onChange={this.handleChange}
+                className="form-control"
+                rows="3"
+                type="text"
+                wrap="soft"
+              /></label>
           </div>
+          <button type="submit" className="btn btn-primary" onClick={this.submitForm}>
+            Submit
+          </button>
         </form>
       </div>
     );
@@ -510,7 +555,8 @@ class ContactPage extends Component {
   Old SFDC for contact form
   <input type="hidden" name="oid" value="00D50000000Ia2S" />
   <input type="hidden" name="retURL" value="http://kylemoseby.com/#/contact_success" />
-  TEXTAREA name="00N50000002CHu6"
+  FORM TEXTAREA name="00N50000002CHu6"
+  FORM ACTION https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8
 */}
 
 class CodePage extends Component {
