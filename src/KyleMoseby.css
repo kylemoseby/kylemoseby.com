@@ -2,10 +2,7 @@ img {
   max-height: 90vh;
   max-width: 100%;
 }
-
-
 /*
-
       NAVBAR
 */
 .km-nav.invisible {
@@ -14,11 +11,9 @@ img {
   overflow: hidden;
 }
 /*
-
       NAVBAR END
 */
 /*
-
       FLICKR GALLERY
 */
 .photo-wrap {
@@ -30,6 +25,5 @@ img {
   bottom: 10px;
 }
 /*
-
       FLICKR GALLERY END
 */

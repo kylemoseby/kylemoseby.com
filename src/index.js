@@ -4,10 +4,11 @@ import React, {
 import ExecutionEnvironment from 'exenv';
 import ReactDOM from 'react-dom';
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Route,
+  Switch,
   Link
-} from 'react-router-dom'
+} from 'react-router-dom';
 import axios from 'axios';
 import Gist from 'react-gist';
 import Masonry from 'react-masonry-component';
@@ -41,33 +42,39 @@ const __kylemoseby__ = {
     {
       'title': 'Seattle Crime Report Map',
       'description': 'Crime reports filed by the Seattle Police Department plotted to Google Maps.  Data found at data.gov',
-      'slugHash': 'JJZbPm',
+      'hashID': 'JJZbPm',
     },
     {
       'title': 'Seattle Crime Reports Timeline',
       'description': 'A timeline plotted in D3js of crime reports filed by Seattle Police Department.  Data found at data.gov',
-      'slugHash': '0f10e6b7a6fb348908b7dbc212876d62',
+      'hashID': '0f10e6b7a6fb348908b7dbc212876d62',
     },
     {
       'title': 'Flickr Recent Photos',
       'description': 'A Flickr API integration written in Angular',
-      'slugHash': '86cbd886a137fb713c61126a98f05780'
+      'hashID': '86cbd886a137fb713c61126a98f05780',
+      'test': function(){
+        return 'this is a test';
+      }
     },
     {
       'title': 'Flickr Album',
       'description': 'A Flickr API integration written in Angular',
-      'slugHash': '48dc386f62becb37fcbb583066955f0b'
+      'hashID': '48dc386f62becb37fcbb583066955f0b',
+      'test': function(){
+        return 'this is a test';
+      }
     }
   ],
   gist : [
     {
       'title': 'Twitter Account Tools',
       'description': 'Python scripts to automate certain account management tasks.',
-      'id': '3930a36183bca9acb3c02875be428d07'
+      'hashID': '3930a36183bca9acb3c02875be428d07',
     },{
       'title': 'Tumblr Account Tools',
       'description': 'Python scripts to automate certain account management tasks.',
-      'id': '098a0271331019239b81afce6276f20d'
+      'hashID': '098a0271331019239b81afce6276f20d',
     },
   ],
   contact: {
@@ -211,7 +218,6 @@ class FlickrGallery extends React.Component {
 
       })
       .catch(function(error) {
-
         console.log(error);
       });
     });
@@ -229,8 +235,7 @@ class FlickrGallery extends React.Component {
     const masonryOptions = {
       transitionDuration: 0
     };
-    console.log('render');
-    console.log(this.state.photoShow);
+
     let photos = this.state.photoQue.slice(0, this.state.photoShow);
     let __gallery = this;
 
@@ -302,7 +307,7 @@ class PhotoDetail extends Component {
     super(props);
 
     let photoId = this.props.match.params.id;
-    let __this = this;
+    let __photoDetail = this;
 
     this.state = {
       title: null,
@@ -322,7 +327,7 @@ class PhotoDetail extends Component {
       })
       .then(function(response) {
         let photoInfo = response.data.photo;
-        __this.setState({
+        __photoDetail.setState({
           title: photoInfo.title._content,
           description: photoInfo.description._content
         });
@@ -350,6 +355,14 @@ class PhotoDetail extends Component {
             "_o.jpg"
           ].join("")} alt={""} />
       </div>
+    );
+  }
+}
+
+class ReadmePyTwitter extends Component {
+  render(){
+    return(
+      <p>rdmePythnTwttr</p>
     );
   }
 }
@@ -406,8 +419,9 @@ class CodeExample extends Component {
 
     let exampleEmbed = null;
 
+    // Is this example a Codepen or a Gist?
     if (exmplePlat === 'gist'){
-      exampleEmbed = <Gist id={exmpleId} />;
+      exampleEmbed = [<Gist id={exmpleId} />] ;
     } else if (exmplePlat === "codepen"){
       exampleEmbed = <CodepenEmbed hash={exmpleId} />;
     }
@@ -418,19 +432,57 @@ class CodeExample extends Component {
     let isLast = currentInd === t2;
     let prevUrl = ["/example", (isFirst ? currentInd - 1 : t2), exmplePlat, exmpleId];
     let nextUrl = ["/example", (isLast ? (currentInd + 1) : 0), exmplePlat, exmpleId];
-
     return (
       <div className="col">
         <h2>Code Example</h2>
         {exampleEmbed}
-        <ul className="list-inline d-none">
+        <ul className="list-inline">
           <li className="list-inline-item">
-            <Link to={prevUrl.join('/')}>Prev</Link>
+            <span>Prev</span>
           </li>
           <li className="list-inline-item">
-            <Link to={nextUrl.join('/')}>Next</Link>
+            <span>Next</span>
           </li>
         </ul>
+      </div>
+    );
+  }
+}
+
+const CodePenTiles = () => (
+  <div>
+    <div>
+      {__kylemoseby__.codepen.map(pen => (
+        <div key={pen.hashID}>
+          <h3>{pen.title}</h3>
+          <div>{pen.description}</div>
+          <Link to={'/code/codepen/' + pen.hashID}><Icon.Codepen/></Link>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+class CodePage extends Component {
+  constructor (props) {
+    super(props);
+    this.state = __kylemoseby__;
+  }
+  render(){
+    const codepens = this.state.codepen;
+    const gists = this.state.gist;
+    return (
+      <div className="col">
+        <h2>JavaScript, HTML, CSS</h2>
+        <CodePenTiles />
+        <h2>Python</h2>
+        {gists.map((gist, index) =>
+          <div key={index}>
+            <h3>{gist.title}</h3>
+            <div>{gist.description}</div>
+            <Link to={'/code/gist/' + gist.hashID}><Icon.Github/></Link>
+          </div>
+        )}
       </div>
     );
   }
@@ -492,9 +544,6 @@ class ContactPage extends Component {
         return (
           <p>Error: {formHasError.name} - {formHasError.message}</p>
         )
-      } else {
-
-        return null;
       };
     }
 
@@ -504,6 +553,7 @@ class ContactPage extends Component {
         <p> All fields are required.</p>
         <div className={this.state.error ? 'alert alert-error' : 'invisible'} role="alert">
           <p>Something went wrong.  Please try again later.</p>
+          <div>{errorMessage(this.state.error)}</div>
         </div>
         <form name="contactForm"
           className="contact-form"
@@ -550,7 +600,6 @@ class ContactPage extends Component {
     );
   }
 }
-
 {/*
   Old SFDC for contact form
   <input type="hidden" name="oid" value="00D50000000Ia2S" />
@@ -558,37 +607,6 @@ class ContactPage extends Component {
   FORM TEXTAREA name="00N50000002CHu6"
   FORM ACTION https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8
 */}
-
-class CodePage extends Component {
-  constructor (props) {
-    super(props);
-    this.state = __kylemoseby__;
-  }
-  render(){
-    const codepens = this.state.codepen;
-    const gists = this.state.gist;
-    return (
-      <div className="col">
-        <h2>JavaScript, HTML, CSS</h2>
-        {codepens.map((pen, index) =>
-          <div key={index}>
-            <h3>{pen.title}</h3>
-            <div>{pen.description}</div>
-            <Link to={'/example/' + index + '/codepen/' + pen.slugHash}><span className="icon-codepen" /></Link>
-          </div>
-        )}
-        <h2>Python</h2>
-        {gists.map((gist, index) =>
-          <div key={index}>
-            <h3>{gist.title}</h3>
-            <div>{gist.description}</div>
-            <Link to={'/example/' + index + '/gist/' + gist.id}><span className="icon-github" /></Link>
-          </div>
-        )}
-      </div>
-    );
-  }
-}
 
 class HomePage extends Component {
   render() {
@@ -600,58 +618,13 @@ class HomePage extends Component {
   }
 }
 
-class KyleMoseby extends Component {
-  constructor(){
-    super()
-    this.state = Object.assign({
-      menuShow: true,
-    }, __kylemoseby__);
-    this.toggleMenu = this.toggleMenu.bind(this);
-  }
-
-  toggleMenu(){
-    const newState = !this.state.menuShow
-    this.setState({
-      menuShow: newState
-    });
-  }
-
-  render() {
-    const accounts = this.state.contact.social;
-    return (
-      <Router>
-        <div>
-          <nav className="navbar">
-            <Link className="navbar-brand" to="/">Kyle Moseby</Link>
-            <Icon.Menu onClick={this.toggleMenu} />
-          </nav>
-          <div className="container-fluid">
-            <div className="row">
-              <Navigation {...this.state} />
-              <Route exact path="/" component={HomePage}/>
-              <Route path="/example/:ind/:platform/:id" component={CodeExample}/>
-              <Route exact path="/contact" component={ContactPage} />
-              <Route exact path="/code" component={CodePage} />
-              <Route path="/photo/:secret/:farm/:server/:id" component={PhotoDetail} />
-              <Route path="/gallery/:index?" component={FlickrGallery}/>
-            </div>
-            <nav className="navbar">
-              <SocialMedia accounts={accounts} className="col" />
-            </nav>
-          </div>
-        </div>
-      </Router>
-    );
-  }
-}
-
 class Navigation extends React.Component {
   render(){
 
     const menuPens = this.props.codepen.map((_pen_, index) =>
       <li key={index}>
         <Link to={{
-            pathname: "/example/" + index + "/codepen/" + _pen_.slugHash,
+            pathname: "/example/" + index + "/codepen/" + _pen_.hashID,
             state: _pen_
           }}>{_pen_.title}</Link>
       </li>
@@ -670,7 +643,7 @@ class Navigation extends React.Component {
       <div className={this.props.menuShow ? "col-md-3 col-lg-2" : "km-nav invisible"}>
         <ul className="list-unstyled">
           <li><Link to="/contact"><Icon.Send /> Contact</Link></li>
-          <li><Link to="/gallery"><Icon.Aperture /> Photography</Link></li>
+          <li><Link to="/photography"><Icon.Aperture /> Photography</Link></li>
           <li><Link to="/code"><Icon.Code /> Code</Link></li>
           <li>
             <ul>{menuPens}</ul>
@@ -701,6 +674,7 @@ class SocialMedia extends Component {
             <Icon.Instagram />
           );
           break;
+        default: return null;
       };
     };
 
@@ -717,7 +691,55 @@ class SocialMedia extends Component {
   }
 }
 
+class KyleMoseby extends Component {
+  constructor(){
+    super()
+    this.state = Object.assign({
+      menuShow: true,
+    }, __kylemoseby__);
+    this.toggleMenu = this.toggleMenu.bind(this);
+  }
+
+  toggleMenu(){
+    const newState = !this.state.menuShow
+    this.setState({
+      menuShow: newState
+    });
+  }
+
+  render() {
+    const accounts = this.state.contact.social;
+    return (
+      <div>
+        <nav className="navbar">
+          <Link className="navbar-brand" to="/">Kyle Moseby</Link>
+          <Icon.Menu onClick={this.toggleMenu} />
+        </nav>
+        <div className="container-fluid">
+          <div className="row">
+            <Navigation {...this.state} />
+            <Switch>
+              <Route exact path="/" component={HomePage}/>
+              <Route exact path="/contact" component={ContactPage} />
+              <Route exact path="/code" component={CodePage} />
+              <Route path="/code/:platform/:id" component={CodeExample}/>
+              <Route path="/photography/:index?" component={FlickrGallery}/>
+              <Route path="/photography/:secret/:farm/:server/:id" component={PhotoDetail} />
+            </Switch>
+          </div>
+          <nav className="navbar">
+            <SocialMedia accounts={accounts} className="col" />
+          </nav>
+        </div>
+      </div>
+    );
+  }
+}
+
+
 ReactDOM.render(
-  <KyleMoseby />,
+  <BrowserRouter>
+    <KyleMoseby />
+  </BrowserRouter>,
   document.getElementById('root')
 );
