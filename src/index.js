@@ -53,17 +53,11 @@ const __kylemoseby__ = {
       'title': 'Flickr Recent Photos',
       'description': 'A Flickr API integration written in Angular',
       'hashID': '86cbd886a137fb713c61126a98f05780',
-      'test': function(){
-        return 'this is a test';
-      }
     },
     {
       'title': 'Flickr Album',
       'description': 'A Flickr API integration written in Angular',
       'hashID': '48dc386f62becb37fcbb583066955f0b',
-      'test': function(){
-        return 'this is a test';
-      }
     }
   ],
   gist : [
@@ -359,13 +353,38 @@ class PhotoDetail extends Component {
   }
 }
 
-class ReadmePyTwitter extends Component {
-  render(){
-    return(
-      <p>rdmePythnTwttr</p>
+const codeReadMe = {
+  _JJZbPm : function(){
+    return (
+      <p>_JJZbPm</p>
     );
-  }
-}
+  },
+  _0f10e6b7a6fb348908b7dbc212876d62 : function(){
+    return (
+      <p>_0f10e6b7a6fb348908b7dbc212876d62</p>
+    );
+  },
+  _86cbd886a137fb713c61126a98f05780 : function(){
+    return (
+      <p>_86cbd886a137fb713c61126a98f05780</p>
+    );
+  },
+  _48dc386f62becb37fcbb583066955f0b : function(){
+    return (
+      <p>_48dc386f62becb37fcbb583066955f0b</p>
+    );
+  },
+  _3930a36183bca9acb3c02875be428d07 : function(){
+    return (
+      <p>_86cbd886a137fb713c61126a98f05780</p>
+    );
+  },
+  _098a0271331019239b81afce6276f20d : function(){
+    return (
+      <p>_48dc386f62becb37fcbb583066955f0b</p>
+    );
+  },
+};
 
 class CodepenEmbed extends Component {
 
@@ -415,35 +434,26 @@ class CodeExample extends Component {
   render(){
 
     const exmplePlat  = this.props.match.params.platform;
-    const exmpleId = this.props.match.params.id;
+    const exmpleId = this.props.match.params.hashid;
 
     let exampleEmbed = null;
 
     // Is this example a Codepen or a Gist?
     if (exmplePlat === 'gist'){
-      exampleEmbed = [<Gist id={exmpleId} />] ;
+      exampleEmbed = <Gist id={exmpleId} />;
+
     } else if (exmplePlat === "codepen"){
       exampleEmbed = <CodepenEmbed hash={exmpleId} />;
     }
 
-    let currentInd = Number(this.props.match.params.ind);
-    let t2 = __kylemoseby__[exmplePlat].length;
-    let isFirst = currentInd === 0;
-    let isLast = currentInd === t2;
-    let prevUrl = ["/example", (isFirst ? currentInd - 1 : t2), exmplePlat, exmpleId];
-    let nextUrl = ["/example", (isLast ? (currentInd + 1) : 0), exmplePlat, exmpleId];
+    // Check for README file
+    let __readMe = codeReadMe['_' + exmpleId]();
+
     return (
       <div className="col">
         <h2>Code Example</h2>
         {exampleEmbed}
-        <ul className="list-inline">
-          <li className="list-inline-item">
-            <span>Prev</span>
-          </li>
-          <li className="list-inline-item">
-            <span>Next</span>
-          </li>
-        </ul>
+        {__readMe}
       </div>
     );
   }
@@ -469,7 +479,6 @@ class CodePage extends Component {
     this.state = __kylemoseby__;
   }
   render(){
-    const codepens = this.state.codepen;
     const gists = this.state.gist;
     return (
       <div className="col">
@@ -502,11 +511,10 @@ class ContactPage extends Component {
       value3 : this.state.message
     })
     .then(function (response) {
-      debugger;
       console.log(response);
     })
     .catch(function (__error) {
-      debugger;
+      console.log(__error);
       __contactPage.state.error = {
         name: __error.name,
         message: __error.message
@@ -522,38 +530,37 @@ class ContactPage extends Component {
 
   constructor(){
     super();
-    this.state = {
-      name: 'name',
-      email: 'email',
-      message: 'message',
-      error: null
-    }
     // BIND METHODS
     this.submitForm = this.submitForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
+
+    this.state = {
+      name: 'NAME',
+      email: 'EMAIL',
+      message: 'MESSAGE',
+      error: null
+    };
   }
 
   render() {
 
     function errorMessage(){
-
-      let formHasError = this.state.error;
-
-      if (formHasError) {
-
+      if (this.state.error !== null) {
         return (
-          <p>Error: {formHasError.name} - {formHasError.message}</p>
+          <p>Error: {this.state.error.name} - {this.state.error.message}</p>
         )
+      } else {
+        return null;
       };
     }
 
     return(
-      <div>
+      <div className="col">
         <h2>Contact Form</h2>
         <p> All fields are required.</p>
-        <div className={this.state.error ? 'alert alert-error' : 'invisible'} role="alert">
+        <div className={this.state.error === null ?  'invisible': 'alert alert-error'} role="alert">
           <p>Something went wrong.  Please try again later.</p>
-          <div>{errorMessage(this.state.error)}</div>
+          {/*<div>{errorMessage(this.state.error)}</div>*/}
         </div>
         <form name="contactForm"
           className="contact-form"
@@ -624,7 +631,7 @@ class Navigation extends React.Component {
     const menuPens = this.props.codepen.map((_pen_, index) =>
       <li key={index}>
         <Link to={{
-            pathname: "/example/" + index + "/codepen/" + _pen_.hashID,
+            pathname: "/code/codepen/" + _pen_.hashID,
             state: _pen_
           }}>{_pen_.title}</Link>
       </li>
@@ -633,7 +640,7 @@ class Navigation extends React.Component {
     const menuGists = this.props.gist.map((_gist_, index) =>
       <li key={index}>
          <Link to={{
-            pathname: "/example/" + index + "/gist/" + _gist_.id,
+            pathname: "/code/gist/" + _gist_.hashID,
             state: _gist_
           }}>{_gist_.title}</Link>
       </li>
@@ -722,7 +729,7 @@ class KyleMoseby extends Component {
               <Route exact path="/" component={HomePage}/>
               <Route exact path="/contact" component={ContactPage} />
               <Route exact path="/code" component={CodePage} />
-              <Route path="/code/:platform/:id" component={CodeExample}/>
+              <Route path="/code/:platform/:hashid" component={CodeExample}/>
               <Route path="/photography/:index?" component={FlickrGallery}/>
               <Route path="/photography/:secret/:farm/:server/:id" component={PhotoDetail} />
             </Switch>
