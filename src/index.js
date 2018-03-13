@@ -71,6 +71,7 @@ const __kylemoseby__ = {
       'hashID': '098a0271331019239b81afce6276f20d',
     },
   ],
+  photography: null,
   contact: {
     social: [
       {
@@ -93,6 +94,48 @@ const __kylemoseby__ = {
   }
 };
 
+function getGalleryData() {
+
+  const galleryIDs = [
+    '72157671573143060',
+    '72157642607219393',
+    '72157642608822784',
+    '72157641683609583',
+  ];
+
+  const queue = galleryIDs.map(function(__galId){
+    // Get image gallery data from flickr
+    return axios
+      .get("https://api.flickr.com/services/rest/", {
+        params: {
+          nojsoncallback: 1,
+          method: "flickr.photosets.getPhotos",
+          api_key: "cf8f1cf4fdd37bce0498531da5f31ed1",
+          photoset_id: __galId,
+          extras: "description",
+          format: "json"
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      }
+    )
+  });
+
+  return axios.all(queue)
+    .then(function(__queue){
+
+      let gallery = [];
+
+      __queue.forEach(function(response) {
+        gallery = gallery.concat(response.data.photoset.photo);
+      });
+
+      __kylemoseby__.photography = gallery;
+    }
+  );
+}
+
 class FlickrGallery extends React.Component {
   calcWindowSize(){
     const _wdth = window.innerWidth;
@@ -111,7 +154,7 @@ class FlickrGallery extends React.Component {
   }
 
   addImages() {
-    if (this.state.photoShow <= this.state.photoQue.length) {
+    if (this.state.gallery !== null && this.state.photoShow <= this.state.gallery.length) {
 
       let currentEnd = this.state.photoShow + 10;
 
@@ -147,7 +190,7 @@ class FlickrGallery extends React.Component {
     let __photoLngth = this.state.photos.length - 1;
     let indUpdate = null;
 
-    if (this.state.ind === null) {
+    if (!this.state.ind) {
       indUpdate = 0;
 
     } else if (elmId === 'indexFrwd'){
@@ -175,46 +218,21 @@ class FlickrGallery extends React.Component {
       null : Number(props.match.params.index);
 
     this.state = {
-      photoQue: [],
+      gallery: __kylemoseby__.photography,
       ind: optIndex,
       photoShow: 10
     };
+    if (!this.state.gallery) {
 
-    let galleryIDs = [
-      '72157671573143060',
-      '72157642607219393',
-      '72157642608822784',
-      '72157641683609583',
-    ];
+      let flickrData =  getGalleryData();
+      let __gallery = this;
 
-    let __gallery = this;
-
-    galleryIDs.forEach(function(__galId){
-      // Get image gallery data from flickr
-      axios
-      .get("https://api.flickr.com/services/rest/", {
-        params: {
-          nojsoncallback: 1,
-          method: "flickr.photosets.getPhotos",
-          api_key: "cf8f1cf4fdd37bce0498531da5f31ed1",
-          photoset_id: __galId,
-          extras: "description",
-          format: "json"
-        }
-      })
-      .then(function(response) {
-
-        let dataUpdated = __gallery.state.photoQue.slice().concat(response.data.photoset.photo);
-
+      flickrData.then(function(data){
         __gallery.setState({
-          photoQue: dataUpdated
+          gallery: __kylemoseby__.photography
         });
-
-      })
-      .catch(function(error) {
-        console.log(error);
       });
-    });
+    }
 
     // Bind methods to gallery Class
     this.handleScroll = this.handleScroll.bind(this);
@@ -226,115 +244,203 @@ class FlickrGallery extends React.Component {
 
   render() {
 
-    const masonryOptions = {
-      transitionDuration: 0
-    };
+    if (this.state.gallery !== null) {
 
-    let photos = this.state.photoQue.slice(0, this.state.photoShow);
-    let __gallery = this;
+      const masonryOptions = {
+        transitionDuration: 0
+      };
 
-    const photoList = photos.map((photo, index) => {
+      let photos = this.state.gallery.slice(0, this.state.photoShow);
+      let __gallery = this;
 
-      function toggleThumbs(event) {
-        __gallery.setState({
-          ind: index
-        });
-      }
+      const photoList = photos.map((photo, index) => {
 
-      let imgSize = null;
+        function toggleThumbs(event) {
+          __gallery.setState({
+            ind: index
+          });
+        }
 
-      if (index === this.state.ind){
-        imgSize = 'k';
-      }
-      else {
-        imgSize = 'z'
-      }
+        let imgSize = null;
 
-      return (
-        <div key={index} className="photo-wrap">
-          {/*
-            Add photodetail page later
-            <Link className="photo-link" to={["/photo", photo.secret, photo.farm, photo.server, photo.id].join('/')}>
+        if (index === this.state.ind){
+          imgSize = 'k';
+        }
+        else {
+          imgSize = 'z'
+        }
+
+        return (
+          <div key={index} className="photo-wrap">
+            <Link className="photo-link" to={["/photography", photo.secret, photo.farm, photo.server, photo.id].join('/')}>
               <Icon.Maximize2 />
             </Link>
-          */}
-          <img onClick={toggleThumbs}
-            src={[
-              "https://farm",
-              photo.farm,
-              ".staticflickr.com/",
-              photo.server,
-              "/",
-              photo.id,
-              "_",
-              photo.secret,
-              "_",
-              imgSize,
-              ".jpg"
-            ].join("")} alt={""} />
+            <img src={[
+                "https://farm",
+                photo.farm,
+                ".staticflickr.com/",
+                photo.server,
+                "/",
+                photo.id,
+                "_",
+                photo.secret,
+                "_",
+                imgSize,
+                ".jpg"
+              ].join("")} alt={""} />
+          </div>
+        );
+      });
+
+      let showButton = !this.state.ind ? 'invisible' : 'btn btn-primary';
+
+      return (
+        <div className="col">
+          <button type="button" className={showButton} id="indexBack" onClick={this.indexMove}>back</button>
+          <button type="button" className={showButton} id="indexFrwd" onClick={this.indexMove}>forward</button>
+          <button type="button" className={showButton} onClick={this.clearDetail}>close</button>
+          <Masonry
+            className={'flickr-img'}
+            elementType={'div'}
+            options={masonryOptions}
+            disableImagesLoaded={false}
+            updateOnEachImageLoad={false}>
+            {photoList}
+          </Masonry>
         </div>
       );
-    });
 
-    let showButton = this.state.ind === null ? 'invisible' : 'btn btn-primary';
+    } else {
 
-    return (
-      <div className="col">
-        <button type="button" className={showButton} id="indexBack" onClick={this.indexMove}>back</button>
-        <button type="button" className={showButton} id="indexFrwd" onClick={this.indexMove}>forward</button>
-        <button type="button" className={showButton} onClick={this.clearDetail}>close</button>
-        <Masonry
-          className={'flickr-img'}
-          elementType={'div'}
-          options={masonryOptions}
-          disableImagesLoaded={false}
-          updateOnEachImageLoad={false}>
-          {photoList}
-        </Masonry>
-      </div>
-    );
+      return (
+        <p>Getting gallery data...</p>
+      )
+    }
   }
 }
 
 class PhotoDetail extends Component {
+
   constructor(props){
     super(props);
 
-    let photoId = this.props.match.params.id;
-    let __photoDetail = this;
-
     this.state = {
-      title: null,
-      description: null,
+      photo: {
+        title: null,
+        description: null,
+      },
+      next: null,
+      prev: null,
     };
 
+    if (!this.state.gallery) {
+
+      let flickrData =  getGalleryData();
+      let __gallery = this;
+
+      flickrData.then(function(data){
+        __gallery.setState({
+          gallery: __kylemoseby__.photography
+        });
+      });
+    }
+  }
+
+  getPhotoInfo() {
+    let __photoDetail = this;
+
     axios
-      .get("https://api.flickr.com/services/rest/", {
+      .get('https://api.flickr.com/services/rest/', {
         params: {
           nojsoncallback: 1,
-          method: "flickr.photos.getInfo",
-          api_key: "cf8f1cf4fdd37bce0498531da5f31ed1",
-          photo_id: photoId,
-          extras: "description",
-          format: "json"
+          method: 'flickr.photos.getInfo',
+          api_key: 'cf8f1cf4fdd37bce0498531da5f31ed1',
+          photo_id: __photoDetail.props.match.params.id,
+          extras: 'description',
+          format: 'json'
         }
       })
       .then(function(response) {
-        let photoInfo = response.data.photo;
+        // Photo detail state updated with data from Flickr API
         __photoDetail.setState({
-          title: photoInfo.title._content,
-          description: photoInfo.description._content
+          photo: response.data.photo
         });
       })
       .catch(function(error) {
         console.log(error);
-      });
+      }
+    );
   }
 
   render() {
+
     let __photo = this.props.match.params;
+
+    function navImgSrc(imgObj){
+      debugger;
+      return [
+        "https://farm",
+        imgObj.farm,
+        ".staticflickr.com/",
+        imgObj.server,
+        "/",
+        imgObj.id,
+        "_",
+        imgObj.secret,
+          "_m.jpg"
+        ].join("")
+    }
+    function photoDetailLink(imgObj){
+      return [
+        '/photography',
+        imgObj.secret,
+        imgObj.farm,
+        imgObj.server,
+        imgObj.id,
+      ].join('/')
+    }
+
+    let galleryNavigation = null;
+
+    if (!__kylemoseby__.photography){
+
+      galleryNavigation = (
+        <p>no gallery info burh</p>
+      );
+
+    } else {
+
+      let currentInd =  __kylemoseby__.photography.findIndex(function(photo){
+        return photo.id === __photo.id ?
+          true : false;
+      });
+
+      let galLng = __kylemoseby__.photography.length - 1;
+
+      let _prevImg = __kylemoseby__.photography[currentInd <= 0 ?
+        galLng : currentInd - 1 ];
+
+      let _nextImg = __kylemoseby__.photography[currentInd >= galLng ?
+        0 : currentInd + 1 ];
+      debugger;
+      galleryNavigation = (
+        <div className="gallery-nav">
+          <div className="prev-image">
+            <img src={navImgSrc(_prevImg)} alt={""} />
+            <Link to={photoDetailLink(_prevImg)}>Previous</Link>
+          </div>
+          <div className="next-image">
+            <img src={navImgSrc(_nextImg)} alt={""} />
+            <Link to={photoDetailLink(_nextImg)}>next</Link>
+          </div>
+        </div>
+      );
+    };
+
     return (
       <div>
+        {galleryNavigation}
+        <button type="button"><Link to={'/photography'}>close</Link></button>
         <div className="photo-title">{this.state.title}</div>
         <div className="photo-description">{this.state.description}</div>
         <img src={[
@@ -346,7 +452,7 @@ class PhotoDetail extends Component {
             __photo.id,
             "_",
             __photo.secret,
-            "_o.jpg"
+            "_z.jpg"
           ].join("")} alt={""} />
       </div>
     );
@@ -558,7 +664,7 @@ class ContactPage extends Component {
       <div className="col">
         <h2>Contact Form</h2>
         <p> All fields are required.</p>
-        <div className={this.state.error === null ?  'invisible': 'alert alert-error'} role="alert">
+        <div className={!this.state.error ?  'invisible': 'alert alert-error'} role="alert">
           <p>Something went wrong.  Please try again later.</p>
           {/*<div>{errorMessage(this.state.error)}</div>*/}
         </div>
@@ -730,7 +836,7 @@ class KyleMoseby extends Component {
               <Route exact path="/contact" component={ContactPage} />
               <Route exact path="/code" component={CodePage} />
               <Route path="/code/:platform/:hashid" component={CodeExample}/>
-              <Route path="/photography/:index?" component={FlickrGallery}/>
+              <Route exact path="/photography/" component={FlickrGallery}/>
               <Route path="/photography/:secret/:farm/:server/:id" component={PhotoDetail} />
             </Switch>
           </div>
