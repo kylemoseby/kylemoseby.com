@@ -16,9 +16,6 @@ angular.module('kylemosebyDotcomApp')
       };
     }
 
-    console.log('fired');
-
     $scope.toggleLeft = buildToggler('left');
     $scope.toggleRight = buildToggler('right');
-
   }]);

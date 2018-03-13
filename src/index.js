@@ -605,110 +605,112 @@ class CodePage extends Component {
 
 class ContactPage extends Component {
 
-  submitForm(_event) {
+  handleSubmit(_event) {
 
     _event.nativeEvent.preventDefault()
 
     let __contactPage = this;
 
+    function $event(){
+      __contactPage.setState({
+        submited: true
+      });
+    }
+
+    debugger;
+
     axios.post('https://maker.ifttt.com/trigger/kylemoseby_form_contact/with/key/paj55zq9xejIeveDVQ0cW', {
-      value1 : this.state.name,
+      value1 : this.state.fullName,
       value2 : this.state.email,
       value3 : this.state.message
     })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (__error) {
-      console.log(__error);
-      __contactPage.state.error = {
-        name: __error.name,
-        message: __error.message
-      }
-    });
+    .then($event)
+    .catch($event);
   }
 
   handleChange(event) {
+    let updateObj = {};
+    updateObj[event.currentTarget.name] = event.currentTarget.value;
+    this.setState(updateObj);
+  }
+
+  errorMessage(){
+    if (!this.state.error) {
+      return null;
+    } else {
+      return (
+        <p>Error: there was an error.  Please try again later.</p>
+      );
+    }
+  }
+
+  clearForm() {
     this.setState({
-      [event.target.name] : event.target.value
+      fullName: 'NAME',
+      email: 'EMAIL',
+      message: 'MESSAGE',
+      error: null,
+      submited: false
     });
   }
 
   constructor(){
     super();
-    // BIND METHODS
-    this.submitForm = this.submitForm.bind(this);
-    this.handleChange = this.handleChange.bind(this);
 
     this.state = {
-      name: 'NAME',
+      fullName: 'NAME',
       email: 'EMAIL',
       message: 'MESSAGE',
-      error: null
+      error: null,
+      submited: false
     };
+
+    // BIND METHODS
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.errorMessage = this.errorMessage.bind(this);
+    this.clearForm = this.clearForm.bind(this);
   }
 
   render() {
-
-    function errorMessage(){
-      if (this.state.error !== null) {
-        return (
-          <p>Error: {this.state.error.name} - {this.state.error.message}</p>
-        )
-      } else {
-        return null;
-      };
-    }
-
     return(
       <div className="col">
         <h2>Contact Form</h2>
-        <p> All fields are required.</p>
-        <div className={!this.state.error ?  'invisible': 'alert alert-error'} role="alert">
-          <p>Something went wrong.  Please try again later.</p>
-          {/*<div>{errorMessage(this.state.error)}</div>*/}
-        </div>
-        <form name="contactForm"
-          className="contact-form"
-          action=""
-          method="POST"
-        >
+        <form onSubmit={this.handleSubmit} className={this.state.submited ? "invisible" : "contact-form"}>
           <div className="form-group">
             <label>
               Name
-              <input value={this.state.name}
-                name="name"
-                onChange={this.handleChange}
-                className="form-control"
-              /></label>
+              <input type="text" name="fullName" value={this.state.fullName} onChange={this.handleChange}  />
+            </label>
           </div>
           <div className="form-group">
             <label>
               Email address
-              <input value={this.state.email}
-                name="email"
-                onChange={this.handleChange}
-                className="form-control"
-                maxLength="80"
-                size="20"
-              /></label>
+              <input type="text" name="email" value={this.state.email} onChange={this.handleChange}  />
+            </label>
           </div>
           <div className="form-group">
             <label>
               Message
-              <textarea value={this.state.message}
-                name="message"
+              <textarea
                 onChange={this.handleChange}
-                className="form-control"
+                name="message"
+                value={this.state.message}
                 rows="3"
                 type="text"
                 wrap="soft"
               /></label>
+              <input type="submit" value="Submit" />
           </div>
-          <button type="submit" className="btn btn-primary" onClick={this.submitForm}>
-            Submit
-          </button>
         </form>
+        <p> All fields are required.</p>
+        <div className={this.state.submited ? "alert alert-primary" : "invisible"} role="alert">
+          <p>Thank you for reaching out.</p>
+        </div>
+        <div className={!this.state.error ?  "invisible": "invisible"} role="alert">
+          <p>Something went wrong.  Please try again later.</p>
+          {this.errorMessage()}
+        </div>
       </div>
     );
   }
