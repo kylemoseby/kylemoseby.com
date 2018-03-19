@@ -26,7 +26,14 @@ const __sitemap__ = {
       'title': 'Twitter Account Tools',
       'description': 'Python scripts to automate certain account management tasks.',
       'hashID': '3930a36183bca9acb3c02875be428d07',
-    },{
+    },
+/*
+  Tweets Remove
+  Tweets Backup
+  Favorites Remove
+  Favorites Backup
+*/
+    {
       'title': 'Tumblr Account Tools',
       'description': 'Python scripts to automate certain account management tasks.',
       'hashID': '098a0271331019239b81afce6276f20d',

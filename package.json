@@ -16,7 +16,13 @@
     "react-scripts": "0.9.5",
     "react-transition-group": "^2.2.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "bootstrap": "^4.0.0",
+    "grunt-sass": "^2.1.0",
+    "jit-grunt": "^0.10.0",
+    "load-grunt-tasks": "^3.5.2",
+    "node-sass": "^4.7.2"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
