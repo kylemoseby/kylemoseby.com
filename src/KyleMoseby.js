@@ -39,8 +39,12 @@ class KyleMoseby extends Component {
     return (
       <div>
         <nav className="navbar">
-          <Link className="navbar-brand" to="/">Kyle Moseby</Link>
-          <Icon.Menu onClick={this.toggleMenu} />
+          <div className="container-fluid">
+            <div className="col">
+              <Icon.Menu onClick={this.toggleMenu} />&nbsp;
+              <Link className="navbar-brand" to="/">Kyle Moseby</Link>
+            </div>
+          </div>
         </nav>
         <div className="container-fluid">
           <div className="row">

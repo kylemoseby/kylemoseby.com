@@ -1,35 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,600i,700');
+$font-family-sans-serif: 'IBM Plex Mono', Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+$primary: #000;
+$navbar-padding-x: 0;
+
 @import "node_modules/bootstrap/scss/bootstrap";
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|IBM+Plex+Sans+Condensed:400,400i|IBM+Plex+Sans:400,400i,700|IBM+Plex+Serif');
-
-$font-family-sans-serif: 'IBM Plex Sans', Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
 
-/*
-font-family: 'IBM Plex Sans', sans-serif;
-font-family: 'IBM Plex Mono', monospace;
-font-family: 'IBM Plex Serif', serif;
-font-family: 'IBM Plex Sans Condensed', sans-serif;
-*/
-
-.navbar-brand {
-  font-size: 40px;
+.navbar .container-fluid {
+  padding: 0;
 }
-
+.navbar-brand {
+  font-size: $h2-font-size;
+  font-weight: 700;
+}
 
 img {
   max-height: 90vh;
   max-width: 100%;
 }
 /*
-      NAVBAR
+      NAVIGATION
 */
-.km-nav.invisible {
+.invisible {
   height: 0;
   width: 0;
   overflow: hidden;
 }
+.km-nav {
+  font-size: $font-size-sm;
+  font-weight: 600i;
+  a {
+   color: $gray-600;
+  }
+}
 /*
-      NAVBAR END
+      NAVIGATION END
 */
 /*
       FLICKR GALLERY
@@ -38,6 +44,8 @@ img {
   overflow: hidden;
 }
 .photo-link {
+  font-weight: 700;
+  color: $body-bg;
   position: absolute;
   right: 50%;
   bottom: 10px;
@@ -47,3 +55,16 @@ img {
 */
 
 
+.code-page {
+  h2{
+    padding-top: 2.5rem;
+  }
+  h2:first-of-type {
+    padding-top: 0;
+  }
+  h3 {
+    padding-top: 1.5rem;
+    padding-right: 1rem;
+    display: inline-block;
+  }
+}

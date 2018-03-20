@@ -27,15 +27,15 @@ class Navigation extends React.Component {
     );
 
     return (
-      <div className={this.props.menuShow ? "col-md-3 col-lg-2" : "km-nav invisible"}>
+      <div className={this.props.menuShow ? "col-md-3 col-lg-2 km-nav" : "invisible"}>
         <ul className="list-unstyled">
           <li><Link to="/photography"><Icon.Aperture /> Photography</Link></li>
           <li><Link to="/code"><Icon.Code /> Code</Link></li>
           <li>
-            <ul>{menuPens}</ul>
+            <ul className="">{menuPens}</ul>
           </li>
           <li>
-            <ul>{menuGists}</ul>
+            <ul className="">{menuGists}</ul>
           </li>
         </ul>
       </div>

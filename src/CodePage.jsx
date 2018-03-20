@@ -12,9 +12,11 @@ const CodePenTiles = () => (
     <div>
       {__sitemap__.codepen.map(pen => (
         <div key={pen.hashID}>
-          <h3>{pen.title}</h3>
+          <Link to={'/code/codepen/' + pen.hashID}>
+            <h3>{pen.title}</h3>
+            <Icon.Codepen/>
+          </Link>
           <div>{pen.description}</div>
-          <Link to={'/code/codepen/' + pen.hashID}><Icon.Codepen/></Link>
         </div>
       ))}
     </div>
@@ -29,15 +31,19 @@ class CodePage extends Component {
   render(){
     const gists = this.state.gist;
     return (
-      <div className="col">
+      <div className="col code-page">
         <h2>JavaScript, HTML, CSS</h2>
         <CodePenTiles />
         <h2>Python</h2>
         {gists.map((gist, index) =>
           <div key={index}>
-            <h3>{gist.title}</h3>
-            <div>{gist.description}</div>
-            <Link to={'/code/gist/' + gist.hashID}><Icon.Github/></Link>
+            <Link to={'/code/gist/' + gist.hashID}>
+              <h3>{gist.title}</h3>
+              <Icon.Github/>
+            </Link>
+            <div>
+              {gist.description}
+            </div>
           </div>
         )}
       </div>

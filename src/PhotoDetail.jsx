@@ -67,7 +67,7 @@ class PhotoDetail extends Component {
     let __photo = this.props.match.params;
 
     function navImgSrc(imgObj){
-      debugger;
+
       return [
         "https://farm",
         imgObj.farm,
@@ -112,7 +112,7 @@ class PhotoDetail extends Component {
 
       let _nextImg = __sitemap__.photography[currentInd >= galLng ?
         0 : currentInd + 1 ];
-      debugger;
+
       galleryNavigation = (
         <div className="gallery-nav">
           <div className="prev-image">
