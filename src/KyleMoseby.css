@@ -6048,7 +6048,7 @@ img {
 
 .km-nav {
   font-size: 0.875rem;
-  font-weight: 600i; }
+  font-weight: 600; }
   .km-nav a {
     color: #6c757d; }
 
@@ -6060,6 +6060,10 @@ img {
 */
 .photo-wrap {
   overflow: hidden; }
+  .photo-wrap img {
+    width: 25vh;
+    height: 25vh;
+    object-fit: cover; }
 
 .photo-link {
   font-weight: 700;
@@ -6081,3 +6085,8 @@ img {
   padding-top: 1.5rem;
   padding-right: 1rem;
   display: inline-block; }
+
+.code-example {
+  background: red;
+  height: 25vh;
+  overflow: scroll; }

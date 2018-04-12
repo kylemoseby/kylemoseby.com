@@ -8,32 +8,32 @@ import CodepenEmbed from './CodepenEmbed';
 const codeReadMe = {
   _JJZbPm : function(){
     return (
-      <p>_JJZbPm</p>
+      <p>Add a description</p>
     );
   },
   _0f10e6b7a6fb348908b7dbc212876d62 : function(){
     return (
-      <p>_0f10e6b7a6fb348908b7dbc212876d62</p>
+      <p>Add a description</p>
     );
   },
   _86cbd886a137fb713c61126a98f05780 : function(){
     return (
-      <p>_86cbd886a137fb713c61126a98f05780</p>
+      <p>Add a description</p>
     );
   },
   _48dc386f62becb37fcbb583066955f0b : function(){
     return (
-      <p>_48dc386f62becb37fcbb583066955f0b</p>
+      <p>Add a description</p>
     );
   },
   _3930a36183bca9acb3c02875be428d07 : function(){
     return (
-      <p>_86cbd886a137fb713c61126a98f05780</p>
+      <p>Add a description</p>
     );
   },
   _098a0271331019239b81afce6276f20d : function(){
     return (
-      <p>_48dc386f62becb37fcbb583066955f0b</p>
+      <p>Add a description</p>
     );
   },
 };
@@ -58,10 +58,14 @@ class CodeExample extends Component {
     let __readMe = codeReadMe['_' + exmpleId]();
 
     return (
-      <div className="col">
-        <h2>Code Example</h2>
-        {exampleEmbed}
-        {__readMe}
+      <div className="row">
+        <div className="col-3">
+          <h2>Code Example</h2>
+          {__readMe}
+        </div>
+        <div className="col-9">
+          {exampleEmbed}
+        </div>
       </div>
     );
   }

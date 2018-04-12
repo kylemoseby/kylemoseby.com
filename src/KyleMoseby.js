@@ -37,18 +37,20 @@ class KyleMoseby extends Component {
   render() {
     const accounts = this.state.contact.social;
     return (
-      <div>
-        <nav className="navbar">
-          <div className="container-fluid">
+      <div className="container-fluid">
+        <div className="row">
+          <nav className="navbar">
             <div className="col">
               <Icon.Menu onClick={this.toggleMenu} />&nbsp;
               <Link className="navbar-brand" to="/">Kyle Moseby</Link>
             </div>
-          </div>
-        </nav>
-        <div className="container-fluid">
-          <div className="row">
+          </nav>
+        </div>
+        <div className="row">
+          <div className="col">
             <Navigation {...this.state} />
+          </div>
+          <div className="col-sm-12 col-md-10">
             <Switch>
               <Route exact path="/" component={HomePage}/>
               <Route exact path="/contact" component={ContactPage} />
@@ -58,10 +60,10 @@ class KyleMoseby extends Component {
               <Route path="/photography/:secret/:farm/:server/:id" component={PhotoDetail} />
             </Switch>
           </div>
-          <nav className="navbar">
-            <SocialMedia accounts={accounts} className="col" />
-          </nav>
         </div>
+        <nav className="navbar">
+          <SocialMedia accounts={accounts} className="col" />
+        </nav>
       </div>
     );
   }

@@ -29,7 +29,7 @@ img {
 }
 .km-nav {
   font-size: $font-size-sm;
-  font-weight: 600i;
+  font-weight: 600;
   a {
    color: $gray-600;
   }
@@ -42,6 +42,11 @@ img {
 */
 .photo-wrap {
   overflow: hidden;
+  img {
+    width: 25vh;
+    height: 25vh;
+    object-fit: cover;
+  }
 }
 .photo-link {
   font-weight: 700;
@@ -67,4 +72,10 @@ img {
     padding-right: 1rem;
     display: inline-block;
   }
+}
+
+.code-example {
+  background: red;
+  height: 25vh;
+  overflow: scroll;
 }
