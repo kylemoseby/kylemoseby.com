@@ -44,10 +44,12 @@ function Header() {
 
 function App() {
   return (
-    <div className="container-fluid">
+    <div>
       <Header />
       <main>
-        <Outlet />
+        <div className="container-fluid">
+          <Outlet />
+        </div>
       </main>
     </div>
   );

@@ -52,7 +52,7 @@ function SocialMedia(props) {
   return LinkData.map((link, indx) => {
     return (
       <div className="" key={indx}>
-        <a href={link.url} className="text-white display-6 py-4 hover-linethrough"  target="_blank" rel="noreferrer">
+        <a href={link.url} className="text-black display-6 py-4 hover-linethrough"  target="_blank" rel="noreferrer">
           {link.icon}
         </a>
       </div>
@@ -62,24 +62,22 @@ function SocialMedia(props) {
 
 function Introduction() {
   return (
-    <div className="grad-background my-3">
-      <div className="row">
-        <div className="col-12">
-          <Welcome />
+    <div className="grad-background row">
+      <div className="col-12">
+        <Welcome />
+      </div>
+      <div className="col-12">
+        <PageLinks />
+      </div>
+      <div className="col-12">
+        <div className="d-flex justify-content-center pt-2 pt-md-3">
+          <SiteIntro />
+          {/*<img src="/images/kylemoseby.gif" className="rounded" />*/}
         </div>
-        <div className="col-12">
-          <PageLinks />
-        </div>
-        <div className="col-12">
-          <div className="d-flex justify-content-center pt-2 pt-md-3">
-            <SiteIntro />
-            {/*<img src="/images/kylemoseby.gif" className="rounded" />*/}
-          </div>
-        </div>
-        <div className="col-12">
-          <div className="d-flex justify-content-evenly align-items-end pt-2 pt-md-3">
-            <SocialMedia />
-          </div>
+      </div>
+      <div className="col-12">
+        <div className="d-flex justify-content-evenly align-items-end pt-2 pt-md-3">
+          <SocialMedia />
         </div>
       </div>
     </div>

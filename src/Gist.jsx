@@ -21,7 +21,6 @@ function Gist() {
   const gistID = params.id;
   const [loaded, setLoaded] = useState(false)
   const [files, setFiles] = useState(null)
-  const [description, setDescription] = useState('');
 
   const data = gistData.find(d => d.id === gistID)
 
@@ -35,7 +34,6 @@ function Gist() {
         .then(response => {
           setLoaded(true);
           setFiles(response.data.files);
-          setDescription(response.data.description);
         });
     }
   });
