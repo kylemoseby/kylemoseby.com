@@ -5,7 +5,7 @@ import LinkData from './LinkData';
 function LinkTree() {
   const buttons = LinkData.map((link, indx) => {
     return (
-      <div key={indx} className="col d-grid">
+      <div key={indx} className="col d-grid my-3">
         <a href={link.url}
           className="btn btn-primary btn-lg"
           type="button"
