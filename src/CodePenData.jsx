@@ -27,6 +27,15 @@
     },
     tags: ['JavaScript', 'Google Charts', 'Data Visualization']
   }, {
+    title: 'WDFW Fish Releases Treemap Chart',
+    slugHash: 'RwyrzKm',
+    description: function() {
+      return (<div>
+          <p>Treemap chart built with Google Charts using data from <a href="https://data.wa.gov/dataset/WDFW-Fish-Plants/6fex-3r7d" target="_blank" rel="noreferrer">Washington State's Data.gov portal</a>.</p>
+        </div>);
+    },
+    tags: ['JavaScript', 'Google Charts', 'Data Visualization']
+  }, {
     title: 'WDFW Fish Releases Sankey Chart',
     slugHash: 'LYdMKYK',
     description: function() {

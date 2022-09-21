@@ -4,8 +4,10 @@ import {
   ImLocation,
 } from "react-icons/im"
 
+
 import './App.scss';
 import pages from './pages';
+
 import LinkData from './LinkData';
 
 function Welcome() {
@@ -72,7 +74,6 @@ function Introduction() {
       <div className="col-12">
         <div className="d-flex justify-content-center pt-2 pt-md-3">
           <SiteIntro />
-          {/*<img src="/images/kylemoseby.gif" className="rounded" />*/}
         </div>
       </div>
       <div className="col-12">

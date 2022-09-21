@@ -5,11 +5,7 @@ import {
 } from "react-icons/im"
 
 
-const LinkData = [{
-    title: 'Instagram',
-    url: 'https://www.instagram.com/ybesomelyk/',
-    icon: <ImInstagram />
-  },
+const LinkData = [
   {
     title: 'Github',
     url: 'https://github.com/kylemoseby',
@@ -19,6 +15,10 @@ const LinkData = [{
     title: 'Codepen',
     url: 'https://codepen.io/kylemoseby',
     icon: <ImCodepen />
+  },{
+    title: 'Instagram',
+    url: 'https://www.instagram.com/ybesomelyk/',
+    icon: <ImInstagram />
   }
 ];
 
