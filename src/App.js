@@ -11,6 +11,7 @@ import pages from './pages';
 function Header() {
   let location = useLocation();
   let currentPath = location.pathname;
+
   function Menu() {
     return (
       <ul className="menu d-inline-block fw-bold text-uppercase m-0 display-6">
@@ -32,11 +33,13 @@ function Header() {
 
   return (
     <header>
-      <div className={'header ' + (currentPath === '/' ? 'd-none' : '')}>
-        <div className="accent-font display-6 d-inline-block p-3">
-          <Link to="/" className="text-decoration-none">Kyle Moseby</Link>
+      <div data-nosnippet>
+        <div className={'header ' + (currentPath === '/' ? 'd-none' : '')}>
+          <div className="accent-font display-6 d-inline-block p-3">
+            <Link to="/" className="text-decoration-none">Kyle Moseby</Link>
+          </div>
+          <Menu />
         </div>
-        <Menu />
       </div>
     </header>
   );

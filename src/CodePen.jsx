@@ -21,11 +21,11 @@ function CodePen() {
     <div className="row">
       <div className="col">
         <h3>{pen.title}</h3>
-        <ol className="breadcrumb">
+        <ul className="breadcrumb">
           {penTags}
-        </ol>
-        <div>{pen.description()}</div>
+        </ul>
         <CodePenEmbed slugHash={pen.slugHash} />
+        <div>{pen.description()}</div>
         <Link to="/code/">Back to Code Examples</Link>
       </div>
     </div>

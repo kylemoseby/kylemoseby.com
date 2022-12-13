@@ -4,11 +4,10 @@ import {
   ImLocation,
 } from "react-icons/im"
 
-
 import './App.scss';
 import pages from './pages';
-
 import LinkData from './LinkData';
+
 
 function Welcome() {
   return (
@@ -19,9 +18,10 @@ function Welcome() {
   );
 }
 
+
 function PageLinks() {
   return (
-    <div className="menu d-none d-sm-flex justify-content-center">
+    <div className="menu d-sm-flex justify-content-center">
       { pages.filter(d => d.title !== 'Home')
         .map((_l, indx) => {
           return (
@@ -33,6 +33,7 @@ function PageLinks() {
     </div>
   );
 }
+
 
 function SiteIntro() {
   return (
@@ -50,6 +51,7 @@ function SiteIntro() {
   );
 }
 
+
 function SocialMedia(props) {
   return LinkData.map((link, indx) => {
     return (
@@ -61,6 +63,7 @@ function SocialMedia(props) {
     )
   });
 }
+
 
 function Introduction() {
   return (

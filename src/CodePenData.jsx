@@ -37,7 +37,7 @@
     tags: ['JavaScript', 'Google Charts', 'Data Visualization']
   }, {
     title: 'WDFW Fish Releases Sankey Chart',
-    slugHash: 'LYdMKYK',
+    slugHash: 'MWXabbG',
     description: function() {
       return (<div>
           <p>Sankey chart built with Google Charts using data from <a href="https://data.wa.gov/dataset/WDFW-Fish-Plants/6fex-3r7d" target="_blank" rel="noreferrer">Washington State's Data.gov portal</a>.</p>

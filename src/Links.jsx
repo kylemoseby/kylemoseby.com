@@ -5,22 +5,22 @@ import LinkData from './LinkData';
 function LinkTree() {
   const buttons = LinkData.map((link, indx) => {
     return (
-      <div key={indx} className="col d-grid my-3">
+      <li key={indx}>
         <a href={link.url}
-          className="btn btn-primary btn-lg"
+          className="btn btn-link btn-lg"
           type="button"
           target="_blank"
           rel="noreferrer"
         >
-          {link.icon}&nbsp;&nbsp;
-          {link.title}
+          <span className="mx-1 fs-3">{link.icon}</span>
+          <span className="">{link.title}</span>
         </a>
-      </div>
+      </li>
     )
   });
 
   return (
-    <div className="row row-cols-1 row-cols-md-3 ">
+    <div className="list-unstyled">
       {buttons}
     </div>
   );

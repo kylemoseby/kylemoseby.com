@@ -2,11 +2,16 @@ import {
   ImInstagram,
   ImGithub,
   ImCodepen,
+  ImLinkedin,
 } from "react-icons/im"
 
 
 const LinkData = [
   {
+    title: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/kyle-moseby-b3b387259',
+    icon: <ImLinkedin />
+  },{
     title: 'Github',
     url: 'https://github.com/kylemoseby',
     icon: <ImGithub />
