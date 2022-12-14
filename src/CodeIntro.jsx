@@ -12,6 +12,7 @@ import './App.scss';
 import CodePenData from './CodePenData';
 import gistData from './gistData';
 
+// Common wrapper for Codepen and Gist Examples
 function ListItem(props) {
   return (
     <li key={props.index} className="px-3 pt-2">
@@ -27,106 +28,124 @@ function Button(props) {
   );
 }
 
-function GistsMenu() {
-  return gistData.map((gist, indx) => {
-    return (
-      <ListItem key={indx}>
-        <Link to={'gist/' + gist.id}>
-          <h3><ImGithub/>{gist.title}</h3>
-        </Link>
-      </ListItem>
-    );
-  })
-}
-
 const tagSet = new Set(CodePenData.map(d => d.tags).flat());
 
 function Code() {
 
   const [showTags, toggleTags] = useState(false);
-  const [filterTags, updateFilters] = useState([...tagSet]);
-
-  function showPenTags(tags) {
-    filterTags.every(t => {
-      if (tags.contains(t)) {
-        return false;
-      }
-    });
-    return true;
-  }
+  const [showGithub, toggleGithub] = useState(true);
+  const [showCodepen, toggleCodepen] = useState(true);
+  const [filterTags, updateFilters] = useState([]);
 
   function Pentags(props) {
     return (
       <div>{props.tags.map((tag, indx) => {
-        return (<span key={indx}>{indx !== 0 ? '/' : ''}&nbsp;{tag}&nbsp;</ span>)
+        return (<span key={tag}>{indx !== 0 ? '/' : ''}&nbsp;{tag}&nbsp;</ span>)
       })}</div>
     );
   }
 
   function PenItem(props) {
     const { info: { slugHash }, info: { title }, info: { tags } } = props;
+    let filtered = new Set(filterTags);
     return (
       <Link to={'pen/' + slugHash}>
         <h3><ImCodepen/>{title}</h3>
-        <Pentags tags={tags} />
+        {showTags && <Pentags tags={tags} />}
       </Link>
     );
   }
 
   function PenExmplMenu(props) {
+    let filtered = new Set(filterTags);
+    // CHECK LOGIC FOR LEAST AMOUNT OF ITERATIONS
     return CodePenData.map((pen) => {
-      let showTags = showPenTags(pen.tags);
       return (
-        <div>
-          {test &&
-            <ListItem key={pen.slugHash}>
-              <PenItem info={pen} showTags={showTags} />
+        <div key={pen.slugHash}>
+        {pen.tags.every(d => !filtered.has(d)) &&
+            <ListItem>
+              <PenItem info={pen} />
             </ListItem>
-          }
+        }
         </div>
       );
     });
   }
 
-  function removeTag(tag) {
-    tagSet.delete(tag);
-    updateFilters([...tagSet]);
+  function GistsMenu() {
+    return gistData.map((gist, indx) => {
+      return (
+        <ListItem key={indx}>
+        <Link to={'gist/' + gist.id}>
+          <h3><ImGithub/>{gist.title}</h3>
+        </Link>
+      </ListItem>
+      );
+    })
   }
 
-  function removeTag(tag) {
-    tagSet.add(tag);
-    updateFilters([...tagSet]);
+  function toggleTag(tag) {
+    let filtered = new Set(filterTags);
+
+    if (!filtered.has(tag)) {
+      filtered.add(tag)
+    } else {
+      filtered.delete(tag)
+    };
+
+    updateFilters([...filtered]);
   }
 
-  const tags = [...tagSet].map(tag => {
-    return <span key={tag} onClick={removeTag(tag)}>{tag} {filterTags.includes(tag) ? 'not' : 'filtered'}</span>
+  const tags = [...tagSet].map((tag, indx) => {
+    return (
+      <div key={indx} onClick={() => {toggleTag(tag)}}>
+        {tag}
+      </div>);
   });
 
   function tagClick() {
-    console.log('tagClick');
     toggleTags(!showTags);
   }
 
+  function clearFilters(){
+    updateFilters([]);
+  }
+  function clickGithub(){
+    toggleGithub(!showGithub)
+  }
+  function clickCodepen(){
+    toggleCodepen(!showCodepen)
+  }
 
   return (
     <div className="col">
-
       <h3>Tags</h3>
-      {tags}<br/>
-      filtered :{filterTags.map(t => <span>{t}</span>)}
+      <div>{tags}</div>
       <Button>
-        <span>updateFilters (uniqueTags) Clear Filters</span>
+        <div onClick={clearFilters}>Clear Filters</div>
       </Button>
-
+      <Button>
+        <div onClick={clickCodepen}>
+          Codepen
+        </div>
+      </Button>
+      <Button>
+        <div onClick={clickGithub}>
+          Github Gist
+        </div>
+      </Button>
       <Button>
         <div onClick={tagClick}>
           {showTags ? <ImEnlarge2 /> : <ImShrink2 />}
         </div>
       </Button>
-
       <ul className="list-unstyled">
-        <PenExmplMenu showTags={showTags} />
-        <GistsMenu/>
+        {showCodepen &&
+          <PenExmplMenu />
+        }
+        {showGithub &&
+          <GistsMenu/>
+        }
       </ul>
 
     </div>
