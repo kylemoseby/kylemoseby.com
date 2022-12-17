@@ -14,6 +14,8 @@ import Links from './Links';
 import CodePen from './CodePen';
 import CodeIntro from './CodeIntro';
 import Gist from './Gist';
+import Photography from './Photography';
+import PhotoIntro from './PhotoIntro';
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -23,6 +25,9 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Introduction />} />
+          <Route path="photography" element={<Photography />}>
+            <Route index element={<PhotoIntro />} />
+          </Route>
           <Route path="code" element={<Code />}>
             <Route index element={<CodeIntro />} />
             <Route path="pen/:slugHash" element={<CodePen />} />

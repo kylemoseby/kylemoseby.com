@@ -2,20 +2,16 @@ import React from 'react';
 import {
   Outlet
 } from "react-router-dom";
+import PageContainer from './PageContainer';
 import './App.scss';
 
 
 function Code() {
 
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col">
-          <h2>Code</h2>
-          <Outlet />
-        </div>
-      </div>
-    </div>
+    <PageContainer pageName="Code">
+      <Outlet />
+    </PageContainer>
   );
 }
 

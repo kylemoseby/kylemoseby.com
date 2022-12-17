@@ -21,7 +21,6 @@ function ListItem(props) {
   );
 }
 
-
 function Button(props) {
   return (
     <button type="button" className="btn btn-primary">{props.children}</button>
@@ -109,6 +108,8 @@ function Code() {
 
   function clearFilters(){
     updateFilters([]);
+    toggleGithub(true)
+    toggleCodepen(true)
   }
   function clickGithub(){
     toggleGithub(!showGithub)
@@ -118,36 +119,37 @@ function Code() {
   }
 
   return (
-    <div className="col">
-      <h3>Tags</h3>
-      <div>{tags}</div>
-      <Button>
-        <div onClick={clearFilters}>Clear Filters</div>
-      </Button>
-      <Button>
-        <div onClick={clickCodepen}>
-          Codepen
-        </div>
-      </Button>
-      <Button>
-        <div onClick={clickGithub}>
-          Github Gist
-        </div>
-      </Button>
-      <Button>
-        <div onClick={tagClick}>
-          {showTags ? <ImEnlarge2 /> : <ImShrink2 />}
-        </div>
-      </Button>
-      <ul className="list-unstyled">
-        {showCodepen &&
-          <PenExmplMenu />
-        }
-        {showGithub &&
-          <GistsMenu/>
-        }
-      </ul>
-
+    <div className="row">
+      <div className="col">
+        <h3>Tags</h3>
+        <div>{tags}</div>
+        <Button>
+          <div onClick={clearFilters}>Clear Filters</div>
+        </Button>
+        <Button>
+          <div onClick={clickCodepen}>
+            Codepen
+          </div>
+        </Button>
+        <Button>
+          <div onClick={clickGithub}>
+            Github Gist
+          </div>
+        </Button>
+        <Button>
+          <div onClick={tagClick}>
+            {showTags ? <ImEnlarge2 /> : <ImShrink2 />}
+          </div>
+        </Button>
+        <ul className="list-unstyled">
+          {showCodepen &&
+            <PenExmplMenu />
+          }
+          {showGithub &&
+            <GistsMenu/>
+          }
+        </ul>
+      </div>
     </div>
   );
 }

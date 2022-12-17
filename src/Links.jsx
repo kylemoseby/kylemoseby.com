@@ -1,6 +1,7 @@
 import React from 'react';
-import './App.scss';
+import PageContainer from './PageContainer';
 import LinkData from './LinkData';
+import './App.scss';
 
 function LinkTree() {
   const buttons = LinkData.map((link, indx) => {
@@ -29,14 +30,13 @@ function LinkTree() {
 
 function Links() {
   return (
-    <div className="container-fluid">
+    <PageContainer pageName="Links">
       <div className="row">
         <div className="col">
-          <h2>Links</h2>
           <LinkTree />
         </div>
       </div>
-    </div>
+    </PageContainer>
   );
 }
 

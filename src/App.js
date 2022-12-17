@@ -50,9 +50,7 @@ function App() {
     <div>
       <Header />
       <main>
-        <div className="container-fluid">
-          <Outlet />
-        </div>
+        <Outlet />
       </main>
     </div>
   );

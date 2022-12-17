@@ -3,6 +3,7 @@ import {
   ImGithub,
   ImCodepen,
   ImLinkedin,
+  ImBehance,
 } from "react-icons/im"
 
 
@@ -11,6 +12,10 @@ const LinkData = [
     title: 'LinkedIn',
     url: 'https://www.linkedin.com/in/kyle-moseby-b3b387259',
     icon: <ImLinkedin />
+  },  {
+    title: 'Behance',
+    url: 'https://www.behance.net/kylemoseby',
+    icon: <ImBehance />
   },{
     title: 'Github',
     url: 'https://github.com/kylemoseby',

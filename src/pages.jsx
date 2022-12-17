@@ -13,6 +13,9 @@ const pages = [{
   {
     title: 'Links',
     path: 'links'
+  },{
+    title: 'Photos',
+    path: 'photography'
   },
 ];
 
