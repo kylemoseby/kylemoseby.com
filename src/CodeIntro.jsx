@@ -46,7 +46,6 @@ function Code() {
 
   function PenItem(props) {
     const { info: { slugHash }, info: { title }, info: { tags } } = props;
-    let filtered = new Set(filterTags);
     return (
       <Link to={'pen/' + slugHash}>
         <h3><ImCodepen/>{title}</h3>

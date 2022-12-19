@@ -95,8 +95,10 @@ $btn-link-hover-color: $gray-300;
 
 // PHOTOGRAPHY
 .thumbnail {
-	max-height: 300px;
-	max-width: 300px;
+	max-height: 450px;
+	max-width: 450px;
+	overflow: hidden;
+	display: inline-block;
 }
 
 

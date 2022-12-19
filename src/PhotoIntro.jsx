@@ -1,7 +1,7 @@
 // import React, { useState } from 'react';
-import {
-  Link,
-} from "react-router-dom";
+// import {
+//   Link,
+// } from "react-router-dom";
 import {
   ImBehance,
 } from "react-icons/im"
@@ -14,35 +14,43 @@ import PhotographyData from './PhotographyData';
 
 function PhotoIntro() {
   return (
-    <div>
-      <Link to="https://www.behance.net/kylemoseby">
-        <ImBehance />
-      </Link>
-      <Gallery photoData={PhotographyData} />
+    <div className="row">
+      <div className="col-12">
+        <h3>Gallery</h3>
+        <a href="https://kylemoseby.myportfolio.com" target="_blank" rel="noreferrer">
+          Additional work and client login can be found here.
+        </a>
+        <a href="https://www.behance.net/kylemoseby">
+          <ImBehance />
+        </a>
+
+        <Gallery>
+          <Thumbnails photoData={PhotographyData} />
+        </Gallery>
+      </div>
     </div>
   );
 }
 
 function Gallery(props) {
+  return (
+    <div className="d-flex flex-wrap">
+      {props.children}
+    </div>
+  );
+}
 
-  const thumbnails = props.photoData.map((photo) => {
+function Thumbnails(props){
+  let rand = Math.floor(Math.random() * props.photoData.length)
+  return props.photoData.map((photo, indx) => {
     let {fileName, title} = photo;
     return (
-      <div className="p-2">
-        <img className="thumbnail" src={process.env.PUBLIC_URL + fileName} />
+      <div className="thumbnail p-2 flex-fill" key={indx}>
+        <img alt ="" src={process.env.PUBLIC_URL + fileName} />
         <div>|{title}|</div>
       </div>
     );
-  });
-
-  return (
-    <div className="col-12">
-      <h3>Gallery</h3>
-      <div className="d-flex align-items-start">
-        {thumbnails}
-      </div>
-    </div>
-  );
+  }).slice(rand, rand + 7);
 }
 
 export default PhotoIntro;

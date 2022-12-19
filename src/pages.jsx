@@ -1,8 +1,8 @@
 const pages = [{
-  //   title: 'Home',
-  //   path: '/'
-  // },
-  // {
+    //   title: 'Home',
+    //   path: '/'
+    // },
+    // {
     title: 'About',
     path: 'about'
   },
@@ -11,11 +11,13 @@ const pages = [{
     path: 'code'
   },
   {
-    title: 'Links',
-    path: 'links'
-  },{
     title: 'Photos',
     path: 'photography'
+
+  },
+  {
+    title: 'Links',
+    path: 'links'
   },
 ];
 
