@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 import {
   ImLocation,
 } from "react-icons/im"
-
-import './App.scss';
 import pages from './pages';
 import LinkData from './LinkData';
-
+import './App.scss';
 
 function Welcome() {
   return (
@@ -17,8 +15,6 @@ function Welcome() {
     </div>
   );
 }
-
-
 function PageLinks() {
   return (
     <div className="menu d-sm-flex justify-content-center">
@@ -33,8 +29,6 @@ function PageLinks() {
     </div>
   );
 }
-
-
 function SiteIntro() {
   return (
     <ul className="list-unstyled display-6 fw-bold">
@@ -50,8 +44,6 @@ function SiteIntro() {
     </ul>
   );
 }
-
-
 function SocialMedia(props) {
   return LinkData.map((link, indx) => {
     return (
@@ -63,8 +55,6 @@ function SocialMedia(props) {
     )
   });
 }
-
-
 function Introduction() {
   return (
     <div className="grad-background row">

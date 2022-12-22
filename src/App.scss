@@ -75,6 +75,8 @@ $btn-link-hover-color: $gray-300;
 
 // END BOOTSTRAP
 
+
+// INTRO PAGE
 .accent-font {
 	font-family: 'Bungee Shade', cursive;
 }
@@ -90,5 +92,19 @@ $btn-link-hover-color: $gray-300;
 		rgba(231,253,29,1) 50%, rgba(21,230,43,1) 100%);
 	height: 100vh;
 }
+
+// PHOTOGRAPHY
+.thumbnail {
+	max-height: 450px;
+	max-width: 450px;
+	overflow: hidden;
+	display: inline-block;
+}
+
+
+
+
+
+
 
 

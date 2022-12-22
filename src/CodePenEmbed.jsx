@@ -26,6 +26,14 @@ class CodePenEmbed extends React.Component {
     }
   }
 
+  /*
+    data-tab-bar-color="#000000"
+    data-tab-link-color="#000000"
+    data-active-tab-color="#15E62A"
+    data-active-link-color="#000000"
+    data-link-logo-color="#ffffff"
+  */
+
   render() {
     const slugHash = this.props.slugHash;
     return (
@@ -38,11 +46,6 @@ class CodePenEmbed extends React.Component {
           data-theme-id="dark"
           data-border="thick"
           data-border-color="#000000"
-          data-tab-bar-color="#000000"
-          data-tab-link-color="#000000"
-          data-active-tab-color="#15E62A"
-          data-active-link-color="#000000"
-          data-link-logo-color="#ffffff"
         >
           <div className="spinner-border text-primary" role="status">
             <span className="visually-hidden">Loading...</span>

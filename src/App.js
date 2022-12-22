@@ -45,15 +45,20 @@ function Header() {
   );
 }
 
+function Footer() {
+  return (
+    <div></div>
+  );
+}
+
 function App() {
   return (
     <div>
       <Header />
       <main>
-        <div className="container-fluid">
-          <Outlet />
-        </div>
+        <Outlet />
       </main>
+      <Footer />
     </div>
   );
 }

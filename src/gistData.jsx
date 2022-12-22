@@ -1,6 +1,7 @@
 const gistData = [{
   title: 'Twitter API Example',
   id: '3930a36183bca9acb3c02875be428d07',
+  tags: ['Python', 'REST', 'Twitter'],
   description: function() {
     return (
       <div>

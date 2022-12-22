@@ -8,6 +8,7 @@ import {
 import './App.scss';
 import CodePenData from './CodePenData';
 import CodePenEmbed from './CodePenEmbed';
+import CodeIntro from './CodeIntro';
 
 function CodePen() {
 

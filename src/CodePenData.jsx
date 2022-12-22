@@ -7,7 +7,7 @@
         <p>Use of force definition can be found at <a href="https://www.seattle.gov/police-manual/title-8---use-of-force/8050---use-of-force-definitions" target="_blank" rel="noreferrer">Seattle.gov</a></p>
         </div>);
     },
-    tags: ['JavaScript', 'Google Charts', 'Data Visualization']
+    tags: ['JavaScript', 'Google Charts', 'Data Visualization', 'React']
   }, {
     title: 'Bikes Crossing the Fremont Bridge',
     slugHash: 'JjpMJVz',
@@ -25,7 +25,7 @@
           <p>Data visualization dashboard built with Google Charts using data from <a href="https://data.wa.gov/dataset/WDFW-Fish-Plants/6fex-3r7d" target="_blank" rel="noreferrer">Washington State's Data.gov portal</a>.</p>
         </div>);
     },
-    tags: ['JavaScript', 'Google Charts', 'Data Visualization']
+    tags: ['JavaScript', 'Google Charts', 'Data Visualization', 'Dashboard']
   }, {
     title: 'WDFW Fish Releases Treemap Chart',
     slugHash: 'RwyrzKm',
@@ -34,7 +34,7 @@
           <p>Treemap chart built with Google Charts using data from <a href="https://data.wa.gov/dataset/WDFW-Fish-Plants/6fex-3r7d" target="_blank" rel="noreferrer">Washington State's Data.gov portal</a>.</p>
         </div>);
     },
-    tags: ['JavaScript', 'Google Charts', 'Data Visualization']
+    tags: ['JavaScript', 'Google Charts', 'Data Visualization', 'Treemap']
   }, {
     title: 'WDFW Fish Releases Sankey Chart',
     slugHash: 'MWXabbG',
@@ -43,26 +43,8 @@
           <p>Sankey chart built with Google Charts using data from <a href="https://data.wa.gov/dataset/WDFW-Fish-Plants/6fex-3r7d" target="_blank" rel="noreferrer">Washington State's Data.gov portal</a>.</p>
         </div>);
     },
-    tags: ['JavaScript', 'Google Charts', 'Data Visualization']
-  }, {
-    title: 'WDFW Fish Releases Google Calendar',
-    slugHash: 'oNqRwwa',
-    description: function() {
-      return (<div>
-          <p>Calendar chart built with Google Charts using data from <a href="https://data.wa.gov/dataset/WDFW-Fish-Plants/6fex-3r7d" target="_blank" rel="noreferrer">Washington State's Data.gov portal</a>.</p>
-        </div>);
-    },
-    tags: ['JavaScript', 'Google Charts', 'Data Visualization']
-  }, {
-    title: 'Flickr Photo Album',
-    slugHash: 'QgVZpy',
-    description: function() {
-      return (<div>
-          <p>Photo album built in AngularJS that uses Flickr's REST API to display a Flickr Gallery.</p>
-        </div>);
-    },
-    tags: ['JavaScript', 'AngularJS', 'REST']
-  }, {
+    tags: ['JavaScript', 'Google Charts', 'Data Visualization', 'Sankey']
+  },  {
     title: 'Flickr Recent Photos',
     slugHash: 'yzeagx',
     description: function() {
