@@ -17,7 +17,7 @@ function About() {
   return (
     <PageContainer pageName="About">
       <div className="row">
-        <div className="col">
+        <div className="col-12 col-lg-9 col-xl-6">
           <p>I am a techincal and creative consultant with over 20 years experience putting content on the Internet.</p>
           <p>I have worked on teams for big corporations (Microsoft, DR Horton), agencies (POP, GLG), nonprofits, and startups (Tableau).</p>
           <p>I have been apart of development, testing, business systems, and support teams.</p>

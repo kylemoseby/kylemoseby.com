@@ -11,7 +11,7 @@ const pages = [{
     path: 'code'
   },
   {
-    title: 'Photos',
+    title: 'Photo',
     path: 'photography'
 
   },

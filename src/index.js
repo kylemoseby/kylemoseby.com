@@ -16,6 +16,7 @@ import CodeIntro from './CodeIntro';
 import Gist from './Gist';
 import Photography from './Photography';
 import PhotoIntro from './PhotoIntro';
+import PageContainer from './PageContainer';
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -25,6 +26,8 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Introduction />} />
+          <Route path="about" element={<About />} />
+          <Route path="links" element={<Links />} />
           <Route path="photography" element={<Photography />}>
             <Route index element={<PhotoIntro />} />
           </Route>
@@ -33,8 +36,6 @@ root.render(
             <Route path="pen/:slugHash" element={<CodePen />} />
             <Route path="gist/:id" element={<Gist />} />
           </Route>
-          <Route path="about" element={<About />} />
-          <Route path="links" element={<Links />} />
         </Route>
       </Routes>
     </BrowserRouter>

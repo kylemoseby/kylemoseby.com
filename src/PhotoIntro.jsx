@@ -4,6 +4,7 @@
 // } from "react-router-dom";
 import {
   ImBehance,
+  ImInstagram,
 } from "react-icons/im"
 import './App.scss';
 import PhotographyData from './PhotographyData';
@@ -16,17 +17,17 @@ function PhotoIntro() {
   return (
     <div className="row">
       <div className="col-12">
-        <h3>Gallery</h3>
-        <a href="https://kylemoseby.myportfolio.com" target="_blank" rel="noreferrer">
-          Additional work and client login can be found here.
-        </a>
-        <a href="https://www.behance.net/kylemoseby">
+        <a href="https://www.behance.net/kylemoseby" target="_blank" rel="noreferrer">
           <ImBehance />
         </a>
-
+        <a href="https://www.instagram.com/ybesomelyk" target="_blank" rel="noreferrer">
+          <ImInstagram />
+        </a>
         <Gallery>
           <Thumbnails photoData={PhotographyData} />
         </Gallery>
+        <p>Additional portfolio and client login can be found <a href="https://kylemoseby.myportfolio.com" target="_blank" rel="noreferrer">
+        here</a>.</p>
       </div>
     </div>
   );
@@ -40,17 +41,21 @@ function Gallery(props) {
   );
 }
 
-function Thumbnails(props){
+function Thumbnails(props) {
+  // Choose a random photo in data
   let rand = Math.floor(Math.random() * props.photoData.length)
+  // Photo count to include in gallery preview
+  let photoCount = 8;
+
   return props.photoData.map((photo, indx) => {
-    let {fileName, title} = photo;
+    let { fileName, title } = photo;
     return (
       <div className="thumbnail p-2 flex-fill" key={indx}>
         <img alt ="" src={process.env.PUBLIC_URL + fileName} />
         <div>|{title}|</div>
       </div>
     );
-  }).slice(rand, rand + 7);
+  }).slice(rand, rand + photoCount);
 }
 
 export default PhotoIntro;

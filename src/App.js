@@ -45,6 +45,12 @@ function Header() {
   );
 }
 
+function Footer() {
+  return (
+    <div></div>
+  );
+}
+
 function App() {
   return (
     <div>

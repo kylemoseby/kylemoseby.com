@@ -13,10 +13,7 @@ import PageContainer from './PageContainer';
 import PhotographyData from './PhotographyData';
 import './App.scss';
 
-// Common wrapper for Codepen and Gist Examples
-
 function Photography() {
-  console.log(PhotographyData);
   return (
     <PageContainer pageName="Photography">
       <Outlet />

@@ -13,7 +13,6 @@ import CodePenData from './CodePenData';
 import gistData from './gistData';
 import CodePenEmbed from './CodePenEmbed';
 
-
 function ListItem(props) {
   return (
     <li key={props.index} className="px-3 pt-2">
@@ -38,31 +37,42 @@ const tagSet = new Set(CodePenData.map(d => d.tags).flat());
 const coolPenIDs = ['GRQOQEw', 'MWVRLWN', 'RwyrzKm', 'MWXabbG'];
 
 function Code() {
-
+  // USESTATES
   const [showTags, toggleTags] = useState(true);
   const [showGithub, toggleGithub] = useState(true);
   const [showCodepen, toggleCodepen] = useState(true);
   const [filterTags, updateFilters] = useState([]);
 
+
+  // ELEMENTS
   function CodeTags(props) {
     return (
-      <div className="display-inline">{props.tags.map((tag, indx) => {
-        return (<span key={indx  + '-' + randomIndex()}>{indx !== 0 ? '/' : ''}&nbsp;{tag}&nbsp;</ span>)
-      })}</div>
+      <div className="display-inline">
+        {props.tags.map((tag, indx) => {
+          return (
+            <span
+              key={indx  + '-' + randomIndex()}
+              className={"text-" + (filterTags.includes(tag) ? 'secondary' : 'primary')}
+            >
+              {indx !== 0 ? '/' : ''}&nbsp;{tag}&nbsp;
+            </span>)
+        })}
+      </div>
     );
   }
 
   function PenExmplMenu(props) {
     return props.penData.map((pen) => {
       let { slugHash, title, tags } = pen;
-      if (filterTags.every(d => !tags.includes(d))) {
+      // Filter pens via tag
+      if (tags.some(d => filterTags.includes(d))) {
         return (
-          <ListItem>
-          <Link to={'pen/' + slugHash}>
-            <h3><ImCodepen/>{title}</h3>
-          </Link>
-          {showTags && <CodeTags tags={tags} />}
-        </ListItem>
+          <ListItem key={slugHash}>
+            <Link to={'pen/' + slugHash}>
+            <ImCodepen/>{title}
+            </Link>
+            {showTags && <CodeTags tags={tags} />}
+          </ListItem>
         );
       };
     });
@@ -74,19 +84,25 @@ function Code() {
       return (
         <ListItem key={id}>
         <Link to={'gist/' + id}>
-          <h3><ImGithub/>{title}</h3>
+          <ImGithub/>{title}
         </Link>
         {showTags && <CodeTags tags={tags} />}
       </ListItem>
       );
     })
   }
-  const tags = [...tagSet].map((tag, indx) => {
+  const tagButtons = [...tagSet].map((tag, indx) => {
     return (
-      <div key={indx + '-' + randomIndex()} className={"btn btn-" + (filterTags.includes(tag) ? "secondary" : "primary") + " btn-sm"} onClick={() => {toggleTag(tag)}}>
+      <div
+        key={indx + '-' + randomIndex()}
+        className={"btn btn-" + (filterTags.includes(tag) ? "secondary" : "primary") + " btn-sm"}
+        onClick={() => {toggleTag(tag)}}
+      >
         {tag}
       </div>);
   });
+  // END ELEMENTS
+
 
   // EVENT HANDLERS
   function toggleTag(tag) {
@@ -106,7 +122,6 @@ function Code() {
   }
 
   function clearFilters() {
-    debugger;
     updateFilters([]);
     // toggleGithub(true)
     // toggleCodepen(true)
@@ -119,26 +134,27 @@ function Code() {
   function clickCodepen() {
     toggleCodepen(!showCodepen)
   }
+  // END EVENT HANDLERS
+
 
   let coolPen = coolPenIDs.at(Math.floor(Math.random() * coolPenIDs.length));
 
   return (
     <div className="row">
-      <div className="col">
-        <CodePenEmbed slugHash={coolPen} />
-        <p><Link to={'pen/' + coolPen}>Click more info.</Link></p>
+      <div className="col-md-12">
         <div className="d-flex flex-wrap">
           <div className="btn-group btn-group-sm" role="group" aria-label="Small button group">
-            Filter by tag: {tags}
+            Filter by tag: {tagButtons}
           </div>
         </div>
+        {filterTags.length !== 0 &&
         <Button>
           <div onClick={clearFilters}>Clear Filters</div>
-        </Button>
+        </Button>}
         <Button colour="primary">
-          <div onClick={tagClick}>
-            {showTags ? <ImEnlarge2 /> : <ImShrink2 />}
-          </div>
+        <div onClick={tagClick}>
+          {showTags ? <ImShrink2 /> : <ImEnlarge2 />}
+        </div>
         </Button>
         <ul className="list-unstyled">
           {showCodepen &&
@@ -152,5 +168,12 @@ function Code() {
     </div>
   );
 }
+
+// <div className="col">
+//   <CodePenEmbed slugHash={coolPen} />
+//   <p><Link to={'pen/' + coolPen}>Click more info.</Link></p>
+// </div>
+
+
 
 export default Code;
