@@ -10,11 +10,11 @@ const pages = [{
     title: 'Code',
     path: 'code'
   },
-  {
-    title: 'Photo',
-    path: 'photography'
+  // {
+  //   title: 'Photo',
+  //   path: 'photography'
 
-  },
+  // },
   {
     title: 'Links',
     path: 'links'

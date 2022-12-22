@@ -39,10 +39,6 @@ const coolPenIDs = ['GRQOQEw', 'MWVRLWN', 'RwyrzKm', 'MWXabbG'];
 function Code() {
   // USESTATES
   const [showTags, toggleTags] = useState(true);
-  const [showGithub, toggleGithub] = useState(true);
-  const [showCodepen, toggleCodepen] = useState(true);
-  const [filterTags, updateFilters] = useState([]);
-
 
   // ELEMENTS
   function CodeTags(props) {
@@ -52,7 +48,6 @@ function Code() {
           return (
             <span
               key={indx  + '-' + randomIndex()}
-              className={"text-" + (filterTags.includes(tag) ? 'secondary' : 'primary')}
             >
               {indx !== 0 ? '/' : ''}&nbsp;{tag}&nbsp;
             </span>)
@@ -65,7 +60,7 @@ function Code() {
     return props.penData.map((pen) => {
       let { slugHash, title, tags } = pen;
       // Filter pens via tag
-      if (tags.some(d => filterTags.includes(d))) {
+      // if (tags.some(d => filterTags.includes(d))) {
         return (
           <ListItem key={slugHash}>
             <Link to={'pen/' + slugHash}>
@@ -74,7 +69,7 @@ function Code() {
             {showTags && <CodeTags tags={tags} />}
           </ListItem>
         );
-      };
+      // };
     });
   }
 
@@ -91,6 +86,46 @@ function Code() {
       );
     })
   }
+  // END ELEMENTS
+
+  // EVENT HANDLERS
+  function tagClick() {
+    toggleTags(!showTags);
+  }
+  // END EVENT HANDLERS
+
+
+  let coolPen = coolPenIDs.at(Math.floor(Math.random() * coolPenIDs.length));
+
+  return (
+    <div className="row">
+      <div className="col-md-12">
+        <Button colour="primary">
+        <div onClick={tagClick}>
+          {showTags ? <ImShrink2 /> : <ImEnlarge2 />}
+        </div>
+        </Button>
+        <ul className="list-unstyled">
+          <PenExmplMenu penData={CodePenData} />
+          <GistsMenu gistData={gistData} />
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+/*
+
+  STATES
+  const [showGithub, toggleGithub] = useState(true);
+  const [showCodepen, toggleCodepen] = useState(true);
+  const [filterTags, updateFilters] = useState([]);
+
+  // Toggle TAG class
+  className={"text-" + (filterTags.includes(tag) ? 'secondary' : 'primary')}
+
+
+  // TAG ELEMENTS
   const tagButtons = [...tagSet].map((tag, indx) => {
     return (
       <div
@@ -101,10 +136,22 @@ function Code() {
         {tag}
       </div>);
   });
-  // END ELEMENTS
+
+  // FILTERING BY TAGS
+  <div className="d-flex flex-wrap">
+    <div className="btn-group btn-group-sm" role="group" aria-label="Small button group">
+      Filter by tag: {tagButtons}
+    </div>
+  </div>
+  {filterTags.length !== 0 &&
+  <Button>
+    <div onClick={clearFilters}>Clear Filters</div>
+  </Button>}
 
 
-  // EVENT HANDLERS
+
+
+// EVENT HANDLERS
   function toggleTag(tag) {
     let filtered = new Set(filterTags);
 
@@ -137,37 +184,8 @@ function Code() {
   // END EVENT HANDLERS
 
 
-  let coolPen = coolPenIDs.at(Math.floor(Math.random() * coolPenIDs.length));
 
-  return (
-    <div className="row">
-      <div className="col-md-12">
-        <div className="d-flex flex-wrap">
-          <div className="btn-group btn-group-sm" role="group" aria-label="Small button group">
-            Filter by tag: {tagButtons}
-          </div>
-        </div>
-        {filterTags.length !== 0 &&
-        <Button>
-          <div onClick={clearFilters}>Clear Filters</div>
-        </Button>}
-        <Button colour="primary">
-        <div onClick={tagClick}>
-          {showTags ? <ImShrink2 /> : <ImEnlarge2 />}
-        </div>
-        </Button>
-        <ul className="list-unstyled">
-          {showCodepen &&
-            <PenExmplMenu penData={CodePenData} />
-          }
-          {showGithub &&
-            <GistsMenu gistData={gistData} />
-          }
-        </ul>
-      </div>
-    </div>
-  );
-}
+*/
 
 // <div className="col">
 //   <CodePenEmbed slugHash={coolPen} />

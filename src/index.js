@@ -28,9 +28,6 @@ root.render(
           <Route index element={<Introduction />} />
           <Route path="about" element={<About />} />
           <Route path="links" element={<Links />} />
-          <Route path="photography" element={<Photography />}>
-            <Route index element={<PhotoIntro />} />
-          </Route>
           <Route path="code" element={<Code />}>
             <Route index element={<CodeIntro />} />
             <Route path="pen/:slugHash" element={<CodePen />} />

@@ -17,7 +17,7 @@ function About() {
   return (
     <PageContainer pageName="About">
       <div className="row">
-        <div className="col-12 col-lg-9 col-xl-6">
+        <div className="col-12 col-xl-9 col-xxl-6">
           <p>I am a techincal and creative consultant with over 20 years experience putting content on the Internet.</p>
           <p>I have worked on teams for big corporations (Microsoft, DR Horton), agencies (POP, GLG), nonprofits, and startups (Tableau).</p>
           <p>I have been apart of development, testing, business systems, and support teams.</p>
@@ -32,8 +32,6 @@ function About() {
           <ul className="list-unstyled">
             {linkListItems}
           </ul>
-          <h2>Colophon</h2>
-          <p>This site was created with a text editor, React, Bootstrap, and hosted on Github.</p>
         </div>
       </div>
     </PageContainer>
