@@ -3,7 +3,6 @@ import {
   ImGithub,
   ImCodepen,
   ImLinkedin,
-  ImBehance,
 } from "react-icons/im"
 
 
