@@ -1,3 +1,5 @@
+import React from 'react';
+
   const CodepenData = [{
     title: 'Seatle Police Department Use of Force Dashboard',
     slugHash: 'GRQOQEw',
