@@ -15,7 +15,8 @@
 
 # next.js
 /.next/
-/out/
+# want static site to publish to Github
+# /out/
 
 # production
 /build
