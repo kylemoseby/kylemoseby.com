@@ -23,9 +23,9 @@ const socialLinks = linkData.map((d, i) => {
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--jersey-15-regular)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <h1 className="text-3xl ">Welcome to the personal website of Kyle Moseby</h1>
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen text-2xl font-[family-name:var(--jersey-15-regular)]">
+      <main className="flex flex-col gap-4 row-start-2 items-center sm:items-start">
+        <h1 className="text-4xl">Welcome to the personal website of Kyle Moseby.</h1>
         <p>Currently located in the White Center neighborhood near Seattle, Washington.</p>
         <p>At this time I maintain the following socials:</p>
         <ul>
