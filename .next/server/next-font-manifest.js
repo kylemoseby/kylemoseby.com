@@ -1,0 +1,1 @@
+self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/Users/kylemoseby/Desktop/kylemoseby.com/src/app/layout":["static/media/81c38c48e5a13b4c-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}';
