@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
 
   // Optional: Change the output directory `out` -> `dist`
   basePath: '/docs',
-  distDir: '/docs',
+  distDir: 'docs',
 };
 
 export default nextConfig;
