@@ -11,9 +11,9 @@ const linkData = [
   {
     title: 'Codepen',
     url: 'https://codepen.io/kylemoseby',
-  },{
-    title: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/kyle-moseby-b3b387259',
+  // },{
+  //   title: 'LinkedIn',
+  //   url: 'https://www.linkedin.com/in/kyle-moseby-b3b387259',
   },
 ];
 
