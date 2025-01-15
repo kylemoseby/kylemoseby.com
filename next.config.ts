@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
   // skipTrailingSlashRedirect: true,
 
   // Optional: Change the output directory `out` -> `dist`
-  basePath: '/docs',
+  // basePath: '/docs',
   distDir: 'docs',
 };
 
